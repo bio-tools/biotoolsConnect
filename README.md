@@ -8,5 +8,5 @@ Adaptors for content exchange between bio.tools and community projects.
 * [BioConductor](https://github.com/bio-tools/biotoolsConnect/tree/master/BioConductor)
 * [ms-utils](https://github.com/bio-tools/biotoolsConnect/tree/master/msutils)
 
-### Active
+### Pending
 * BioJS
