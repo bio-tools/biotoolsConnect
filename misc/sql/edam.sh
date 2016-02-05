@@ -12,7 +12,7 @@ if psql $PORT -l 2>/dev/null | grep -qw udd ; then
 fi
 
 # Check UDD connection
-if ! psql service=udd -c "" 2>/dev/null ; then
+if ! psql $PORT $SERVICE -c "" 2>/dev/null ; then
     echo "No local UDD found, use publich mirror."
     PORT="--port=5432"
     export PGPASSWORD="public-udd-mirror"
