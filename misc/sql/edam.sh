@@ -40,7 +40,7 @@ $JSONBEGIN
          p.package, p.distribution, p.release, p.component, p.version,
          p.source, p.homepage,
           en.description AS description, en.long_description AS long_description,
-          interface.tags
+          interface.tags AS interface, biology.tags AS biology, field.tags AS fields
     FROM (
       SELECT DISTINCT
              package, distribution, release, component, strip_binary_upload(version) AS version,
@@ -84,6 +84,18 @@ $JSONBEGIN
         WHERE tag LIKE 'interface::%'
           GROUP BY package
     ) interface ON interface.package = p.package
+    LEFT OUTER JOIN (
+       SELECT package, array_agg(tag) AS tags
+         FROM debtags
+        WHERE tag LIKE 'biology::%'
+          GROUP BY package
+    ) biology ON biology.package = p.package
+    LEFT OUTER JOIN (
+       SELECT package, array_agg(tag) AS tags
+         FROM debtags
+        WHERE tag LIKE 'field::%'
+          GROUP BY package
+    ) field ON field.package = p.package
 
    ORDER BY source, package
 -- If you want to make the output at source level uncomment this
