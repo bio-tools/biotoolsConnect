@@ -38,7 +38,7 @@ $JSONBEGIN
          regexp_replace(regexp_replace(regexp_replace(p.version, '-[.\d]+$', ''), '\+dfsg.*$', '') , '\+lgpl.*$', '') AS version, -- strip Debian revision
          p.source, p.homepage,
           en.description AS description, en.long_description AS long_description,
-          interface.tags AS interface, biology.tags AS biology, field.tags AS fields
+          interface.tags AS interface, biology.tags AS biology, field.tags AS fields, use.tags AS use
     FROM (
       SELECT DISTINCT
              package, distribution, release, component, strip_binary_upload(version) AS version,
@@ -94,7 +94,12 @@ $JSONBEGIN
         WHERE tag LIKE 'field::%'
           GROUP BY package
     ) field ON field.package = p.package
-
+    LEFT OUTER JOIN (
+       SELECT package, array_agg(regexp_replace(tag, 'use::', '')) AS tags
+         FROM debtags
+        WHERE tag LIKE 'use::%'
+          GROUP BY package
+    ) use ON use.package = p.package
    ORDER BY source, package
 -- If you want to make the output at source level uncomment this
 -- ) tmp
