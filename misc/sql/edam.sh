@@ -31,11 +31,13 @@ team="'debian-med-packaging@lists.alioth.debian.org'"
 
 psql $PORT $OUTPUTFORMAT $SERVICE >edam.$EXT <<EOT
 $JSONBEGIN
- SELECT source, array_agg(package), distribution, release, component, version, homepage FROM
- (
+-- If you want to make the output at source level uncomment this
+-- SELECT source, array_agg(package) as packages, distribution, release, component, version, homepage FROM
+-- (
   SELECT DISTINCT
          p.package, p.distribution, p.release, p.component, p.version,
-         p.source, p.homepage
+         p.source, p.homepage,
+          en.description AS description, en.long_description AS long_description
     FROM (
       SELECT DISTINCT
              package, distribution, release, component, strip_binary_upload(version) AS version,
@@ -73,10 +75,11 @@ $JSONBEGIN
         JOIN releases rx ON py.release = rx.release
         GROUP BY px.package, px.version
        ) pvar ON pvar.package = p.package AND pvar.version = p.version AND pvar.release = p.release
-
- ) tmp
-   GROUP BY source, distribution, release, component, version, homepage
-   ORDER BY source
+   ORDER BY source, package
+-- If you want to make the output at source level uncomment this
+-- ) tmp
+--   GROUP BY source, distribution, release, component, version, homepage
+--   ORDER BY source
 $JSONEND
 ;
 EOT
