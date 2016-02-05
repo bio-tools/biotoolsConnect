@@ -11,6 +11,14 @@ if psql $PORT -l 2>/dev/null | grep -qw udd ; then
     SERVICE=udd
 fi
 
+# Check UDD connection
+if ! psql service=udd -c "" 2>/dev/null ; then
+    echo "No local UDD found, use publich mirror."
+    PORT="--port=5432"
+    export PGPASSWORD="public-udd-mirror"
+    SERVICE="--host=public-udd-mirror.xvm.mit.edu --username=public-udd-mirror udd"
+fi
+
 EXT=txt
 if [ "$1" = "-j" ] ; then
   JSONBEGIN="SELECT array_to_json(array_agg(t)) FROM ("
