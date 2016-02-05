@@ -2,7 +2,8 @@
 # Create a dataset for EDAM
 #
 # FIXME:
-#        * "main license"
+#        * UNION with blends_prospective table!!
+#        * "main license" (Files: *)
 #        * Upstream-Contact
 
 PORT="-p 5452"
