@@ -1,7 +1,9 @@
 #!/bin/sh
-# Gather data needed to replace DebianGIS Package Thermometer available at
+# Create a dataset for EDAM
 #
-#   http://pkg-grass.alioth.debian.org/debiangis-status.html
+# FIXME:
+#       - strip versions to upstream versions
+#       - strip "interface::" from interface
 
 PORT="-p 5452"
 
@@ -37,7 +39,8 @@ $JSONBEGIN
   SELECT DISTINCT
          p.package, p.distribution, p.release, p.component, p.version,
          p.source, p.homepage,
-          en.description AS description, en.long_description AS long_description
+          en.description AS description, en.long_description AS long_description,
+          interface.tags
     FROM (
       SELECT DISTINCT
              package, distribution, release, component, strip_binary_upload(version) AS version,
@@ -75,6 +78,13 @@ $JSONBEGIN
         JOIN releases rx ON py.release = rx.release
         GROUP BY px.package, px.version
        ) pvar ON pvar.package = p.package AND pvar.version = p.version AND pvar.release = p.release
+    LEFT OUTER JOIN (
+       SELECT package, array_agg(tag) AS tags
+         FROM debtags
+        WHERE tag LIKE 'interface::%'
+          GROUP BY package
+    ) interface ON interface.package = p.package
+
    ORDER BY source, package
 -- If you want to make the output at source level uncomment this
 -- ) tmp
