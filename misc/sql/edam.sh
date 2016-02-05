@@ -2,7 +2,6 @@
 # Create a dataset for EDAM
 #
 # FIXME:
-#        * UNION with blends_prospective table!!
 #        * "main license" (Files: *)
 #        * Upstream-Contact
 
