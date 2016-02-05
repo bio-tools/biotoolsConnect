@@ -1,6 +1,9 @@
 #!/bin/sh
 # Create a dataset for EDAM
 #
+# FIXME:
+#        * "main license"
+#        * Upstream-Contact
 
 PORT="-p 5452"
 
