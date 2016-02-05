@@ -11,3 +11,8 @@ Adaptors for content exchange between bio.tools and community projects.
 
 ### Pending
 * BioJS
+
+
+### Updates / Curation / Sync / Handshake
+
+![2016-12-03@Amsterdam](https://raw.githubusercontent.com/bio-tools/biotoolsConnect/master/Photo1904%2820151203amsterdam%29.jpg)
