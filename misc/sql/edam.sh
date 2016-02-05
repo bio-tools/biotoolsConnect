@@ -31,6 +31,8 @@ team="'debian-med-packaging@lists.alioth.debian.org'"
 
 psql $PORT $OUTPUTFORMAT $SERVICE >edam.$EXT <<EOT
 $JSONBEGIN
+ SELECT source, array_agg(package), distribution, release, component, version, homepage FROM
+ (
   SELECT DISTINCT
          p.package, p.distribution, p.release, p.component, p.version,
          p.source, p.homepage
@@ -72,7 +74,9 @@ $JSONBEGIN
         GROUP BY px.package, px.version
        ) pvar ON pvar.package = p.package AND pvar.version = p.version AND pvar.release = p.release
 
-   ORDER BY p.source, p.package
+ ) tmp
+   GROUP BY source, distribution, release, component, version, homepage
+   ORDER BY source
 $JSONEND
 ;
 EOT
