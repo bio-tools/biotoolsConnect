@@ -11,9 +11,18 @@ if psql $PORT -l 2>/dev/null | grep -qw udd ; then
     SERVICE=udd
 fi
 
+EXT=txt
+if [ "$1" = "-j" ] ; then
+  JSONBEGIN="SELECT array_to_json(array_agg(t)) FROM ("
+  JSONEND=") t"
+  EXT=json
+  OUTPUTFORMAT=--tuples-only
+fi
+
 team="'debian-med-packaging@lists.alioth.debian.org'"
 
-psql $PORT $SERVICE >edam.out <<EOT
+psql $PORT $OUTPUTFORMAT $SERVICE >edam.$EXT <<EOT
+$JSONBEGIN
   SELECT DISTINCT
          p.package, p.distribution, p.release, p.component, p.version,
          p.source, p.homepage
@@ -55,6 +64,7 @@ psql $PORT $SERVICE >edam.out <<EOT
         GROUP BY px.package, px.version
        ) pvar ON pvar.package = p.package AND pvar.version = p.version AND pvar.release = p.release
 
-   ORDER BY p.source, p.package;
-
+   ORDER BY p.source, p.package
+$JSONEND
+;
 EOT
