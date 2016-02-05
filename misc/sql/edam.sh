@@ -79,19 +79,19 @@ $JSONBEGIN
         GROUP BY px.package, px.version
        ) pvar ON pvar.package = p.package AND pvar.version = p.version AND pvar.release = p.release
     LEFT OUTER JOIN (
-       SELECT package, array_agg(tag) AS tags
+       SELECT package, array_agg(regexp_replace(tag, 'interface::', '')) AS tags
          FROM debtags
         WHERE tag LIKE 'interface::%'
           GROUP BY package
     ) interface ON interface.package = p.package
     LEFT OUTER JOIN (
-       SELECT package, array_agg(tag) AS tags
+       SELECT package, array_agg(regexp_replace(tag, 'biology::', '')) AS tags
          FROM debtags
         WHERE tag LIKE 'biology::%'
           GROUP BY package
     ) biology ON biology.package = p.package
     LEFT OUTER JOIN (
-       SELECT package, array_agg(tag) AS tags
+       SELECT package, array_agg(regexp_replace(tag, 'field::', '')) AS tags
          FROM debtags
         WHERE tag LIKE 'field::%'
           GROUP BY package
