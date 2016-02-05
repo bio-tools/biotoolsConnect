@@ -47,7 +47,7 @@ $JSONBEGIN
     FROM (
       SELECT DISTINCT
              package, distribution, release, component, strip_binary_upload(version) AS version,
-             maintainer, source, section, homepage, description, description_md5
+             source, homepage, description, description_md5
         FROM packages
        WHERE package IN
                       (SELECT DISTINCT package FROM blends_dependencies WHERE blend = 'debian-med' AND task IN ('bio', 'bio-dev'))
