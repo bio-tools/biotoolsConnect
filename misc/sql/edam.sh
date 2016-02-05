@@ -39,7 +39,7 @@ $JSONBEGIN
 -- (
   SELECT DISTINCT
          p.package, p.distribution, p.release, p.component,
-         regexp_replace(regexp_replace(regexp_replace(p.version, '-[.\d]+$', ''), '\+dfsg.*$', '') , '\+lgpl.*$', '') AS version, -- strip Debian revision
+         regexp_replace(regexp_replace(regexp_replace(regexp_replace(p.version, '-[.\d]+$', ''), '\+dfsg.*$', '') , '\+lgpl.*$', ''), '-\d*biolinux\d*$', '') AS version, -- strip Debian revision and other extensions to upstream version
          p.source, p.homepage,
           en.description AS description, en.long_description AS long_description,
           interface.tags AS interface, biology.tags AS biology, field.tags AS fields, use.tags AS use,
