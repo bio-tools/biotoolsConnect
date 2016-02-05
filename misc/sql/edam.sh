@@ -1,9 +1,6 @@
 #!/bin/sh
 # Create a dataset for EDAM
 #
-# FIXME:
-#       - strip versions to upstream versions
-#       - strip "interface::" from interface
 
 PORT="-p 5452"
 
@@ -37,7 +34,8 @@ $JSONBEGIN
 -- SELECT source, array_agg(package) as packages, distribution, release, component, version, homepage FROM
 -- (
   SELECT DISTINCT
-         p.package, p.distribution, p.release, p.component, p.version,
+         p.package, p.distribution, p.release, p.component,
+         regexp_replace(regexp_replace(regexp_replace(p.version, '-[.\d]+$', ''), '\+dfsg.*$', '') , '\+lgpl.*$', '') AS version, -- strip Debian revision
          p.source, p.homepage,
           en.description AS description, en.long_description AS long_description,
           interface.tags AS interface, biology.tags AS biology, field.tags AS fields
