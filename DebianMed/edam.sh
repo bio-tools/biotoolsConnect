@@ -5,6 +5,18 @@
 #        * "main license" (Files: *)
 #        * Upstream-Contact
 
+usage() {
+cat >/dev/stderr <<EOT
+Usage: $0 [option]
+      -h print this help screen
+      -j JSON export
+      -m forcing public mirror over local one
+
+Description:
+ Query local or public UDD for information that could be useful for EDAM.
+EOT
+}
+
 PORT="-p 5452"
 
 SERVICE="service=udd"
@@ -22,12 +34,30 @@ if ! psql $PORT $SERVICE -c "" 2>/dev/null ; then
 fi
 
 EXT=txt
-if [ "$1" = "-j" ] ; then
-  JSONBEGIN="SELECT array_to_json(array_agg(t)) FROM ("
-  JSONEND=") t"
-  EXT=json
-  OUTPUTFORMAT=--tuples-only
-fi
+while getopts "hjm" o; do
+    case "${o}" in
+        h)
+            usage
+            exit 0
+            ;;
+        j)
+           JSONBEGIN="SELECT array_to_json(array_agg(t)) FROM ("
+           JSONEND=") t"
+           EXT=json
+           OUTPUTFORMAT=--tuples-only
+           ;;
+        m)
+           PORT="--port=5432"
+           export PGPASSWORD="public-udd-mirror"
+           SERVICE="--host=public-udd-mirror.xvm.mit.edu --username=public-udd-mirror udd"
+           ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+done
+shift $((OPTIND-1))
 
 team="'debian-med-packaging@lists.alioth.debian.org'"
 
