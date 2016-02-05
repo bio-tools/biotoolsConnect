@@ -45,17 +45,30 @@ $JSONBEGIN
           interface.tags AS interface, biology.tags AS biology, field.tags AS fields, use.tags AS use,
           bibdoi.value as doi
     FROM (
-      SELECT DISTINCT
+      SELECT * FROM (
+        SELECT DISTINCT
              package, distribution, release, component, strip_binary_upload(version) AS version,
              source, homepage, description, description_md5
         FROM packages
-       WHERE package IN
+        WHERE package IN
                       (SELECT DISTINCT package FROM blends_dependencies WHERE blend = 'debian-med' AND task IN ('bio', 'bio-dev'))
+        UNION
+        SELECT DISTINCT
+             package, 'prospective' AS distribution, 'vcs' AS release, component, strip_binary_upload(chlog_version) AS version,
+             source, homepage, description, description_md5
+        FROM blends_prospectivepackages
+        WHERE package IN
+                      (SELECT DISTINCT package FROM blends_dependencies WHERE blend = 'debian-med' AND task IN ('bio', 'bio-dev'))
+       ) tmp
     ) p
     LEFT OUTER JOIN descriptions en ON en.language = 'en' AND en.package = p.package AND en.release = p.release  AND en.description_md5 = p.description_md5
     JOIN (
       -- select packages which have versions outside experimental
-      SELECT px.package, strip_binary_upload(px.version) AS version, (SELECT release FROM releases WHERE sort = MAX(rx.sort)) AS release
+      SELECT px.package, strip_binary_upload(px.version) AS version,
+             (SELECT release FROM ( SELECT release, sort FROM releases
+                                     UNION
+                                    SELECT 'vcs' AS release, 10000 AS sort
+                                  ) reltmp WHERE sort = MAX(rx.sort)) AS release
         FROM (
            -- select highest version which is not in experimental - except if a package resides in experimental only
            SELECT pex.package, CASE WHEN pnoex.version IS NOT NULL THEN pnoex.version ELSE pex.version END AS version FROM
@@ -71,14 +84,23 @@ $JSONBEGIN
                     AND release != 'experimental'
                   GROUP BY package
               ) pnoex ON pex.package = pnoex.package
+           UNION
+           SELECT DISTINCT package, strip_binary_upload(chlog_version) AS version FROM blends_prospectivepackages
         ) px
         JOIN (
            -- select the release in which this version is available
            SELECT DISTINCT package, version, release FROM packages
             WHERE package IN
                       (SELECT DISTINCT package FROM blends_dependencies WHERE blend = 'debian-med' AND task IN ('bio', 'bio-dev'))
+           UNION
+           SELECT DISTINCT package, chlog_version AS version, 'vcs' AS release FROM blends_prospectivepackages
+            WHERE package IN
+                      (SELECT DISTINCT package FROM blends_dependencies WHERE blend = 'debian-med' AND task IN ('bio', 'bio-dev'))
         ) py ON px.package = py.package AND px.version = py.version
-        JOIN releases rx ON py.release = rx.release
+        JOIN ( SELECT release, sort FROM releases
+               UNION 
+               SELECT 'vcs' AS release, 10000 AS sort
+             ) rx ON py.release = rx.release
         GROUP BY px.package, px.version
        ) pvar ON pvar.package = p.package AND pvar.version = p.version AND pvar.release = p.release
     LEFT OUTER JOIN (
