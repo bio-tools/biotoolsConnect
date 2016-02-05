@@ -63,6 +63,8 @@ $JSONBEGIN
     ) p
     LEFT OUTER JOIN (
        SELECT package, description, long_description, release, description_md5 FROM descriptions WHERE language = 'en'
+          AND package IN
+                      (SELECT DISTINCT package FROM blends_dependencies WHERE blend = 'debian-med' AND task IN ('bio', 'bio-dev'))
        UNION
        SELECT package, description, long_description, 'vcs' AS release, description_md5 FROM blends_prospectivepackages 
     ) en ON en.package = p.package AND (en.release = p.release OR p.release = 'vcs')  AND (en.description_md5 = p.description_md5 OR en.description_md5 IS NULL)
