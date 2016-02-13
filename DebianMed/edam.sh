@@ -74,6 +74,7 @@ $JSONBEGIN
           interface.tags AS interface, biology.tags AS biology, field.tags AS fields, use.tags AS use,
           bibdoi.value as doi,
           edam.topics  as topics,
+          pop.vote || ' / ' || pop.recent || ' / ' || pop.insts as popcon,
           edam.scopes  as edam_scopes
     FROM (
       SELECT * FROM (
@@ -165,6 +166,7 @@ $JSONBEGIN
           GROUP BY package
     ) use ON use.package = p.package
     LEFT OUTER JOIN bibref bibdoi     ON p.source = bibdoi.source     AND bibdoi.rank = 0     AND bibdoi.key     = 'doi'     AND bibdoi.package = ''
+    LEFT OUTER JOIN popcon pop        ON p.package = pop.package
     LEFT OUTER JOIN edam   edam       ON p.source = edam.source       AND p.package = edam.package
    ORDER BY source, package
 -- If you want to make the output at source level uncomment this
