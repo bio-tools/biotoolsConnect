@@ -72,9 +72,9 @@ $JSONBEGIN
          p.source, p.homepage,
           en.description AS description, en.long_description AS long_description,
           interface.tags AS interface, biology.tags AS biology, field.tags AS fields, use.tags AS use,
+          pop.vote || ' / ' || pop.recent || ' / ' || pop.insts as popcon,
           bibdoi.value as doi,
           edam.topics  as topics,
-          pop.vote || ' / ' || pop.recent || ' / ' || pop.insts as popcon,
           edam.scopes  as edam_scopes
     FROM (
       SELECT * FROM (
