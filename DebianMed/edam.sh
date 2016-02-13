@@ -72,7 +72,9 @@ $JSONBEGIN
          p.source, p.homepage,
           en.description AS description, en.long_description AS long_description,
           interface.tags AS interface, biology.tags AS biology, field.tags AS fields, use.tags AS use,
-          bibdoi.value as doi
+          bibdoi.value as doi,
+          edam.topics  as topics,
+          edam.scopes  as edam_scopes
     FROM (
       SELECT * FROM (
         SELECT DISTINCT
@@ -163,6 +165,7 @@ $JSONBEGIN
           GROUP BY package
     ) use ON use.package = p.package
     LEFT OUTER JOIN bibref bibdoi     ON p.source = bibdoi.source     AND bibdoi.rank = 0     AND bibdoi.key     = 'doi'     AND bibdoi.package = ''
+    LEFT OUTER JOIN edam   edam       ON p.source = edam.source       AND p.package = edam.package
    ORDER BY source, package
 -- If you want to make the output at source level uncomment this
 -- ) tmp
