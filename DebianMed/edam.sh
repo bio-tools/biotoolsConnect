@@ -5,6 +5,8 @@
 #        * "main license" (Files: *)
 #        * Upstream-Contact
 
+set -e
+
 usage() {
 cat >/dev/stderr <<EOT
 Usage: $0 [option]
