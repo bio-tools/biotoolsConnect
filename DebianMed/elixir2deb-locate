@@ -1,0 +1,67 @@
+#!/usr/bin/python
+
+import requests
+import json
+import subprocess
+import re
+
+def pkgswithhomepage(homepage):
+    cmd = ['grep-aptavail', '-r', 'Homepage: %s' % homepage]
+    proc = subprocess.Popen(
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        shell=False)
+
+    output, error = proc.communicate(input=input)
+    output, error = output.decode(), error.decode()
+    if proc.returncode != 0:
+#        print('info: no match for %s' % homepage)
+        return None
+    else:
+#        print output
+        packages = []
+        for line in output.split("\n"):
+#            print "  ", line
+            m = re.search('Package: (.*)$', line)
+            if m:
+                packages.append(m.group(1))
+        return packages
+
+# Url to get all entries in bio.tools directory as json
+url = 'https://bio.tools/api/tool/'
+
+# Enable to test search function
+if False:
+    homepage = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/"
+    homepage = "http://www.predictprotein.org"
+    packages = pkgswithhomepage(homepage)
+    print packages
+    os.exit(0)
+
+count = 0
+matchcount = 0
+r = requests.get(url)
+if 200 == r.status_code:
+    # r.headers['content-type']
+    # r.encoding
+    json = r.json()
+#    print json
+    for t in json:
+        count = count + 1
+#        print t
+        topics = t['topic']
+        homepage = t['homepage']
+        name = t['name']
+        affiliation = t['affiliation']
+        id = 'https://bio.tools/tool/%s/%s/' % (affiliation, name)
+
+#        print homepage
+        url = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/"
+        packages = pkgswithhomepage(homepage)
+        if packages:
+            print id
+            print "  ",','.join(packages)
+            matchcount = matchcount + 1
+
+print matchcount, count

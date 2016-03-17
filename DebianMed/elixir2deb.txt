@@ -1,0 +1,77 @@
+https://bio.tools/tool/DRCAT/GenBank nucleotide sequence database/
+   ncbi-epcr,fastlink,fastlink-doc,ncbi-blast+,ncbi-blast+-legacy,libncbi6,libncbi6-dbg,libncbi6-dev,libvibrant6-dev,libvibrant6b,libvibrant6b-dbg,ncbi-data,ncbi-rrna-data,ncbi-tools-bin,ncbi-tools-x11
+https://bio.tools/tool/GenOuest/Minia/
+   minia
+https://bio.tools/tool/GenOuest/Logol/
+   logol,logol-bin
+https://bio.tools/tool/IFB ELIXIR-FR/SeaView/
+   seaview
+https://bio.tools/tool/IFB ELIXIR-FR/BWA cloud IFB/
+   bwa,libbwa-dev
+https://bio.tools/tool/IFB ELIXIR-FR/hmmer - cloud IFB/
+   hmmer,hmmer-doc,hmmer2,hmmer2-doc,hmmer2-pvm
+https://bio.tools/tool/IFB ELIXIR-FR/fastqc - cloud IFB/
+   fastqc
+https://bio.tools/tool/IFB ELIXIR-FR/eXpress - cloud IFB/
+   berkeley-express,berkeley-express-doc
+https://bio.tools/tool/IFB ELIXIR-FR/R - cloud IFB/
+   r-base,r-base-core,r-base-core-dbg,r-base-dev,r-base-html,r-doc-html,r-doc-info,r-doc-pdf,r-mathlib,r-recommended
+https://bio.tools/tool/Instruct/CCP4/
+   libccp4-data,libccp4-dev,libccp4c0,libccp4c0-dbg,libccp4f0,libccp4f0-dbg,libmmdb-dev,libmmdb0,libmmdb0-dbg,libssm-dev,libssm1,libssm1-dbg
+https://bio.tools/tool/Instruct/Gromacs/
+   gromacs,gromacs-data,gromacs-dev,gromacs-mpich,gromacs-openmpi,libgromacs-dev,libgromacs1
+https://bio.tools/tool/BioCatalogue/GLprobsWS/
+   libjaba-client-java
+https://bio.tools/tool/BioCatalogue/JronnWS/
+   libjaba-client-java
+https://bio.tools/tool/BioCatalogue/DisemblWS/
+   libjaba-client-java
+https://bio.tools/tool/BioCatalogue/GlobPlotWS/
+   libjaba-client-java
+https://bio.tools/tool/BioCatalogue/IUPredWS/
+   libjaba-client-java
+https://bio.tools/tool/BioCatalogue/JpredWS/
+   libjaba-client-java
+https://bio.tools/tool/BioCatalogue/ProbconsWS/
+   libjaba-client-java
+https://bio.tools/tool/BioCatalogue/ClustalWS/
+   libjaba-client-java
+https://bio.tools/tool/BioCatalogue/AnalysisServiceService/
+   mafft
+https://bio.tools/tool/sanger.ac.uk/bcftools/
+   samtools,samtools-test
+https://bio.tools/tool/RostLab/PROFsec/
+   predictprotein,profnet-bval,profnet-chop,profnet-con,profnet-dbg,profnet-isis,profnet-md,profnet-norsnet,profnet-prof,profnet-snapfun,profphd-net
+https://bio.tools/tool/RostLab/PROFisis/
+   profisis
+https://bio.tools/tool/RostLab/ncoils/
+   predictprotein,profnet-bval,profnet-chop,profnet-con,profnet-dbg,profnet-isis,profnet-md,profnet-norsnet,profnet-prof,profnet-snapfun,profphd-net
+https://bio.tools/tool/BioConductor/Biostrings/
+   r-bioc-biostrings
+https://bio.tools/tool/BioConductor/GenomicAlignments/
+   r-bioc-genomicalignments
+https://bio.tools/tool/BioConductor/altcdfenvs/
+   r-bioc-altcdfenvs
+https://bio.tools/tool/BioConductor/annotate/
+   r-bioc-annotate
+https://bio.tools/tool/BioConductor/BSgenome/
+   r-bioc-bsgenome
+https://bio.tools/tool/BioConductor/GenomeInfoDb/
+   r-bioc-genomeinfodb
+https://bio.tools/tool/BioConductor/GenomicRanges/
+   r-bioc-genomicranges
+https://bio.tools/tool/BioConductor/rtracklayer/
+   r-bioc-rtracklayer
+https://bio.tools/tool/BioConductor/VariantAnnotation/
+   r-bioc-variantannotation
+https://bio.tools/tool/cibi/SeqAn/
+   seqan-apps,seqan-dev
+https://bio.tools/tool/UiO/VSEARCH/
+   vsearch
+https://bio.tools/tool/UiO/Swarm/
+   swarm
+https://bio.tools/tool/evolbio.mpg.de/andi/
+   andi
+https://bio.tools/tool/NTNU/Ray/
+   ray,ray-doc,ray-extra
+38 2298
