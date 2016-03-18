@@ -41,13 +41,18 @@ def clean_url(url):
         url = m.group(1)
     return url
 
+def equivalent_urls(url1, url2):
+    return url1 == url2 or \
+        url1 + '/' == url2 or \
+        url2 == url2 + '/'
+
 def pkgswithhomepage(pinfo, homepage):
     homepage = clean_url(homepage)
     pkgs = []
     for p in pinfo.keys():
         if 'homepage' in pinfo[p] and pinfo[p]['homepage']:
             phomepage = clean_url(pinfo[p]['homepage'])
-            if homepage == phomepage:
+            if equivalent_urls(homepage, phomepage):
                 pkgs.append(p)
     return pkgs
 
