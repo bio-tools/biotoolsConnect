@@ -76,6 +76,8 @@ if 200 == r.status_code:
 
 #        print homepage
         packages = pkgswithhomepage(pinfo, homepage)
+        if not packages and name in pinfo:
+            packages = [name]
         if packages:
             print id
             print "  homepage:", homepage
