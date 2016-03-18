@@ -34,12 +34,19 @@ def load_apt_dump():
                 pinfo[pkg] = {'src':src, 'homepage':homepage}
         return pinfo
 
+def clean_url(url):
+    url = url.replace('/index.html', '/')
+    m = re.search('^(https?://[^/]+)/$', url)
+    if m:
+        url = m.group(1)
+    return url
+
 def pkgswithhomepage(pinfo, homepage):
-    homepage = homepage.replace('/index.html', '/')
+    homepage = clean_url(homepage)
     pkgs = []
     for p in pinfo.keys():
         if 'homepage' in pinfo[p] and pinfo[p]['homepage']:
-            phomepage = pinfo[p]['homepage'].replace('/index.html', '/')
+            phomepage = clean_url(pinfo[p]['homepage'])
             if homepage == phomepage:
                 pkgs.append(p)
     return pkgs
@@ -80,8 +87,8 @@ if 200 == r.status_code:
             packages = [name]
         if packages:
             print id
-            print "  homepage:", homepage
-            print "  pkgs:",','.join(packages)
+            print "   homepage:", homepage
+            print "  ",','.join(sorted(packages))
             matchcount = matchcount + 1
 
 print matchcount, 'of', count, 'entries in elixir have candidates in Debian.'
