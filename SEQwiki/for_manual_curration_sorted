@@ -1,0 +1,1013 @@
+Format not found in EDAM:                                            cn    for tool: igv
+Format not found in EDAM:                                            cn    for tool: igv
+Format not found in EDAM:                                           ...    for tool: shortread
+Format not found in EDAM:                                           ...    for tool: shortread
+Format not found in EDAM:                                           454    for tool: dna baser
+Format not found in EDAM:                                           454    for tool: dna baser
+Format not found in EDAM:                                           454    for tool: nephele
+Format not found in EDAM:                                           454    for tool: nephele
+Format not found in EDAM:                                           bcl    for tool: isaac
+Format not found in EDAM:                                           bcl    for tool: isaac
+Format not found in EDAM:                                           bwa    for tool: pipeline pilot
+Format not found in EDAM:                                           bwa    for tool: pipeline pilot
+Format not found in EDAM:                                           csv    for tool: dna baser
+Format not found in EDAM:                                           csv    for tool: dna baser
+Format not found in EDAM:                                           csv    for tool: metagenassist
+Format not found in EDAM:                                           csv    for tool: metagenassist
+Format not found in EDAM:                                           csv    for tool: motiflab
+Format not found in EDAM:                                           csv    for tool: motiflab
+Format not found in EDAM:                                           csv    for tool: samscope
+Format not found in EDAM:                                           csv    for tool: samscope
+Format not found in EDAM:                                           fcp    for tool: krona
+Format not found in EDAM:                                           fcp    for tool: krona
+Format not found in EDAM:                                           fps    for tool: chip-seq (application)
+Format not found in EDAM:                                           fps    for tool: chip-seq (application)
+Format not found in EDAM:                                           fps    for tool: ssa
+Format not found in EDAM:                                           fps    for tool: ssa
+Format not found in EDAM:                                           gct    for tool: igv
+Format not found in EDAM:                                           gct    for tool: igv
+Format not found in EDAM:                                           gdc    for tool: genedata expressionist
+Format not found in EDAM:                                           gdc    for tool: genedata expressionist
+Format not found in EDAM:                                           hsx    for tool: lastz
+Format not found in EDAM:                                           hsx    for tool: lastz
+Format not found in EDAM:                                           maq    for tool: findpeaks 3.1
+Format not found in EDAM:                                           maq    for tool: findpeaks 3.1
+Format not found in EDAM:                                           maq    for tool: findpeaks 4.0 (vancouver short read package)
+Format not found in EDAM:                                           maq    for tool: findpeaks 4.0 (vancouver short read package)
+Format not found in EDAM:                                           maq    for tool: s-mart
+Format not found in EDAM:                                           maq    for tool: s-mart
+Format not found in EDAM:                                           maq    for tool: seqmonk
+Format not found in EDAM:                                           maq    for tool: seqmonk
+Format not found in EDAM:                                           maq    for tool: spp
+Format not found in EDAM:                                           maq    for tool: spp
+Format not found in EDAM:                                           maq    for tool: tablet
+Format not found in EDAM:                                           maq    for tool: tablet
+Format not found in EDAM:                                           mrf    for tool: fusionseq
+Format not found in EDAM:                                           mrf    for tool: fusionseq
+Format not found in EDAM:                                           msa    for tool: shorah
+Format not found in EDAM:                                           msa    for tool: shorah
+Format not found in EDAM:                                           nib    for tool: genedata expressionist
+Format not found in EDAM:                                           nib    for tool: genedata expressionist
+Format not found in EDAM:                                           pas    for tool: ab small indel tool
+Format not found in EDAM:                                           pas    for tool: ab small indel tool
+Format not found in EDAM:                                           prq    for tool: seal
+Format not found in EDAM:                                           prq    for tool: seal
+Format not found in EDAM:                                           rdp    for tool: krona
+Format not found in EDAM:                                           rdp    for tool: krona
+Format not found in EDAM:                                           seq    for tool: dna baser
+Format not found in EDAM:                                           seq    for tool: dna baser
+Format not found in EDAM:                                           seq    for tool: dna chromatogram explorer
+Format not found in EDAM:                                           seq    for tool: dna chromatogram explorer
+Format not found in EDAM:                                           seq    for tool: seqman ngen
+Format not found in EDAM:                                           seq    for tool: seqman ngen
+Format not found in EDAM:                                           sga    for tool: chip-seq (application)
+Format not found in EDAM:                                           sga    for tool: chip-seq (application)
+Format not found in EDAM:                                           sms    for tool: helisphere
+Format not found in EDAM:                                           sms    for tool: helisphere
+Format not found in EDAM:                                           sqd    for tool: seqman ngen
+Format not found in EDAM:                                           sqd    for tool: seqman ngen
+Format not found in EDAM:                                           xms    for tool: motiflab
+Format not found in EDAM:                                           xms    for tool: motiflab
+Format not found in EDAM:                                          .ab1    for tool: bionumerics
+Format not found in EDAM:                                          .ab1    for tool: bionumerics
+Format not found in EDAM:                                          .ab1    for tool: peaktrace
+Format not found in EDAM:                                          .ab1    for tool: peaktrace
+Format not found in EDAM:                                          .abd    for tool: peaktrace
+Format not found in EDAM:                                          .abd    for tool: peaktrace
+Format not found in EDAM:                                          .abi    for tool: peaktrace
+Format not found in EDAM:                                          .abi    for tool: peaktrace
+Format not found in EDAM:                                          .bam    for tool: barracuda
+Format not found in EDAM:                                          .bam    for tool: barracuda
+Format not found in EDAM:                                          .bam    for tool: bionumerics
+Format not found in EDAM:                                          .bam    for tool: bionumerics
+Format not found in EDAM:                                          cmap    for tool: ab large indel tool
+Format not found in EDAM:                                          cmap    for tool: ab large indel tool
+Format not found in EDAM:                                          flat    for tool: sammate
+Format not found in EDAM:                                          flat    for tool: sammate
+Format not found in EDAM:                                          gatk    for tool: pipeline pilot
+Format not found in EDAM:                                          gatk    for tool: pipeline pilot
+Format not found in EDAM:                                          gbff    for tool: mira
+Format not found in EDAM:                                          gbff    for tool: mira
+Format not found in EDAM:                                          goby    for tool: igv
+Format not found in EDAM:                                          goby    for tool: igv
+Format not found in EDAM:                                          gzip    for tool: bbmap
+Format not found in EDAM:                                          gzip    for tool: bbmap
+Format not found in EDAM:                                          macs    for tool: diffbind
+Format not found in EDAM:                                          macs    for tool: diffbind
+Format not found in EDAM:                                          macs    for tool: pipeline pilot
+Format not found in EDAM:                                          macs    for tool: pipeline pilot
+Format not found in EDAM:                                          meme    for tool: mochiview
+Format not found in EDAM:                                          meme    for tool: mochiview
+Format not found in EDAM:                                          meme    for tool: motiflab
+Format not found in EDAM:                                          meme    for tool: motiflab
+Format not found in EDAM:                                          pos)    for tool: ibis
+Format not found in EDAM:                                          pos)    for tool: ibis
+Format not found in EDAM:                                          qseq    for tool: abyss
+Format not found in EDAM:                                          qseq    for tool: abyss
+Format not found in EDAM:                                          qseq    for tool: bfast
+Format not found in EDAM:                                          qseq    for tool: bfast
+Format not found in EDAM:                                          qseq    for tool: genedata expressionist
+Format not found in EDAM:                                          qseq    for tool: genedata expressionist
+Format not found in EDAM:                                          qseq    for tool: seal
+Format not found in EDAM:                                          qseq    for tool: seal
+Format not found in EDAM:                                          sim4    for tool: pipeline pilot
+Format not found in EDAM:                                          sim4    for tool: pipeline pilot
+Format not found in EDAM:                                          soap    for tool: freec
+Format not found in EDAM:                                          soap    for tool: freec
+Format not found in EDAM:                                          soap    for tool: s-mart
+Format not found in EDAM:                                          soap    for tool: s-mart
+Format not found in EDAM:                                          soap    for tool: soapsnp
+Format not found in EDAM:                                          soap    for tool: soapsnp
+Format not found in EDAM:                                          soap    for tool: tablet
+Format not found in EDAM:                                          soap    for tool: tablet
+Format not found in EDAM:                                          spch    for tool: rsolid
+Format not found in EDAM:                                          spch    for tool: rsolid
+Format not found in EDAM:                                          yaml    for tool: scaffolder
+Format not found in EDAM:                                          yaml    for tool: scaffolder
+Format not found in EDAM:                                         blast    for tool: pipeline pilot
+Format not found in EDAM:                                         blast    for tool: pipeline pilot
+Format not found in EDAM:                                         cigar    for tool: hi
+Format not found in EDAM:                                         cigar    for tool: hi
+Format not found in EDAM:                                         divet    for tool: novelseq
+Format not found in EDAM:                                         divet    for tool: novelseq
+Format not found in EDAM:                                         divet    for tool: variationhunter
+Format not found in EDAM:                                         divet    for tool: variationhunter
+Format not found in EDAM:                                         eland    for tool: ancorr
+Format not found in EDAM:                                         eland    for tool: ancorr
+Format not found in EDAM:                                         eland    for tool: avadis ngs
+Format not found in EDAM:                                         eland    for tool: avadis ngs
+Format not found in EDAM:                                         eland    for tool: clcbio genomics workbench
+Format not found in EDAM:                                         eland    for tool: clcbio genomics workbench
+Format not found in EDAM:                                         eland    for tool: findpeaks 3.1
+Format not found in EDAM:                                         eland    for tool: findpeaks 3.1
+Format not found in EDAM:                                         eland    for tool: findpeaks 4.0 (vancouver short read package)
+Format not found in EDAM:                                         eland    for tool: findpeaks 4.0 (vancouver short read package)
+Format not found in EDAM:                                         eland    for tool: freec
+Format not found in EDAM:                                         eland    for tool: freec
+Format not found in EDAM:                                         eland    for tool: gem
+Format not found in EDAM:                                         eland    for tool: gem
+Format not found in EDAM:                                         eland    for tool: geneious
+Format not found in EDAM:                                         eland    for tool: geneious
+Format not found in EDAM:                                         eland    for tool: gps
+Format not found in EDAM:                                         eland    for tool: gps
+Format not found in EDAM:                                         eland    for tool: macs
+Format not found in EDAM:                                         eland    for tool: macs
+Format not found in EDAM:                                         eland    for tool: seqmonk
+Format not found in EDAM:                                         eland    for tool: seqmonk
+Format not found in EDAM:                                         eland    for tool: spp
+Format not found in EDAM:                                         eland    for tool: spp
+Format not found in EDAM:                                         eland    for tool: svdetect
+Format not found in EDAM:                                         eland    for tool: svdetect
+Format not found in EDAM:                                         eland    for tool: velvet
+Format not found in EDAM:                                         eland    for tool: velvet
+Format not found in EDAM:                                         excel    for tool: genoread
+Format not found in EDAM:                                         excel    for tool: genoread
+Format not found in EDAM:                                         excel    for tool: motiflab
+Format not found in EDAM:                                         excel    for tool: motiflab
+Format not found in EDAM:                                         hmmer    for tool: pipeline pilot
+Format not found in EDAM:                                         hmmer    for tool: pipeline pilot
+Format not found in EDAM:                                         megan    for tool: metagenassist
+Format not found in EDAM:                                         megan    for tool: metagenassist
+Format not found in EDAM:                                         mira3    for tool: pipeline pilot
+Format not found in EDAM:                                         mira3    for tool: pipeline pilot
+Format not found in EDAM:                                         nexus    for tool: biopython
+Format not found in EDAM:                                         nexus    for tool: biopython
+Format not found in EDAM:                                         nexus    for tool: biosmalltalk
+Format not found in EDAM:                                         nexus    for tool: biosmalltalk
+Format not found in EDAM:                                         qiime    for tool: metagenassist
+Format not found in EDAM:                                         qiime    for tool: metagenassist
+Format not found in EDAM:                                         scarf    for tool: bbmap
+Format not found in EDAM:                                         scarf    for tool: bbmap
+Format not found in EDAM:                                         scarf    for tool: nextgene
+Format not found in EDAM:                                         scarf    for tool: nextgene
+Format not found in EDAM:                                         scarf    for tool: piqa
+Format not found in EDAM:                                         scarf    for tool: piqa
+Format not found in EDAM:                                         scarf    for tool: seqman ngen
+Format not found in EDAM:                                         scarf    for tool: seqman ngen
+Format not found in EDAM:                                         stamp    for tool: metagenassist
+Format not found in EDAM:                                         stamp    for tool: metagenassist
+Format not found in EDAM:                                        .fq.gz    for tool: barracuda
+Format not found in EDAM:                                        .fq.gz    for tool: barracuda
+Format not found in EDAM:                                        bowtie    for tool: arem
+Format not found in EDAM:                                        bowtie    for tool: arem
+Format not found in EDAM:                                        bowtie    for tool: findpeaks 4.0 (vancouver short read package)
+Format not found in EDAM:                                        bowtie    for tool: findpeaks 4.0 (vancouver short read package)
+Format not found in EDAM:                                        bowtie    for tool: freec
+Format not found in EDAM:                                        bowtie    for tool: freec
+Format not found in EDAM:                                        bowtie    for tool: gem
+Format not found in EDAM:                                        bowtie    for tool: gem
+Format not found in EDAM:                                        bowtie    for tool: gps
+Format not found in EDAM:                                        bowtie    for tool: gps
+Format not found in EDAM:                                        bowtie    for tool: peakranger
+Format not found in EDAM:                                        bowtie    for tool: peakranger
+Format not found in EDAM:                                        bowtie    for tool: pipeline pilot
+Format not found in EDAM:                                        bowtie    for tool: pipeline pilot
+Format not found in EDAM:                                        bowtie    for tool: rseqtools
+Format not found in EDAM:                                        bowtie    for tool: rseqtools
+Format not found in EDAM:                                        bowtie    for tool: seqmonk
+Format not found in EDAM:                                        bowtie    for tool: seqmonk
+Format not found in EDAM:                                        bowtie    for tool: shortread
+Format not found in EDAM:                                        bowtie    for tool: shortread
+Format not found in EDAM:                                        bowtie    for tool: spp
+Format not found in EDAM:                                        bowtie    for tool: spp
+Format not found in EDAM:                                        csqual    for tool: geneious
+Format not found in EDAM:                                        csqual    for tool: geneious
+Format not found in EDAM:                                        custom    for tool: mochiview
+Format not found in EDAM:                                        custom    for tool: mochiview
+Format not found in EDAM:                                        custom    for tool: motiflab
+Format not found in EDAM:                                        custom    for tool: motiflab
+Format not found in EDAM:                                        emboss    for tool: pipeline pilot
+Format not found in EDAM:                                        emboss    for tool: pipeline pilot
+Format not found in EDAM:                                        fastqc    for tool: pipeline pilot
+Format not found in EDAM:                                        fastqc    for tool: pipeline pilot
+Format not found in EDAM:                                        galaxy    for tool: krona
+Format not found in EDAM:                                        galaxy    for tool: krona
+Format not found in EDAM:                                        gerald    for tool: mosaik
+Format not found in EDAM:                                        gerald    for tool: mosaik
+Format not found in EDAM:                                        gerald    for tool: velvet
+Format not found in EDAM:                                        gerald    for tool: velvet
+Format not found in EDAM:                                        hmmcnv    for tool: sequencevariantanalyzer
+Format not found in EDAM:                                        hmmcnv    for tool: sequencevariantanalyzer
+Format not found in EDAM:                                        jaspar    for tool: motiflab
+Format not found in EDAM:                                        jaspar    for tool: motiflab
+Format not found in EDAM:                                        mothur    for tool: metagenassist
+Format not found in EDAM:                                        mothur    for tool: metagenassist
+Format not found in EDAM:                                        mummer    for tool: pipeline pilot
+Format not found in EDAM:                                        mummer    for tool: pipeline pilot
+Format not found in EDAM:                                        muscle    for tool: pipeline pilot
+Format not found in EDAM:                                        muscle    for tool: pipeline pilot
+Format not found in EDAM:                                        others    for tool: geneprof
+Format not found in EDAM:                                        others    for tool: geneprof
+Format not found in EDAM:                                        others    for tool: lastz
+Format not found in EDAM:                                        others    for tool: lastz
+Format not found in EDAM:                                        others    for tool: motiflab
+Format not found in EDAM:                                        others    for tool: motiflab
+Format not found in EDAM:                                        others    for tool: swdmr
+Format not found in EDAM:                                        others    for tool: swdmr
+Format not found in EDAM:                                        paired    for tool: bbmap
+Format not found in EDAM:                                        paired    for tool: bbmap
+Format not found in EDAM:                                        paired    for tool: ray
+Format not found in EDAM:                                        paired    for tool: ray
+Format not found in EDAM:                                        phylip    for tool: biopython
+Format not found in EDAM:                                        phylip    for tool: biopython
+Format not found in EDAM:                                        phylip    for tool: biosmalltalk
+Format not found in EDAM:                                        phylip    for tool: biosmalltalk
+Format not found in EDAM:                                        phylip    for tool: ugene
+Format not found in EDAM:                                        phylip    for tool: ugene
+Format not found in EDAM:                                        seqmap    for tool: s-mart
+Format not found in EDAM:                                        seqmap    for tool: s-mart
+Format not found in EDAM:                                        snpeff    for tool: pipeline pilot
+Format not found in EDAM:                                        snpeff    for tool: pipeline pilot
+Format not found in EDAM:                                        solexa    for tool: genomatix mining station (gms)
+Format not found in EDAM:                                        solexa    for tool: genomatix mining station (gms)
+Format not found in EDAM:                                        tablet    for tool: pipeline pilot
+Format not found in EDAM:                                        tablet    for tool: pipeline pilot
+Format not found in EDAM:                                        tophat    for tool: pipeline pilot
+Format not found in EDAM:                                        tophat    for tool: pipeline pilot
+Format not found in EDAM:                                        velvet    for tool: pipeline pilot
+Format not found in EDAM:                                        velvet    for tool: pipeline pilot
+Format not found in EDAM:                                       artemis    for tool: pipeline pilot
+Format not found in EDAM:                                       artemis    for tool: pipeline pilot
+Format not found in EDAM:                                       biojava    for tool: pipeline pilot
+Format not found in EDAM:                                       biojava    for tool: pipeline pilot
+Format not found in EDAM:                                       bioperl    for tool: pipeline pilot
+Format not found in EDAM:                                       bioperl    for tool: pipeline pilot
+Format not found in EDAM:                                       bismark    for tool: seqmonk
+Format not found in EDAM:                                       bismark    for tool: seqmonk
+Format not found in EDAM:                                       bustard    for tool: piqa
+Format not found in EDAM:                                       bustard    for tool: piqa
+Format not found in EDAM:                                       cnv-seq    for tool: pipeline pilot
+Format not found in EDAM:                                       cnv-seq    for tool: pipeline pilot
+Format not found in EDAM:                                       fasta/q    for tool: fast: fast analysis of sequences toolbox
+Format not found in EDAM:                                       fasta/q    for tool: fast: fast analysis of sequences toolbox
+Format not found in EDAM:                                       fasta/q    for tool: flexbar
+Format not found in EDAM:                                       fasta/q    for tool: flexbar
+Format not found in EDAM:                                       fnaqual    for tool: bionumerics
+Format not found in EDAM:                                       fnaqual    for tool: bionumerics
+Format not found in EDAM:                                       fnaqual    for tool: nextgene
+Format not found in EDAM:                                       fnaqual    for tool: nextgene
+Format not found in EDAM:                                       jalview    for tool: pipeline pilot
+Format not found in EDAM:                                       jalview    for tool: pipeline pilot
+Format not found in EDAM:                                       mapview    for tool: findpeaks 4.0 (vancouver short read package)
+Format not found in EDAM:                                       mapview    for tool: findpeaks 4.0 (vancouver short read package)
+Format not found in EDAM:                                       mapview    for tool: shortread
+Format not found in EDAM:                                       mapview    for tool: shortread
+Format not found in EDAM:                                       mapview    for tool: slope
+Format not found in EDAM:                                       mapview    for tool: slope
+Format not found in EDAM:                                       metarep    for tool: krona
+Format not found in EDAM:                                       metarep    for tool: krona
+Format not found in EDAM:                                       mg-rast    for tool: krona
+Format not found in EDAM:                                       mg-rast    for tool: krona
+Format not found in EDAM:                                       mg-rast    for tool: metagenassist
+Format not found in EDAM:                                       mg-rast    for tool: metagenassist
+Format not found in EDAM:                                       phymmbl    for tool: krona
+Format not found in EDAM:                                       phymmbl    for tool: krona
+Format not found in EDAM:                                       primer3    for tool: pipeline pilot
+Format not found in EDAM:                                       primer3    for tool: pipeline pilot
+Format not found in EDAM:                                       prosite    for tool: pipeline pilot
+Format not found in EDAM:                                       prosite    for tool: pipeline pilot
+Format not found in EDAM:                                       sam/bam    for tool: ceqer
+Format not found in EDAM:                                       sam/bam    for tool: ceqer
+Format not found in EDAM:                                       sam/bam    for tool: dsgseq
+Format not found in EDAM:                                       sam/bam    for tool: dsgseq
+Format not found in EDAM:                                       sam/bam    for tool: featurecounts
+Format not found in EDAM:                                       sam/bam    for tool: featurecounts
+Format not found in EDAM:                                       sam/bam    for tool: fusionanalyser
+Format not found in EDAM:                                       sam/bam    for tool: fusionanalyser
+Format not found in EDAM:                                       sam/bam    for tool: genomictools
+Format not found in EDAM:                                       sam/bam    for tool: genomictools
+Format not found in EDAM:                                       sam/bam    for tool: gps
+Format not found in EDAM:                                       sam/bam    for tool: gps
+Format not found in EDAM:                                       sam/bam    for tool: methpipe
+Format not found in EDAM:                                       sam/bam    for tool: methpipe
+Format not found in EDAM:                                       sam/bam    for tool: miso
+Format not found in EDAM:                                       sam/bam    for tool: miso
+Format not found in EDAM:                                       sam/bam    for tool: mutascope
+Format not found in EDAM:                                       sam/bam    for tool: mutascope
+Format not found in EDAM:                                       sam/bam    for tool: peakranger
+Format not found in EDAM:                                       sam/bam    for tool: peakranger
+Format not found in EDAM:                                       sam/bam    for tool: qualimap
+Format not found in EDAM:                                       sam/bam    for tool: qualimap
+Format not found in EDAM:                                       sam/bam    for tool: sammate
+Format not found in EDAM:                                       sam/bam    for tool: sammate
+Format not found in EDAM:                                       sam/bam    for tool: samscope
+Format not found in EDAM:                                       sam/bam    for tool: samscope
+Format not found in EDAM:                                       sam/bam    for tool: splicingviewer
+Format not found in EDAM:                                       sam/bam    for tool: splicingviewer
+Format not found in EDAM:                                      bioscope    for tool: svdetect
+Format not found in EDAM:                                      bioscope    for tool: svdetect
+Format not found in EDAM:                                      chado db    for tool: tripal
+Format not found in EDAM:                                      chado db    for tool: tripal
+Format not found in EDAM:                                      clustalw    for tool: biopython
+Format not found in EDAM:                                      clustalw    for tool: biopython
+Format not found in EDAM:                                      clustalw    for tool: biosmalltalk
+Format not found in EDAM:                                      clustalw    for tool: biosmalltalk
+Format not found in EDAM:                                      clustalw    for tool: genomeview
+Format not found in EDAM:                                      clustalw    for tool: genomeview
+Format not found in EDAM:                                      clustalw    for tool: pipeline pilot
+Format not found in EDAM:                                      clustalw    for tool: pipeline pilot
+Format not found in EDAM:                                      clustalw    for tool: ugene
+Format not found in EDAM:                                      clustalw    for tool: ugene
+Format not found in EDAM:                                      fasta.gz    for tool: curtain
+Format not found in EDAM:                                      fasta.gz    for tool: curtain
+Format not found in EDAM:                                      fasta.gz    for tool: novocraft
+Format not found in EDAM:                                      fasta.gz    for tool: novocraft
+Format not found in EDAM:                                      fasta.gz    for tool: oases
+Format not found in EDAM:                                      fasta.gz    for tool: oases
+Format not found in EDAM:                                      fasta.gz    for tool: quast
+Format not found in EDAM:                                      fasta.gz    for tool: quast
+Format not found in EDAM:                                      fasta.gz    for tool: suffixerator
+Format not found in EDAM:                                      fasta.gz    for tool: suffixerator
+Format not found in EDAM:                                      fasta.gz    for tool: ugene
+Format not found in EDAM:                                      fasta.gz    for tool: ugene
+Format not found in EDAM:                                      fasta.gz    for tool: velvet
+Format not found in EDAM:                                      fasta.gz    for tool: velvet
+Format not found in EDAM:                                      fastq.gz    for tool: curtain
+Format not found in EDAM:                                      fastq.gz    for tool: curtain
+Format not found in EDAM:                                      fastq.gz    for tool: hipipe
+Format not found in EDAM:                                      fastq.gz    for tool: hipipe
+Format not found in EDAM:                                      fastq.gz    for tool: oases
+Format not found in EDAM:                                      fastq.gz    for tool: oases
+Format not found in EDAM:                                      fastq.gz    for tool: spiral genetics
+Format not found in EDAM:                                      fastq.gz    for tool: spiral genetics
+Format not found in EDAM:                                      fastq.gz    for tool: velvet
+Format not found in EDAM:                                      fastq.gz    for tool: velvet
+Format not found in EDAM:                                      mapreads    for tool: pipeline pilot
+Format not found in EDAM:                                      mapreads    for tool: pipeline pilot
+Format not found in EDAM:                                      samtools    for tool: pipeline pilot
+Format not found in EDAM:                                      samtools    for tool: pipeline pilot
+Format not found in EDAM:                                      samtools    for tool: sequencevariantanalyzer
+Format not found in EDAM:                                      samtools    for tool: sequencevariantanalyzer
+Format not found in EDAM:                                      samtools    for tool: snver
+Format not found in EDAM:                                      samtools    for tool: snver
+Format not found in EDAM:                                      transfac    for tool: motiflab
+Format not found in EDAM:                                      transfac    for tool: motiflab
+Format not found in EDAM:                                     amos bank    for tool: hawkeye
+Format not found in EDAM:                                     amos bank    for tool: hawkeye
+Format not found in EDAM:                                     and more!    for tool: jbrowse
+Format not found in EDAM:                                     and more!    for tool: jbrowse
+Format not found in EDAM:                                     cisgenome    for tool: pipeline pilot
+Format not found in EDAM:                                     cisgenome    for tool: pipeline pilot
+Format not found in EDAM:                                     csfasta/q    for tool: flexbar
+Format not found in EDAM:                                     csfasta/q    for tool: flexbar
+Format not found in EDAM:                                     cufflinks    for tool: pipeline pilot
+Format not found in EDAM:                                     cufflinks    for tool: pipeline pilot
+Format not found in EDAM:                                     phoenix 2    for tool: metagenassist
+Format not found in EDAM:                                     phoenix 2    for tool: metagenassist
+Format not found in EDAM:                                     sequence)    for tool: dsap
+Format not found in EDAM:                                     sequence)    for tool: dsap
+Format not found in EDAM:                                     shortread    for tool: nucler
+Format not found in EDAM:                                     shortread    for tool: nucler
+Format not found in EDAM:                                     stockholm    for tool: ugene
+Format not found in EDAM:                                     stockholm    for tool: ugene
+Format not found in EDAM:                                    .fastq/.fq    for tool: barracuda
+Format not found in EDAM:                                    .fastq/.fq    for tool: barracuda
+Format not found in EDAM:                                    .fastq/.fq    for tool: nephele
+Format not found in EDAM:                                    .fastq/.fq    for tool: nephele
+Format not found in EDAM:                                    fasta+qual    for tool: bbmap
+Format not found in EDAM:                                    fasta+qual    for tool: bbmap
+Format not found in EDAM:                                    fasta+qual    for tool: seqsphere+
+Format not found in EDAM:                                    fasta+qual    for tool: seqsphere+
+Format not found in EDAM:                                   fasta/fastq    for tool: kmergenie
+Format not found in EDAM:                                   fasta/fastq    for tool: kmergenie
+Format not found in EDAM:                                   interleaved    for tool: bbmap
+Format not found in EDAM:                                   interleaved    for tool: bbmap
+Format not found in EDAM:                                   most others    for tool: omixon variant toolkit
+Format not found in EDAM:                                   most others    for tool: omixon variant toolkit
+Format not found in EDAM:                                   multi-fasta    for tool: chipmunk
+Format not found in EDAM:                                   multi-fasta    for tool: chipmunk
+Format not found in EDAM:                                   multi-fasta    for tool: genomeview
+Format not found in EDAM:                                   multi-fasta    for tool: genomeview
+Format not found in EDAM:                                   multi-fasta    for tool: gk arrays
+Format not found in EDAM:                                   multi-fasta    for tool: gk arrays
+Format not found in EDAM:                                   multi-fasta    for tool: mauve
+Format not found in EDAM:                                   multi-fasta    for tool: mauve
+Format not found in EDAM:                                  (c)fast(a/q)    for tool: bionumerics
+Format not found in EDAM:                                  (c)fast(a/q)    for tool: bionumerics
+Format not found in EDAM:                                  (c)fast(a/q)    for tool: crac
+Format not found in EDAM:                                  (c)fast(a/q)    for tool: crac
+Format not found in EDAM:                                  (c)fast(a/q)    for tool: subread
+Format not found in EDAM:                                  (c)fast(a/q)    for tool: subread
+Format not found in EDAM:                                  bioconductor    for tool: nucler
+Format not found in EDAM:                                  bioconductor    for tool: nucler
+Format not found in EDAM:                                  blast output    for tool: biopython
+Format not found in EDAM:                                  blast output    for tool: biopython
+Format not found in EDAM:                                  blast output    for tool: biosmalltalk
+Format not found in EDAM:                                  blast output    for tool: biosmalltalk
+Format not found in EDAM:                                  blast output    for tool: blixem
+Format not found in EDAM:                                  blast output    for tool: blixem
+Format not found in EDAM:                                  blast output    for tool: genomeview
+Format not found in EDAM:                                  blast output    for tool: genomeview
+Format not found in EDAM:                                  blast output    for tool: krona
+Format not found in EDAM:                                  blast output    for tool: krona
+Format not found in EDAM:                                  blast output    for tool: megan
+Format not found in EDAM:                                  blast output    for tool: megan
+Format not found in EDAM:                                  customizable    for tool: tally
+Format not found in EDAM:                                  customizable    for tool: tally
+Format not found in EDAM:                                  int.txt.p.gz    for tool: ibis
+Format not found in EDAM:                                  int.txt.p.gz    for tool: ibis
+Format not found in EDAM:                                 bioprospector    for tool: mochiview
+Format not found in EDAM:                                 bioprospector    for tool: mochiview
+Format not found in EDAM:                                 bioprospector    for tool: motiflab
+Format not found in EDAM:                                 bioprospector    for tool: motiflab
+Format not found in EDAM:                                 tab-delimited    for tool: geneprof
+Format not found in EDAM:                                 tab-delimited    for tool: geneprof
+Format not found in EDAM:                                 tab-delimited    for tool: krona
+Format not found in EDAM:                                 tab-delimited    for tool: krona
+Format not found in EDAM:                                 tab-delimited    for tool: reaper
+Format not found in EDAM:                                 tab-delimited    for tool: reaper
+Format not found in EDAM:                                 tab-delimited    for tool: savant genome browser
+Format not found in EDAM:                                 tab-delimited    for tool: savant genome browser
+Format not found in EDAM:                                 tab-delimited    for tool: segtor
+Format not found in EDAM:                                 tab-delimited    for tool: segtor
+Format not found in EDAM:                                 tab-delimited    for tool: seqbuster
+Format not found in EDAM:                                 tab-delimited    for tool: seqbuster
+Format not found in EDAM:                                 tab-delimited    for tool: tally
+Format not found in EDAM:                                 tab-delimited    for tool: tally
+Format not found in EDAM:                                 trace archive    for tool: cabog
+Format not found in EDAM:                                 trace archive    for tool: cabog
+Format not found in EDAM:                                 trace archive    for tool: figaro
+Format not found in EDAM:                                 trace archive    for tool: figaro
+Format not found in EDAM:                                 trace archive    for tool: figaro
+Format not found in EDAM:                                 trace archive    for tool: figaro
+Format not found in EDAM:                                 xml traceinfo    for tool: mira
+Format not found in EDAM:                                 xml traceinfo    for tool: mira
+Format not found in EDAM:                                arachne binary    for tool: freec
+Format not found in EDAM:                                arachne binary    for tool: freec
+Format not found in EDAM:                                arachne binary    for tool: spp
+Format not found in EDAM:                                arachne binary    for tool: spp
+Format not found in EDAM:                                breakdancermax    for tool: pipeline pilot
+Format not found in EDAM:                                breakdancermax    for tool: pipeline pilot
+Format not found in EDAM:                                delimited text    for tool: cnanorm
+Format not found in EDAM:                                delimited text    for tool: cnanorm
+Format not found in EDAM:                                delimited text    for tool: hairpin annotation
+Format not found in EDAM:                                delimited text    for tool: hairpin annotation
+Format not found in EDAM:                                delimited text    for tool: knime4bio
+Format not found in EDAM:                                delimited text    for tool: knime4bio
+Format not found in EDAM:                                delimited text    for tool: motiflab
+Format not found in EDAM:                                delimited text    for tool: motiflab
+Format not found in EDAM:                                delimited text    for tool: reaper
+Format not found in EDAM:                                delimited text    for tool: reaper
+Format not found in EDAM:                                delimited text    for tool: seqmonk
+Format not found in EDAM:                                delimited text    for tool: seqmonk
+Format not found in EDAM:                                delimited text    for tool: variation toolkit
+Format not found in EDAM:                                delimited text    for tool: variation toolkit
+Format not found in EDAM:                              abyss assemblies    for tool: trans-abyss
+Format not found in EDAM:                              abyss assemblies    for tool: trans-abyss
+Format not found in EDAM:                              and many others.    for tool: bionumerics
+Format not found in EDAM:                              and many others.    for tool: bionumerics
+Format not found in EDAM:                              and many others.    for tool: genedata expressionist
+Format not found in EDAM:                              and many others.    for tool: genedata expressionist
+Format not found in EDAM:                              compressed fasta    for tool: discosnp
+Format not found in EDAM:                              compressed fasta    for tool: discosnp
+Format not found in EDAM:                              compressed fastq    for tool: bionumerics
+Format not found in EDAM:                              compressed fastq    for tool: bionumerics
+Format not found in EDAM:                              compressed fastq    for tool: discosnp
+Format not found in EDAM:                              compressed fastq    for tool: discosnp
+Format not found in EDAM:                              experiment files    for tool: staden
+Format not found in EDAM:                              experiment files    for tool: staden
+Format not found in EDAM:                              illumina bustard    for tool: clcbio genomics workbench
+Format not found in EDAM:                              illumina bustard    for tool: clcbio genomics workbench
+Format not found in EDAM:                              illumina bustard    for tool: mosaik
+Format not found in EDAM:                              illumina bustard    for tool: mosaik
+Format not found in EDAM:                              output from blat    for tool: baa.pl
+Format not found in EDAM:                              output from blat    for tool: baa.pl
+Format not found in EDAM:                            (compressed) fasta    for tool: deconseq
+Format not found in EDAM:                            (compressed) fasta    for tool: deconseq
+Format not found in EDAM:                            (compressed) fasta    for tool: geneprof
+Format not found in EDAM:                            (compressed) fasta    for tool: geneprof
+Format not found in EDAM:                            (compressed) fasta    for tool: genomeview
+Format not found in EDAM:                            (compressed) fasta    for tool: genomeview
+Format not found in EDAM:                            (compressed) fasta    for tool: mg-rast
+Format not found in EDAM:                            (compressed) fasta    for tool: mg-rast
+Format not found in EDAM:                            (compressed) fasta    for tool: minia
+Format not found in EDAM:                            (compressed) fasta    for tool: minia
+Format not found in EDAM:                            (compressed) fasta    for tool: nephele
+Format not found in EDAM:                            (compressed) fasta    for tool: nephele
+Format not found in EDAM:                            (compressed) fasta    for tool: prinseq
+Format not found in EDAM:                            (compressed) fasta    for tool: prinseq
+Format not found in EDAM:                            (compressed) fasta    for tool: reaper
+Format not found in EDAM:                            (compressed) fasta    for tool: reaper
+Format not found in EDAM:                            (compressed) fasta    for tool: rna
+Format not found in EDAM:                            (compressed) fasta    for tool: rna
+Format not found in EDAM:                            (compressed) fasta    for tool: skewer
+Format not found in EDAM:                            (compressed) fasta    for tool: skewer
+Format not found in EDAM:                            (compressed) fasta    for tool: tally
+Format not found in EDAM:                            (compressed) fasta    for tool: tally
+Format not found in EDAM:                            (compressed) fastq    for tool: bfcounter
+Format not found in EDAM:                            (compressed) fastq    for tool: bfcounter
+Format not found in EDAM:                            (compressed) fastq    for tool: bison
+Format not found in EDAM:                            (compressed) fastq    for tool: bison
+Format not found in EDAM:                            (compressed) fastq    for tool: deconseq
+Format not found in EDAM:                            (compressed) fastq    for tool: deconseq
+Format not found in EDAM:                            (compressed) fastq    for tool: erne
+Format not found in EDAM:                            (compressed) fastq    for tool: erne
+Format not found in EDAM:                            (compressed) fastq    for tool: fusioncatcher
+Format not found in EDAM:                            (compressed) fastq    for tool: fusioncatcher
+Format not found in EDAM:                            (compressed) fastq    for tool: geneprof
+Format not found in EDAM:                            (compressed) fastq    for tool: geneprof
+Format not found in EDAM:                            (compressed) fastq    for tool: gmap
+Format not found in EDAM:                            (compressed) fastq    for tool: gmap
+Format not found in EDAM:                            (compressed) fastq    for tool: hicup
+Format not found in EDAM:                            (compressed) fastq    for tool: hicup
+Format not found in EDAM:                            (compressed) fastq    for tool: mg-rast
+Format not found in EDAM:                            (compressed) fastq    for tool: mg-rast
+Format not found in EDAM:                            (compressed) fastq    for tool: minia
+Format not found in EDAM:                            (compressed) fastq    for tool: minia
+Format not found in EDAM:                            (compressed) fastq    for tool: ngs-pipeline
+Format not found in EDAM:                            (compressed) fastq    for tool: ngs-pipeline
+Format not found in EDAM:                            (compressed) fastq    for tool: ngsutils
+Format not found in EDAM:                            (compressed) fastq    for tool: ngsutils
+Format not found in EDAM:                            (compressed) fastq    for tool: oasis
+Format not found in EDAM:                            (compressed) fastq    for tool: oasis
+Format not found in EDAM:                            (compressed) fastq    for tool: prinseq
+Format not found in EDAM:                            (compressed) fastq    for tool: prinseq
+Format not found in EDAM:                            (compressed) fastq    for tool: reaper
+Format not found in EDAM:                            (compressed) fastq    for tool: reaper
+Format not found in EDAM:                            (compressed) fastq    for tool: rna
+Format not found in EDAM:                            (compressed) fastq    for tool: rna
+Format not found in EDAM:                            (compressed) fastq    for tool: skewer
+Format not found in EDAM:                            (compressed) fastq    for tool: skewer
+Format not found in EDAM:                            (compressed) fastq    for tool: tally
+Format not found in EDAM:                            (compressed) fastq    for tool: tally
+Format not found in EDAM:                            (compressed) fastq    for tool: viralfusionseq
+Format not found in EDAM:                            (compressed) fastq    for tool: viralfusionseq
+Format not found in EDAM:                            paired interleaved    for tool: ray
+Format not found in EDAM:                            paired interleaved    for tool: ray
+Format not found in EDAM:                            specialized format    for tool: meraculous
+Format not found in EDAM:                            specialized format    for tool: meraculous
+Format not found in EDAM:                           custom motif format    for tool: mochiview
+Format not found in EDAM:                           custom motif format    for tool: mochiview
+Format not found in EDAM:                           custom motif format    for tool: motiflab
+Format not found in EDAM:                           custom motif format    for tool: motiflab
+Format not found in EDAM:                          extended multi-fasta    for tool: chipmunk
+Format not found in EDAM:                          extended multi-fasta    for tool: chipmunk
+Format not found in EDAM:                         illumina export files    for tool: rseqtools
+Format not found in EDAM:                         illumina export files    for tool: rseqtools
+Format not found in EDAM:                         shore consensus files    for tool: shoremap
+Format not found in EDAM:                         shore consensus files    for tool: shoremap
+Format not found in EDAM:                         standard blast output    for tool: bort
+Format not found in EDAM:                         standard blast output    for tool: bort
+Format not found in EDAM:                         table with count data    for tool: deseq
+Format not found in EDAM:                         table with count data    for tool: deseq
+Format not found in EDAM:                         table with count data    for tool: dsgseq
+Format not found in EDAM:                         table with count data    for tool: dsgseq
+Format not found in EDAM:                         table with count data    for tool: edger
+Format not found in EDAM:                         table with count data    for tool: edger
+Format not found in EDAM:                         table with count data    for tool: geneprof
+Format not found in EDAM:                         table with count data    for tool: geneprof
+Format not found in EDAM:                         table with count data    for tool: tally
+Format not found in EDAM:                         table with count data    for tool: tally
+Format not found in EDAM:                        aligned sequence files    for tool: fast: fast analysis of sequences toolbox
+Format not found in EDAM:                        aligned sequence files    for tool: fast: fast analysis of sequences toolbox
+Format not found in EDAM:                        aligned sequence files    for tool: vissr
+Format not found in EDAM:                        aligned sequence files    for tool: vissr
+Format not found in EDAM:                       compressed/uncompressed    for tool: bfast
+Format not found in EDAM:                       compressed/uncompressed    for tool: bfast
+Format not found in EDAM:                       solexa with probability    for tool: genomatix mining station (gms)
+Format not found in EDAM:                       solexa with probability    for tool: genomatix mining station (gms)
+Format not found in EDAM:                     fasta files for reference    for tool: ssahasnp
+Format not found in EDAM:                     fasta files for reference    for tool: ssahasnp
+Format not found in EDAM:                     short read tag with count    for tool: mirtools
+Format not found in EDAM:                     short read tag with count    for tool: mirtools
+Format not found in EDAM:                     single-end and paired end    for tool: viralfusionseq
+Format not found in EDAM:                     single-end and paired end    for tool: viralfusionseq
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: bfast
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: bfast
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: clcbio genomics workbench
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: clcbio genomics workbench
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: cutadapt
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: cutadapt
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: nextgene
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: nextgene
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: ngs-pipeline
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: ngs-pipeline
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: novocraft
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: novocraft
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: seqman ngen
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: seqman ngen
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: socs
+Format not found in EDAM:                    csfasta/csqual (abi solid)    for tool: socs
+Format not found in EDAM:                   integrative genomics viewer    for tool: pipeline pilot
+Format not found in EDAM:                   integrative genomics viewer    for tool: pipeline pilot
+Format not found in EDAM:                   intensity files (int.txt.gz    for tool: ibis
+Format not found in EDAM:                   intensity files (int.txt.gz    for tool: ibis
+Format not found in EDAM:                 sequence tag file (read count    for tool: dsap
+Format not found in EDAM:                 sequence tag file (read count    for tool: dsap
+Format not found in EDAM:               special format for paired reads    for tool: ssake
+Format not found in EDAM:               special format for paired reads    for tool: ssake
+Format not found in EDAM:             cif) and cluster coordinates (idx    for tool: ibis
+Format not found in EDAM:             cif) and cluster coordinates (idx    for tool: ibis
+Format not found in EDAM:    .bin and .xml files from rundata directory    for tool: illuminate
+Format not found in EDAM:    .bin and .xml files from rundata directory    for tool: illuminate
+Format not found in EDAM: or any other format supported by bioconductor    for tool: bayespeak
+Format not found in EDAM: or any other format supported by bioconductor    for tool: bayespeak
+Format not found in EDAM: single reads: .fasta .fasta.gz .fasta.bz2 .fastq .fastq.gz .fastq.bz2 .sff    for tool: ray
+Format not found in EDAM: single reads: .fasta .fasta.gz .fasta.bz2 .fastq .fastq.gz .fastq.bz2 .sff    for tool: ray
+Operation not found in EDAM:                                        hadoop    for tool: cloudaligner
+Operation not found in EDAM:                                        hadoop    for tool: contrail
+Operation not found in EDAM:                                        signal    for tool: genomedata
+Operation not found in EDAM:                                        viewer    for tool: genoviewer
+Operation not found in EDAM:                                        viewer    for tool: xmatchview
+Operation not found in EDAM:                                      security    for tool: promisec endpoint manager
+Operation not found in EDAM:                                    simulation    for tool: reseqsim
+Operation not found in EDAM:                                   global test    for tool: globalseq
+Operation not found in EDAM:                                   remediation    for tool: promisec endpoint manager
+Operation not found in EDAM:                                  omnibus test    for tool: globalseq
+Operation not found in EDAM:                                 dna barcoding    for tool: barcode generator
+Operation not found in EDAM:                                 dna barcoding    for tool: barcrawl bartab
+Operation not found in EDAM:                                 dna barcoding    for tool: flexbar
+Operation not found in EDAM:                                 dna barcoding    for tool: geneious
+Operation not found in EDAM:                                 dna barcoding    for tool: mlgt
+Operation not found in EDAM:                                 dna barcoding    for tool: reaper
+Operation not found in EDAM:                                 post-analysis    for tool: breaktrans
+Operation not found in EDAM:                                gibbs sampling    for tool: cisgenome
+Operation not found in EDAM:                                mirna analysis    for tool: iomics
+Operation not found in EDAM:                                rrna filtering    for tool: ribopicker
+Operation not found in EDAM:                               adapter removal    for tool: adapter removal (software)
+Operation not found in EDAM:                               adapter removal    for tool: clcbio genomics workbench
+Operation not found in EDAM:                               adapter removal    for tool: flexbar
+Operation not found in EDAM:                               adapter removal    for tool: reaper
+Operation not found in EDAM:                               adapter removal    for tool: skewer
+Operation not found in EDAM:                               graph reduction    for tool: mira
+Operation not found in EDAM:                               quality control    for tool: flexbar
+Operation not found in EDAM:                               quality control    for tool: seqsolve
+Operation not found in EDAM:                              sequence parsing    for tool: biopython
+Operation not found in EDAM:                              sequence parsing    for tool: biosmalltalk
+Operation not found in EDAM:                              sequence parsing    for tool: fast: fast analysis of sequences toolbox
+Operation not found in EDAM:                              sequence parsing    for tool: ugene
+Operation not found in EDAM:                             analysis pipeline    for tool: bionumerics
+Operation not found in EDAM:                             analysis pipeline    for tool: cluster flow
+Operation not found in EDAM:                             analysis pipeline    for tool: hipipe
+Operation not found in EDAM:                             analysis pipeline    for tool: lskb, life science knowledge bank
+Operation not found in EDAM:                             analysis pipeline    for tool: mutascope
+Operation not found in EDAM:                            collapsing methods    for tool: golden helix
+Operation not found in EDAM:                            learning algorithm    for tool: mira
+Operation not found in EDAM:                            mutation detection    for tool: genominer
+Operation not found in EDAM:                            mutation detection    for tool: gensearchngs
+Operation not found in EDAM:                            read summarisation    for tool: featurecounts
+Operation not found in EDAM:                            read summarisation    for tool: rsubread
+Operation not found in EDAM:                            split-read mapping    for tool: fusionmap
+Operation not found in EDAM:                            split-read mapping    for tool: gridss
+Operation not found in EDAM:                            split-read mapping    for tool: pindel
+Operation not found in EDAM:                           endpoint management    for tool: promisec endpoint manager
+Operation not found in EDAM:                           functional analysis    for tool: lskb, life science knowledge bank
+Operation not found in EDAM:                           functional analysis    for tool: nephele
+Operation not found in EDAM:                           functional analysis    for tool: seqgsea
+Operation not found in EDAM:                           hidden markov model    for tool: metaxa
+Operation not found in EDAM:                           integrated solution    for tool: amos
+Operation not found in EDAM:                           integrated solution    for tool: cisgenome
+Operation not found in EDAM:                           integrated solution    for tool: maqgene
+Operation not found in EDAM:                           quality assessement    for tool: rsubread
+Operation not found in EDAM:                           taxonomic profiling    for tool: nephele
+Operation not found in EDAM:                          differential binding    for tool: diffreps
+Operation not found in EDAM:                          differential binding    for tool: narrowpeaks
+Operation not found in EDAM:                          localised reassembly    for tool: dindel
+Operation not found in EDAM:                          localised reassembly    for tool: gatk
+Operation not found in EDAM:                          localised reassembly    for tool: pindel
+Operation not found in EDAM:                          localised reassembly    for tool: srma
+Operation not found in EDAM:                          metagenomic assembly    for tool: nephele
+Operation not found in EDAM:                        plotting and rendering    for tool: eagleview genome viewer
+Operation not found in EDAM:                        plotting and rendering    for tool: genetalk
+Operation not found in EDAM:                        plotting and rendering    for tool: genomeview
+Operation not found in EDAM:                        plotting and rendering    for tool: genominer
+Operation not found in EDAM:                        plotting and rendering    for tool: pileline
+Operation not found in EDAM:                        variant prioritisation    for tool: annovar
+Operation not found in EDAM:                        variant prioritisation    for tool: cravat
+Operation not found in EDAM:                        variant prioritisation    for tool: gensearchngs
+Operation not found in EDAM:                        variant prioritisation    for tool: vaast
+Operation not found in EDAM:                       joint significance test    for tool: globalseq
+Operation not found in EDAM:                      expectation maximisation    for tool: isoem
+Operation not found in EDAM:                      expectation maximisation    for tool: recount
+Operation not found in EDAM:                      expectation maximisation    for tool: seqem
+Operation not found in EDAM:                      peptide mass fingerprint    for tool: multipsq
+Operation not found in EDAM:                      phase pattern prediction    for tool: ta-si prediction
+Operation not found in EDAM:                     sequence assembly editing    for tool: dna baser
+Operation not found in EDAM:                     sequence assembly editing    for tool: image
+Operation not found in EDAM:                     sequence error correction    for tool: coral
+Operation not found in EDAM:                     sequence error correction    for tool: coral (contig ordering algorithm)
+Operation not found in EDAM:                     sequence error correction    for tool: decgpu
+Operation not found in EDAM:                     sequence error correction    for tool: echo
+Operation not found in EDAM:                     sequence error correction    for tool: flowsim
+Operation not found in EDAM:                     sequence error correction    for tool: genominer
+Operation not found in EDAM:                     sequence error correction    for tool: gk arrays
+Operation not found in EDAM:                     sequence error correction    for tool: hitec
+Operation not found in EDAM:                     sequence error correction    for tool: hybrid-shrec
+Operation not found in EDAM:                     sequence error correction    for tool: mlgt
+Operation not found in EDAM:                     sequence error correction    for tool: quake
+Operation not found in EDAM:                     sequence error correction    for tool: seecer
+Operation not found in EDAM:                     sequence error correction    for tool: she-ra
+Operation not found in EDAM:                     sequence error correction    for tool: shrec
+Operation not found in EDAM:                    de novo mutation detection    for tool: mirtrios
+Operation not found in EDAM:                    differential binding sites    for tool: diffbind
+Operation not found in EDAM:                sequence functional annotation    for tool: ergo genome analysis and discovery system
+Operation not found in EDAM:               genome indexing (suffix arrays)    for tool: suffixerator
+Operation not found in EDAM:               genome indexing (suffix arrays)    for tool: tallymer
+Operation not found in EDAM:              whole genome breakpoint assembly    for tool: gridss
+Operation not found in EDAM:             genome indexing (burrows-wheeler)    for tool: bowtie
+Operation not found in EDAM:             genome indexing (burrows-wheeler)    for tool: crac
+Operation not found in EDAM:             genome indexing (burrows-wheeler)    for tool: soap
+Operation not found in EDAM:             standardisation and normalisation    for tool: beads
+Operation not found in EDAM:             standardisation and normalisation    for tool: cnanorm
+Operation not found in EDAM:             standardisation and normalisation    for tool: deeptools
+Operation not found in EDAM:       statistical calculation and probability    for tool: asc
+Topic not found in EDAM:                                           snp    for tool: ergo genome analysis and discovery system
+Topic not found in EDAM:                                           snp    for tool: games
+Topic not found in EDAM:                                           snp    for tool: mu2a
+Topic not found in EDAM:                                           snp    for tool: segtor
+Topic not found in EDAM:                                           snp    for tool: variant effect predictor
+Topic not found in EDAM:                                           snp    for tool: variantclassifier
+Topic not found in EDAM:                                           snp    for tool: variation toolkit
+Topic not found in EDAM:                                           snp    for tool: vip
+Topic not found in EDAM:                                          snps    for tool: ingenuity variant analysis
+Topic not found in EDAM:                                          snps    for tool: quadgt
+Topic not found in EDAM:                                         exome    for tool: bigbwa
+Topic not found in EDAM:                                         exome    for tool: ingenuity variant analysis
+Topic not found in EDAM:                                         iclip    for tool: dclip
+Topic not found in EDAM:                                       storage    for tool: genomedata
+Topic not found in EDAM:                                      chip-exo    for tool: cexor
+Topic not found in EDAM:                                      clip-seq    for tool: dclip
+Topic not found in EDAM:                                      meth-seq    for tool: globalseq
+Topic not found in EDAM:                                      par-clip    for tool: dclip
+Topic not found in EDAM:                                     chromatin    for tool: chromasig
+Topic not found in EDAM:                                     dnase-seq    for tool: dnaser
+Topic not found in EDAM:                                     hits-clip    for tool: dclip
+Topic not found in EDAM:                                    methyl-seq    for tool: avadis ngs
+Topic not found in EDAM:                                    microbiome    for tool: nephele
+Topic not found in EDAM:                                   rarefaction    for tool: megraft
+Topic not found in EDAM:                                  epidemiology    for tool: bionumerics
+Topic not found in EDAM:                                  microrna-seq    for tool: globalseq
+Topic not found in EDAM:                                  read binning    for tool: bbmap
+Topic not found in EDAM:                                  resequencing    for tool: bbmap
+Topic not found in EDAM:                                  resequencing    for tool: bigbwa
+Topic not found in EDAM:                                  resequencing    for tool: geoseq
+Topic not found in EDAM:                                  resequencing    for tool: mlgt
+Topic not found in EDAM:                                  resequencing    for tool: optimus primer
+Topic not found in EDAM:                                regulatory rna    for tool: clcbio genomics workbench
+Topic not found in EDAM:                                regulatory rna    for tool: cleaveland
+Topic not found in EDAM:                                regulatory rna    for tool: dsap
+Topic not found in EDAM:                                regulatory rna    for tool: e-mir
+Topic not found in EDAM:                                regulatory rna    for tool: iomics
+Topic not found in EDAM:                                regulatory rna    for tool: miranalyzer
+Topic not found in EDAM:                                regulatory rna    for tool: mirdeep
+Topic not found in EDAM:                                regulatory rna    for tool: mirnakey
+Topic not found in EDAM:                                regulatory rna    for tool: mirtools
+Topic not found in EDAM:                                regulatory rna    for tool: novocraft
+Topic not found in EDAM:                                regulatory rna    for tool: qseq
+Topic not found in EDAM:                                regulatory rna    for tool: seqbuster
+Topic not found in EDAM:                                viral genomics    for tool: vicuna
+Topic not found in EDAM:                               dna methylation    for tool: batman
+Topic not found in EDAM:                               dna methylation    for tool: biq analyzer
+Topic not found in EDAM:                               dna methylation    for tool: biq analyzer ht
+Topic not found in EDAM:                               dna methylation    for tool: bis-snp
+Topic not found in EDAM:                               dna methylation    for tool: bismark
+Topic not found in EDAM:                               dna methylation    for tool: bison
+Topic not found in EDAM:                               dna methylation    for tool: brat
+Topic not found in EDAM:                               dna methylation    for tool: bsmap
+Topic not found in EDAM:                               dna methylation    for tool: bssim
+Topic not found in EDAM:                               dna methylation    for tool: chipster
+Topic not found in EDAM:                               dna methylation    for tool: dnaa
+Topic not found in EDAM:                               dna methylation    for tool: edger
+Topic not found in EDAM:                               dna methylation    for tool: erne
+Topic not found in EDAM:                               dna methylation    for tool: genedata expressionist
+Topic not found in EDAM:                               dna methylation    for tool: gsnap
+Topic not found in EDAM:                               dna methylation    for tool: karma
+Topic not found in EDAM:                               dna methylation    for tool: kismeth
+Topic not found in EDAM:                               dna methylation    for tool: methmarker
+Topic not found in EDAM:                               dna methylation    for tool: methpipe
+Topic not found in EDAM:                               dna methylation    for tool: methylcoder
+Topic not found in EDAM:                               dna methylation    for tool: metmap
+Topic not found in EDAM:                               dna methylation    for tool: pash
+Topic not found in EDAM:                               dna methylation    for tool: rmap
+Topic not found in EDAM:                               dna methylation    for tool: rubioseq
+Topic not found in EDAM:                               dna methylation    for tool: sherman
+Topic not found in EDAM:                               dna methylation    for tool: socs
+Topic not found in EDAM:                               dna methylation    for tool: swdmr
+Topic not found in EDAM:                               dna methylation    for tool: syapse
+Topic not found in EDAM:                               quality control    for tool: bbmap
+Topic not found in EDAM:                               quality control    for tool: bionumerics
+Topic not found in EDAM:                               quality control    for tool: fastqvalidator
+Topic not found in EDAM:                               quality control    for tool: genomeview
+Topic not found in EDAM:                               quality control    for tool: spiral genetics
+Topic not found in EDAM:                               quality control    for tool: standardized velvet assembly report
+Topic not found in EDAM:                               sequence motifs    for tool: chipmunk
+Topic not found in EDAM:                               sequence motifs    for tool: cisgenome
+Topic not found in EDAM:                               sequence motifs    for tool: micsa
+Topic not found in EDAM:                               sequence motifs    for tool: mochiview
+Topic not found in EDAM:                               sequence motifs    for tool: motiflab
+Topic not found in EDAM:                               sequence motifs    for tool: ssa
+Topic not found in EDAM:                              genomic assembly    for tool: spiral genetics
+Topic not found in EDAM:                             rna-seq alignment    for tool: bbmap
+Topic not found in EDAM:                             rna-seq alignment    for tool: cptra
+Topic not found in EDAM:                             rna-seq alignment    for tool: cptra
+Topic not found in EDAM:                             rna-seq alignment    for tool: crac
+Topic not found in EDAM:                             rna-seq alignment    for tool: cufflinks
+Topic not found in EDAM:                             rna-seq alignment    for tool: erange
+Topic not found in EDAM:                             rna-seq alignment    for tool: est2assembly
+Topic not found in EDAM:                             rna-seq alignment    for tool: freclu
+Topic not found in EDAM:                             rna-seq alignment    for tool: g-mo.r-seq
+Topic not found in EDAM:                             rna-seq alignment    for tool: gsnap
+Topic not found in EDAM:                             rna-seq alignment    for tool: hmmsplicer
+Topic not found in EDAM:                             rna-seq alignment    for tool: mapnext
+Topic not found in EDAM:                             rna-seq alignment    for tool: mapsplice
+Topic not found in EDAM:                             rna-seq alignment    for tool: mira
+Topic not found in EDAM:                             rna-seq alignment    for tool: myrna
+Topic not found in EDAM:                             rna-seq alignment    for tool: nesoni
+Topic not found in EDAM:                             rna-seq alignment    for tool: novocraft
+Topic not found in EDAM:                             rna-seq alignment    for tool: olego
+Topic not found in EDAM:                             rna-seq alignment    for tool: palma
+Topic not found in EDAM:                             rna-seq alignment    for tool: peralign
+Topic not found in EDAM:                             rna-seq alignment    for tool: qpalma
+Topic not found in EDAM:                             rna-seq alignment    for tool: rna-mate
+Topic not found in EDAM:                             rna-seq alignment    for tool: rsem
+Topic not found in EDAM:                             rna-seq alignment    for tool: scripture
+Topic not found in EDAM:                             rna-seq alignment    for tool: seqman ngen
+Topic not found in EDAM:                             rna-seq alignment    for tool: sim4cc
+Topic not found in EDAM:                             rna-seq alignment    for tool: socs
+Topic not found in EDAM:                             rna-seq alignment    for tool: splicemap
+Topic not found in EDAM:                             rna-seq alignment    for tool: splitseek
+Topic not found in EDAM:                             rna-seq alignment    for tool: subjunc
+Topic not found in EDAM:                             rna-seq alignment    for tool: subread
+Topic not found in EDAM:                             rna-seq alignment    for tool: supersplat
+Topic not found in EDAM:                             rna-seq alignment    for tool: tophat
+Topic not found in EDAM:                             rna-seq alignment    for tool: unoseq
+Topic not found in EDAM:                             rna-seq alignment    for tool: useq
+Topic not found in EDAM:                            clone verification    for tool: genoread
+Topic not found in EDAM:                            clone verification    for tool: musica 2
+Topic not found in EDAM:                            clone verification    for tool: webprinses
+Topic not found in EDAM:                            community analysis    for tool: megraft
+Topic not found in EDAM:                            community analysis    for tool: metaxa
+Topic not found in EDAM:                            in vitro selection    for tool: sewal
+Topic not found in EDAM:                            metabolic pathways    for tool: ergo genome analysis and discovery system
+Topic not found in EDAM:                           biomedical sciences    for tool: seqgsea
+Topic not found in EDAM:                           population genomics    for tool: discosnp
+Topic not found in EDAM:                           population genomics    for tool: gowinda
+Topic not found in EDAM:                           population genomics    for tool: vicuna
+Topic not found in EDAM:                           regulatory genomics    for tool: genome trax
+Topic not found in EDAM:                           regulatory genomics    for tool: hint
+Topic not found in EDAM:                           regulatory genomics    for tool: odin
+Topic not found in EDAM:                           regulatory genomics    for tool: syapse
+Topic not found in EDAM:                          small rna sequencing    for tool: skewer
+Topic not found in EDAM:                         personalised medicine    for tool: brca-diagnostic
+Topic not found in EDAM:                         personalised medicine    for tool: cloudburst
+Topic not found in EDAM:                         personalised medicine    for tool: copyseq
+Topic not found in EDAM:                         personalised medicine    for tool: genomejack
+Topic not found in EDAM:                         personalised medicine    for tool: mrcanavar
+Topic not found in EDAM:                         personalised medicine    for tool: ngs-pipeline
+Topic not found in EDAM:                         personalised medicine    for tool: sequencevariantanalyzer
+Topic not found in EDAM:                        microbial surveillance    for tool: bionumerics
+Topic not found in EDAM:                        microbial surveillance    for tool: multipsq
+Topic not found in EDAM:                        microbial surveillance    for tool: seqsphere+
+Topic not found in EDAM:                        rna-seq quantification    for tool: alexa-seq
+Topic not found in EDAM:                        rna-seq quantification    for tool: arrayexpresshts
+Topic not found in EDAM:                        rna-seq quantification    for tool: asc
+Topic not found in EDAM:                        rna-seq quantification    for tool: bayseq
+Topic not found in EDAM:                        rna-seq quantification    for tool: bbseq
+Topic not found in EDAM:                        rna-seq quantification    for tool: bort
+Topic not found in EDAM:                        rna-seq quantification    for tool: cptra
+Topic not found in EDAM:                        rna-seq quantification    for tool: cptra
+Topic not found in EDAM:                        rna-seq quantification    for tool: crac
+Topic not found in EDAM:                        rna-seq quantification    for tool: cufflinks
+Topic not found in EDAM:                        rna-seq quantification    for tool: cummerbund
+Topic not found in EDAM:                        rna-seq quantification    for tool: degseq
+Topic not found in EDAM:                        rna-seq quantification    for tool: deseq
+Topic not found in EDAM:                        rna-seq quantification    for tool: edger
+Topic not found in EDAM:                        rna-seq quantification    for tool: erange
+Topic not found in EDAM:                        rna-seq quantification    for tool: fdm
+Topic not found in EDAM:                        rna-seq quantification    for tool: goseq
+Topic not found in EDAM:                        rna-seq quantification    for tool: gpseq
+Topic not found in EDAM:                        rna-seq quantification    for tool: iqseq
+Topic not found in EDAM:                        rna-seq quantification    for tool: mapsembler
+Topic not found in EDAM:                        rna-seq quantification    for tool: miso
+Topic not found in EDAM:                        rna-seq quantification    for tool: myrna
+Topic not found in EDAM:                        rna-seq quantification    for tool: ngs-designtools
+Topic not found in EDAM:                        rna-seq quantification    for tool: partek genomics suite
+Topic not found in EDAM:                        rna-seq quantification    for tool: recount
+Topic not found in EDAM:                        rna-seq quantification    for tool: rna-mate
+Topic not found in EDAM:                        rna-seq quantification    for tool: rsem
+Topic not found in EDAM:                        rna-seq quantification    for tool: rseqtools
+Topic not found in EDAM:                        rna-seq quantification    for tool: sammate
+Topic not found in EDAM:                        rna-seq quantification    for tool: seecer
+Topic not found in EDAM:                        rna-seq quantification    for tool: solas
+Topic not found in EDAM:                        rna-seq quantification    for tool: splicetrap
+Topic not found in EDAM:                        rna-seq quantification    for tool: tase
+Topic not found in EDAM:                      metabolic reconstruction    for tool: mg-rast
+Topic not found in EDAM:                     whole genome resequencing    for tool: bbmap
+Topic not found in EDAM:                     whole genome resequencing    for tool: bfast
+Topic not found in EDAM:                     whole genome resequencing    for tool: bigbwa
+Topic not found in EDAM:                     whole genome resequencing    for tool: bionumerics
+Topic not found in EDAM:                     whole genome resequencing    for tool: breakway
+Topic not found in EDAM:                     whole genome resequencing    for tool: clcbio genomics workbench
+Topic not found in EDAM:                     whole genome resequencing    for tool: galaxy
+Topic not found in EDAM:                     whole genome resequencing    for tool: genomebrowse
+Topic not found in EDAM:                     whole genome resequencing    for tool: helisphere
+Topic not found in EDAM:                     whole genome resequencing    for tool: ingenuity variant analysis
+Topic not found in EDAM:                     whole genome resequencing    for tool: novocraft
+Topic not found in EDAM:                     whole genome resequencing    for tool: pipeline pilot
+Topic not found in EDAM:                     whole genome resequencing    for tool: seqman ngen
+Topic not found in EDAM:                     whole genome resequencing    for tool: spiral genetics
+Topic not found in EDAM:                     whole genome resequencing    for tool: subread
+Topic not found in EDAM:                     whole genome resequencing    for tool: tapyr
+Topic not found in EDAM:                    de novo mutation detection    for tool: mirtrios
+Topic not found in EDAM:                    high-throughput sequencing    for tool: discosnp
+Topic not found in EDAM:                    high-throughput sequencing    for tool: fusionanalyser
+Topic not found in EDAM:                    next generation sequencing    for tool: adtex
+Topic not found in EDAM:                    next generation sequencing    for tool: comprehengsive
+Topic not found in EDAM:                    next generation sequencing    for tool: featurecounts
+Topic not found in EDAM:                    next generation sequencing    for tool: genomebrowse
+Topic not found in EDAM:                    next generation sequencing    for tool: ncbi genome workbench
+Topic not found in EDAM:                    next generation sequencing    for tool: pipeline pilot
+Topic not found in EDAM:                    next generation sequencing    for tool: reaper
+Topic not found in EDAM:                    next generation sequencing    for tool: rsubread
+Topic not found in EDAM:                    next generation sequencing    for tool: subread
+Topic not found in EDAM:                sequence functional annotation    for tool: webapollo
+Topic not found in EDAM:               genome wide association studies    for tool: ergo genome analysis and discovery system
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: a5
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: abyss
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: allpaths
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: baa.pl
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: bionumerics
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: cabog
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: clcbio genomics workbench
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: contrail
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: curtain
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: decgpu
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: discosnp
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: forge
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: geneious
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: genomebrowse
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: genominer
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: idba
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: lasergene
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: magicviewer
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: minia
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: mira
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: newbler
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: nextgene
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: pe-assembler
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: pipeline pilot
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: post assembly genome improvement toolkit
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: qsra
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: ray
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: seqman ngen
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: seqprep
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: sequencher
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: sharcgs
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: shorty
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: shrap
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: soapdenovo
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: sr-asm
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: succinctassembly
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: sutta
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: taipan
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: vcake
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: velvet
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: velvetoptimiser
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: vicuna
+Topic not found in EDAM:          sequence assembly (de novo assembly)    for tool: viralfusionseq
+Topic not found in EDAM:      exome and whole genome variant detection    for tool: bigbwa
+Topic not found in EDAM:      exome and whole genome variant detection    for tool: breakpointer
+Topic not found in EDAM:      exome and whole genome variant detection    for tool: exomecopy
+Topic not found in EDAM:      exome and whole genome variant detection    for tool: genomebrowse
+Topic not found in EDAM:      exome and whole genome variant detection    for tool: spiral genetics
+Topic not found in EDAM:      exome and whole genome variant detection    for tool: variation toolkit
