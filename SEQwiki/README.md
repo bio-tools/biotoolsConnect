@@ -5,8 +5,10 @@ This is a simple mapper written in Python and wrapped with a bash script. The ma
 
 It is easy to test the script by following the below guide:
 
-1. Download the python2 script seqwiki2biotools.py and the bash script seqwiki2biotools_mapper.sh.
+1. Download the python2 script "seqwiki2biotools.py" and the bash script "seqwiki2biotools_mapper.sh".
 
-2. Be connected to the internet and then run seqwiki2biotools_mapper.sh
+2. Be connected to the internet and then run seqwiki2biotools_mapper.sh.
+
+The bash script will download the latest EDAM version and the required files from SeqWIKI. Then the Python script is started and this will output lists of problematic tools, a simple count stats report and the tools in JSON format.
 
 
