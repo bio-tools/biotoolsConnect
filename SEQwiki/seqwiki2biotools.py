@@ -19,7 +19,7 @@ def authentication(username, password):
     ctx.check_hostname = False
     ctx.verify_mode = ssl.CERT_NONE
     login_info = '{' + '"username": "{}","password": "{}"'.format(username, password) + '}'
-    url = 'http://elixir-registry-demo.cbs.dtu.dk/auth/login'
+    url = 'http://elixir-registry-demo.cbs.dtu.dk/api/auth/login/'
     request = rest_service(url, login_info)
 
     try:
@@ -77,7 +77,7 @@ def import_resource(auth_token, json_string, count):
     Imports a single resource to the elixir database.
     """
 
-    url = 'http://elixir-registry-demo.cbs.dtu.dk/tool'
+    url = 'http://elixir-registry-demo.cbs.dtu.dk/api/tool/'
     auth = 'Token ' + auth_token
     header = {'Authorization': auth}
 
@@ -692,7 +692,7 @@ if __name__ == '__main__':
 
     #######################################
     ## Enter username and password here: ##
-    username = 'xxx'
+    username = 'SeqWIKI'
     password = 'xxx'
     #######################################
 
