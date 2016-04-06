@@ -7,26 +7,69 @@ from sys import exit
 import os.path
 import time
 import datetime
+import ssl
+import requests
 
 
 def authentication(username, password):
     """
     Returns authentication token.
     """
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
     login_info = '{' + '"username": "{}","password": "{}"'.format(username, password) + '}'
     url = 'http://elixir-registry-demo.cbs.dtu.dk/auth/login'
     request = rest_service(url, login_info)
 
     try:
-        handler = urllib2.urlopen(request)
+        handler = urllib2.urlopen(request, context=ctx)
         print('Authentication: Success')
 
     except urllib2.HTTPError as e:
         print('Authentication: Error {}\t{}'.format(e.code, e.reason))
         exit()
+    print(handler.read())
 
     token = json.loads(handler.read())['token']
     return token
+
+
+def rest_service(url, data, extra_headers=False):
+    """
+    Performs most of the rest service and returns a urllib2 request to be handled.
+    """
+
+    headers = {'Accept': 'application/json', 'Content-type': 'application/json'}
+    if extra_headers:
+        headers.update(extra_headers)
+
+    opener = urllib2.build_opener()
+    urllib2.install_opener(opener)
+
+    return urllib2.Request(url=url, data=data, headers=headers)
+
+
+def error_print(error, path):
+    """
+    Pretty print of error messages.
+    """
+    if type(error) == type(list()):
+        for sub_error in error:
+            error_print(sub_error, path)
+
+    elif 'text' in error.keys():
+        print('\t{}'.format(path))
+        print('\t{}'.format(error['text']))
+        for key in error['data'].keys():
+            if error['data'][key]:
+                print('\t{}\t{}'.format(key, error['data'][key]))
+            else:
+                print('\t{}\t'.format(key))
+    else:
+        for key in error.keys():
+            new_path = path + key + '/'
+            error_print(error[key], new_path)
 
 
 def import_resource(auth_token, json_string, count):
@@ -41,7 +84,8 @@ def import_resource(auth_token, json_string, count):
     request = rest_service(url, json_string, header)
 
     try:
-        handler = urllib2.urlopen(request)
+        urllib2.urlopen(request)
+        # handler = urllib2.urlopen(request)
         print('[{}] Resource upload: Success'.format(count))
 
     # Error handling
@@ -648,16 +692,16 @@ if __name__ == '__main__':
 
     #######################################
     ## Enter username and password here: ##
-    username = '123'
-    password = '123'
+    username = 'xxx'
+    password = 'xxx'
     #######################################
 
     # # request access token
-    # token = authentication(username,password)
+    token = authentication(username, password)
 
     # # upload tool
-    # for count, resource in enumerate(all_resources):
-    #     import_resource(token, json.JSONEncoder().encode(resource), (count+1))
+    for count, resource in enumerate(all_resources):
+        import_resource(token, json.JSONEncoder().encode(resource), (count + 1))
 
 # What are in the three SeqWIKI input files and how do the map to the EDAM JSON format:
 

@@ -23,16 +23,16 @@ wget "http://seqanswers.com/wiki/Special:Ask/-5B-5BCategory:URL-5D-5D/-3FURL-20d
 echo
 echo "Now starts the mapping of SeqWIKI to biotools JSON format"
 # Print the mixed concepts to a file:
-python2.7 seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -edam EDAM.csv -mix 1 | sort > seqwiki_mixed_concepts_sorted.txt
+python seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -edam EDAM.csv -mix 1 | sort > seqwiki_mixed_concepts_sorted.txt
 
 # Print the mismatching concepts to a file:
-python2.7 seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -edam EDAM.csv -mis 1 | sort > seqwiki_mismatching_concepts_sorted.txt
+python seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -edam EDAM.csv -mis 1 | sort > seqwiki_mismatching_concepts_sorted.txt
 
 # Print the missing tool names to a file:
-python2.7 seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -edam EDAM.csv -nokey 1 > seqwiki_missing_tool_names.txt
+python seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -edam EDAM.csv -nokey 1 > seqwiki_missing_tool_names.txt
 
 # Dump the tools in JSON format and print/extend a count stats report:
-python2.7 seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -edam EDAM.csv -out seqwiki_dump.json -stats seqwiki_dump.stats -v 1
+python seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -edam EDAM.csv -out seqwiki_dump.json -stats seqwiki_dump.stats -v 1
 
 
 
