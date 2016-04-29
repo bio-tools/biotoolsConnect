@@ -19,7 +19,7 @@ def authentication(username, password):
     ctx.check_hostname = False
     ctx.verify_mode = ssl.CERT_NONE
     login_info = '{' + '"username": "{}","password": "{}"'.format(username, password) + '}'
-    url = 'http://elixir-registry-demo.cbs.dtu.dk/api/auth/login/'
+    url = 'https://elixir-registry-demo.cbs.dtu.dk/api/auth/login/'
     request = rest_service(url, login_info)
 
     try:
@@ -29,7 +29,6 @@ def authentication(username, password):
     except urllib2.HTTPError as e:
         print('Authentication: Error {}\t{}'.format(e.code, e.reason))
         exit()
-    print(handler.read())
 
     token = json.loads(handler.read())['token']
     return token
