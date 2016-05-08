@@ -32,7 +32,7 @@ python seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -ed
 python seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -edam EDAM.csv -nokey 1 > seqwiki_missing_tool_names.txt
 
 # Dump the tools in JSON format and print/extend a count stats report:
-python seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -edam EDAM.csv -out seqwiki_dump.json -stats seqwiki_dump.stats -v 1
+python seqwiki2biotools.py -tool tools.csv -ref references.csv -url urls.csv -edam EDAM.csv -out seqwiki_dump.json -stats seqwiki_dump.stats -v 1 -push XXXXX
 
 
 

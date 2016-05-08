@@ -233,6 +233,7 @@ if __name__ == '__main__':
     parser.add_argument("-mix", help="Print mix between operations and topics or formats and data; 0/1.")
     parser.add_argument("-mis", help="Print mismatches between operations/topics/formats seen in SeqWIKI vs. the valid concepts in EDAM; 0/1.")
     parser.add_argument("-nokey", help="Prints the tools from the tools.csv file that are not found in either references.csv or url.csv; 0/1.")
+    parser.add_argument("-push", help="Password to the SeqWIKI user on the testserver.")
     parser.add_argument("-v", help="Verbose; 0/1.")
     args = parser.parse_args()
 
@@ -689,18 +690,21 @@ if __name__ == '__main__':
             outfile.write('{0}'.format(json.dumps(all_resources, sort_keys=True, indent=4, separators=(',', ': '))))
             # print(json.dumps(all_resources, sort_keys=True, indent=4, separators=(',', ': ')))
 
-    #######################################
-    ## Enter username and password here: ##
-    username = 'SeqWIKI'
-    password = 'xxx'
-    #######################################
+    if args.push:
+        #######################################
+        ## Enter username and password here: ##
+        username = 'SeqWIKI'
+        password = args.push
+        #######################################
 
-    # # request access token
-    token = authentication(username, password)
+        # # request access token
+        token = authentication(username, password)
 
-    # # upload tool
-    for count, resource in enumerate(all_resources):
-        import_resource(token, json.JSONEncoder().encode(resource), (count + 1))
+        # # upload tool
+        total_tools = len(all_resources)
+        for count, resource in enumerate(all_resources):
+            print('Pushed {} out of {} tools'.format(count + 1, total_tools))
+            import_resource(token, json.JSONEncoder().encode(resource), (count + 1))
 
 # What are in the three SeqWIKI input files and how do the map to the EDAM JSON format:
 
