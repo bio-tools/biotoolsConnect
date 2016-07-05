@@ -706,6 +706,11 @@ if __name__ == '__main__':
             print('Pushed {} out of {} tools'.format(count + 1, total_tools))
             import_resource(token, json.JSONEncoder().encode(resource), (count + 1))
 
+# Validate tool with requests on the new server:
+# headers = {'Content-Type': 'application/json',  'Authorization': 'Token 219c86193ffe21692dac14fce8485620b08f2455'}
+# r = requests.post("https://dev.bio.tools/api/tool/validate/", data=payload, headers=headers)
+# JSON_response_string = r.text
+
 # What are in the three SeqWIKI input files and how do the map to the EDAM JSON format:
 
 # In tools:
