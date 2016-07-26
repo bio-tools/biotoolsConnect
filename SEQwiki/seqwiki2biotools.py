@@ -697,14 +697,24 @@ if __name__ == '__main__':
         password = args.push
         #######################################
 
+        #### Old import:
         # # request access token
-        token = authentication(username, password)
+        # token = authentication(username, password)
 
         # # upload tool
         total_tools = len(all_resources)
         for count, resource in enumerate(all_resources):
+            resource_json = json.JSONEncoder().encode(all_resources[resource])
             print('Pushed {} out of {} tools'.format(count + 1, total_tools))
-            import_resource(token, json.JSONEncoder().encode(resource), (count + 1))
+            #### Old import:
+            # import_resource(token, resource_json, (count + 1))
+
+            # Validate tool with requests on the new server:
+            headers = {'Content-Type': 'application/json',  'Authorization': 'Token 219c86193ffe21692dac14fce8485620b08f2455'}
+            r = requests.post("https://dev.bio.tools/api/tool/validate/", data=resource_json, headers=headers)
+            json_response_string = r.text
+            print(resource_json)
+            print(json_response_string)
 
 # Validate tool with requests on the new server:
 # headers = {'Content-Type': 'application/json',  'Authorization': 'Token 219c86193ffe21692dac14fce8485620b08f2455'}
