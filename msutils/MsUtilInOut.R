@@ -1,8 +1,19 @@
+## Script to import the content of ms-utils.org into bio.tools
+##
+## Update: Adapted to bio.tools schema 2.0
+## Not working: head of xml-file still requires substitution of "xmlns:xmlns" to "xmlns"
+
+
 library(biocViews)
 library(graph)
 library(XML)
+library(ontologyIndex)
 
 setwd("/home/veit/devel/Proteomics/ELIXIR_EDAM/DataRetrieval")
+
+############### get recent EDAM ontology for mapping of terms
+system("wget http://edamontology.org/EDAM.owl")
+EDAM <- get_OWL("EDAM.owl")
 
 ############### DATA MSUTILS.ORG -> ELIXIR REGISTRY
 # get data
@@ -62,8 +73,6 @@ write.csv(msutils,"msutils.csv")
 ############# temporary solution to read from csv-file
 msutils <- read.csv("msutils_with_EDAM - msutils_tools - temporary solution.csv", stringsAsFactors = F)
 
-# OBSERVATIONS: No format data type EDAM terms
-
 msutils$interface[msutils$interface == "offline"] <- NA
 msutils$description[msutils$description == ""] <- NA
 msutils$email[msutils$email == ""] <- NA
@@ -72,117 +81,121 @@ msutils$email[msutils$email == ""] <- NA
 ###############################################
 
 FullPcks <- msutils
-xml_out = newXMLNode("resources",attrs=list("xsi:schemaLocation"="http://biotoolsregistry.org ../biotools-1.1.xsd"))
+xml_out = newXMLNode(name="tools",namespace=list(xmlns="http://bio.tools"),namespaceDefinitions = list("xsi"="http://www.w3.org/2001/XMLSchema-instance"),attrs = list("xsi:schemaLocation"="http://bio.tools biotools-2.0-beta-04.xsd"))
 for (i in 1:nrow(FullPcks)) {
   currTool <- FullPcks[i,]
-  if (!is.na(currTool["description"]) && !is.na(currTool["name"]) && grepl("http",currTool["link"]) && 
-      !is.na(currTool["interface"]) && !(grepl("not",currTool["interface"])) && !is.na(currTool["email"])) {
+  # Check for minimal requirements of schema
+  if (!is.na(currTool["name"])  && grepl("http",currTool["link"]) && !is.na(currTool["description"]) && 
+      !is.na(currTool["interface"]) && !(grepl("not",currTool["interface"]))) {
     
-    tnode <- newXMLNode("resource",parent=xml_out)
+    tnode <- newXMLNode("tool",parent=xml_out)
+    tnode2 <- newXMLNode("summary",parent=tnode)
+    ## need to remove ! from name as well
+    currTool$name <- gsub("\\!","",currTool$name)
+    newXMLNode("name",parent=tnode2,text=sub("\\(.*","",currTool["name"]))
+    ###### tool id without special characters and spaces (_ instead), max. 12 characters
+    currTool$toolID <- gsub("\\!","",currTool$name)
+    currTool$toolID <- gsub(" ","_",currTool$toolID)
+    currTool$toolID <- gsub("+","Plus",currTool$toolID)
+    currTool$toolID <- gsub("\\.","",currTool$toolID)
+    currTool$toolID <- strtrim(currTool$toolID,12)
+    newXMLNode("toolID",parent=tnode2,text=sub("\\(.*","",currTool["toolID"]))
+    newXMLNode("shortDescription",parent=tnode2,text=gsub('\n'," ",currTool["description"]))
+    newXMLNode("description",parent=tnode2,text=gsub('\n'," ",currTool["description"]))
+    newXMLNode("homepage",parent=tnode2,text=currTool["link"])
     
-    
-    ###### DELETE CHARACTER "!" TOOL NAMES (ONLY TEMPORARILY)
-    currTool$name <- sub("\\!","",currTool$name)
-    
-    newXMLNode("name",parent=tnode,text=sub("\\(.*","",currTool["name"]))
-    
-    newXMLNode("homepage",parent=tnode,text=currTool["link"])
-    if (!is.na(currTool$weblink) & currTool$weblink != "") {
-      newXMLNode("mirror",parent=tnode,text=currTool$weblink)
-    }
-    newXMLNode("collection",parent=tnode,text="ms-utils.org")
-    newXMLNode("accessibility",parent=tnode,text="Public")
-    
-    ## split interfaces "Linux distribution" and "Library" into resourceType
-    if (currTool$interface == "Linux distribution") {
-      newXMLNode("resourceType",parent=tnode,text="Platform")
-      interface_list <- c("Command line","Desktop GUI")
-      for (e in unlist(interface_list)) {
-        tnode2 <- newXMLNode("interface",parent=tnode)
-        newXMLNode("interfaceType",parent=tnode2,text=e)
-      }
-    } else if (currTool$interface == "Library") {
-      newXMLNode("resourceType",parent=tnode,text="Library")
-      interface_list <- c("Command line")
-      for (e in unlist(interface_list)) {
-        tnode2 <- newXMLNode("interface",parent=tnode)
-        newXMLNode("interfaceType",parent=tnode2,text=e)
-      }
-    } else if (currTool$interface == "iOS app") {
-      newXMLNode("resourceType",parent=tnode,text="Library")
-      interface_list <- c("Desktop GUI")
-      for (e in unlist(interface_list)) {
-        tnode2 <- newXMLNode("interface",parent=tnode)
-        newXMLNode("interfaceType",parent=tnode2,text=e)
-      }
+    ## Probably need to adapt to allow multiple functions with different input/output in future
+    tnode2 <- newXMLNode("function",parent=tnode)
+    if (is.na(currTool$EDAM.operation) | currTool$EDAM.operation == "") {
+      tnode3 <- newXMLNode("operation",parent=tnode2)
+      alt_name <- "http://edamontology.org/operation_0004"
+      newXMLNode("uri",parent=tnode3,alt_name)
+      newXMLNode("term",parent=tnode3,EDAM$name[alt_name])
     } else {
-      newXMLNode("resourceType",parent=tnode,text="Tool")
-      interface_list <- strsplit(as.character(currTool$interface), "\\|")
-      for (e in unlist(interface_list)) {
-        tnode2 <- newXMLNode("interface",parent=tnode)
-        newXMLNode("interfaceType",parent=tnode2,text=e)
+      edam_list <- strsplit(as.character(currTool$EDAM.operation), "\\|")
+      for (e in unlist(edam_list)) {
+        e <- gsub(" ","",e)
+        tnode3 <- newXMLNode("operation",parent=tnode2)
+        edam_name <- paste("http://edamontology.org/",e, sep="")
+        newXMLNode("uri",parent=tnode3,edam_name)
+        newXMLNode("term",parent=tnode3,EDAM$name[edam_name])
       }
     }
-    newXMLNode("description",parent=tnode,text=gsub('\n'," ",currTool["description"]))
+    tnode3 <- newXMLNode("input",parent=tnode2)
+    ### Data terms still to come
+    # if (is.na(currTool$EDAM.data) | currTool$EDAM.data == "")
+    tnode4 <- newXMLNode("data",parent=tnode3)
+    alt_name <- "http://edamontology.org/data_0006"
+    newXMLNode("uri",parent=tnode4, alt_name)
+    newXMLNode("term",parent=tnode4, EDAM$name[alt_name])
+    if (is.na(currTool$EDAM.data.format.in) | currTool$EDAM.data.format.in == "") {
+      tnode4 <- newXMLNode("format",parent=tnode3)
+      alt_name <- "http://edamontology.org/format_1915"
+      newXMLNode("uri",parent=tnode4, alt_name)
+      newXMLNode("term",parent=tnode4, EDAM$name[alt_name])
+    } else {
+      edam_list <- strsplit(as.character(currTool$EDAM.data.format.in), "\\|")
+      for (e in unlist(edam_list)) {
+        e <- gsub(" ","",e)
+        tnode4 <- newXMLNode("format",parent=tnode3)
+        edam_name <- paste("http://edamontology.org/",e, sep="")
+        newXMLNode("uri",parent=tnode4, edam_name)
+        newXMLNode("term",parent=tnode4, EDAM$name[edam_name])
+      }
+    }
+    tnode3 <- newXMLNode("output",parent=tnode2)
+    ### Data terms still to come
+    # if (is.na(currTool$EDAM.data) | currTool$EDAM.data == "")
+    tnode4 <- newXMLNode("data",parent=tnode3)
+    alt_name <- "http://edamontology.org/data_0006"
+    newXMLNode("uri",parent=tnode4, alt_name)
+    newXMLNode("term",parent=tnode4, EDAM$name[alt_name])
+    if (is.na(currTool$EDAM.data.format.out) | currTool$EDAM.data.format.out == "") {
+      tnode4 <- newXMLNode("format",parent=tnode3)
+      alt_name <- "http://edamontology.org/format_1915"
+      newXMLNode("uri",parent=tnode4, alt_name)
+      newXMLNode("term",parent=tnode4, EDAM$name[alt_name])
+    } else {
+      edam_list <- strsplit(as.character(currTool$EDAM.data.format.out), "\\|")
+      for (e in unlist(edam_list)) {
+        e <- gsub(" ","",e)
+        tnode4 <- newXMLNode("format",parent=tnode3)
+        edam_name <- paste("http://edamontology.org/",e, sep="")
+        newXMLNode("uri",parent=tnode4, edam_name)
+        newXMLNode("term",parent=tnode4, EDAM$name[edam_name])
+      }
+    }
+    
+    tnode2 <- newXMLNode("labels",parent=tnode)
+    ##  transform special interfaces
+    interface_list <- strsplit(as.character(currTool$interface), "\\|")
+    for (e in unlist(interface_list)) {
+      if (e == "Linux distribution") {
+        newXMLNode("toolType",parent=tnode2,text="Suite")
+      } else if (e == "iOS app") {
+        newXMLNode("toolType",parent=tnode2,text="Desktop application")
+      } else {
+        ## CHECK NAMES
+        newXMLNode("toolType",parent=tnode2,text = e)
+      }
+    }
     
     ## write EDAM terms if available, else write most general one
     if (is.na(currTool$EDAM.topic) | currTool$EDAM.topic == "") {
-      newXMLNode("topic",parent=tnode,text="Topic",attrs=list(uri="http://edamontology.org/topic_0003"))
+      tnode3 <- newXMLNode("topic",parent=tnode2)
+      alt_name <- "http://edamontology.org/topic_0003"
+      newXMLNode("uri",parent=tnode3, alt_name)
+      newXMLNode("term",parent=tnode3, EDAM$name[alt_name])
     } else {
       edam_list <- strsplit(as.character(currTool$EDAM.topic), "\\|")
-      for (e in unlist(edam_list)) 
+      for (e in unlist(edam_list)) {
         e <- gsub(" ","",e,)
-      newXMLNode("topic",parent=tnode,text="Topic",
-                   attrs=list(uri=paste("http://edamontology.org/",e, sep="")))
-    }
-    tnode2 <- newXMLNode("function",parent=tnode)
-    if (is.na(currTool$EDAM.operation) | currTool$EDAM.operation == "") {
-      newXMLNode("functionName",parent=tnode2,text="Operation",attrs=list(uri="http://edamontology.org/operation_0004"))
-    } else {
-      edam_list <- strsplit(as.character(currTool$EDAM.operation), "\\|")
-      for (e in unlist(edam_list)) 
-        e <- gsub(" ","",e,)
-      newXMLNode("functionName",parent=tnode2,text="Operation",
-                   attrs=list(uri=paste("http://edamontology.org/",e, sep="")))
-    }
-    tnode3 <- newXMLNode("input",parent=tnode2)
-    newXMLNode("dataType",parent=tnode3,text="Data",attrs=list(uri="http://edamontology.org/data_0006"))
-    if (is.na(currTool$EDAM.data.format.in) | currTool$EDAM.data.format.in == "") {
-      newXMLNode("dataFormat",parent=tnode3,text="Format",attrs=list(uri="http://edamontology.org/format_1915"))
-    } else {
-      edam_list <- strsplit(as.character(currTool$EDAM.data.format.in), "\\|")
-      for (e in unlist(edam_list)) 
-        e <- gsub(" ","",e,)
-        newXMLNode("dataFormat",parent=tnode3,text="Format",
-                   attrs=list(uri=paste("http://edamontology.org/",e, sep="")))
-    }
-    tnode3 <- newXMLNode("output",parent=tnode2)
-    newXMLNode("dataType",parent=tnode3,text="Data",attrs=list(uri="http://edamontology.org/data_0006"))
-    if (is.na(currTool$EDAM.data.format.out) | currTool$EDAM.data.format.out == "") {
-      newXMLNode("dataFormat",parent=tnode3,text="Format",attrs=list(uri="http://edamontology.org/format_1915"))
-    } else {
-      edam_list <- strsplit(as.character(currTool$EDAM.data.format.out), "\\|")
-      for (e in unlist(edam_list)) 
-        e <- gsub(" ","",e,)
-      newXMLNode("dataFormat",parent=tnode3,text="Format",
-                   attrs=list(uri=paste("http://edamontology.org/",e, sep="")))
-    }
-    newXMLNode("dataFormat",parent=tnode3,text="Format",attrs=list(uri="http://edamontology.org/format_1915"))
-    
-    maintainers <- strsplit(as.character(currTool["email"]),"\\|")
-    for (m in unlist(maintainers)) {
-      if (m != " " & m != "" & !is.na(m) & !is.na(m)) {
-        if(!is.na(m)) {
-          tnode2 <- newXMLNode("contact",parent=tnode)
-          newXMLNode("contactEmail",parent=tnode2,text=m)
-          newXMLNode("contactRole",parent=tnode2,text="Maintainer")
-        }
+        tnode3 <- newXMLNode("topic",parent=tnode2)
+        edam_name <- paste("http://edamontology.org/",e, sep="")
+        newXMLNode("uri",parent=tnode3, edam_name)
+        newXMLNode("term",parent=tnode3, EDAM$name[edam_name])
       }
     }
-    
-    newXMLNode("sourceRegistry",parent=tnode,text="http://ms-utils.org")
-    
-    
     if (!is.na(currTool["lang"]) & currTool$lang != "" & currTool$lang != "Excel") {
       lang_list <- unlist(strsplit(as.character(currTool$lang), "\\/"))
       for (e in lang_list) {
@@ -190,33 +203,66 @@ for (i in 1:nrow(FullPcks)) {
           e <- "C++"
         if (e == "VC")
           e <- "C"
-        newXMLNode("language",parent=tnode,text=e)
+        newXMLNode("language",parent=tnode2,text=e)
       }
     }
+    if (!is.na(currTool["SPDX.license.IDs"]) & currTool$license != "") {
+      newXMLNode("license",parent=tnode2,text=gsub('\n'," ",currTool["SPDX.license.IDs"]))
+    }
+    newXMLNode("collectionID",parent=tnode2,text="ms-utils")
+    # newXMLNode("cost",parent=tnode2,text="Free of charge")
+    # newXMLNode("accessibility",parent=tnode2,text="Open access")
     
-    if (!is.na(currTool["license"]) & currTool$license != "") {
-      newXMLNode("license",parent=tnode,text=gsub('\n'," ",currTool["license"]))
+    if (!is.na(currTool$weblink) & currTool$weblink != "") {
+      tnode2 <- newXMLNode("link",parent=tnode)
+      newXMLNode("url",parent=tnode2,currTool$weblink)
+      newXMLNode("type",parent=tnode2,"Mirror")
     }
     
-    newXMLNode("cost",parent=tnode,text="Free")
+    tnode2 <- newXMLNode("link",parent=tnode)
+    newXMLNode("url",parent=tnode2,"http://ms-utils.org")
+    newXMLNode("type",parent=tnode2,"Registry")
     
     if (!is.na(currTool$source) & currTool$source != "") {
-      tnode2 <- newXMLNode("docs",parent=tnode)
-      newXMLNode("docsDownloadSource",parent=tnode2,text=currTool$source)
+      tnode2 <- newXMLNode("download",parent=tnode)
+      newXMLNode("url",parent=tnode2,currTool$source)
+      newXMLNode("type",parent=tnode2,"Source code")
     }
     
     if (!is.na(currTool["paper"]) & currTool$paper != "") {
-      tnode2 <- newXMLNode("publications",parent=tnode)
       pub_list <- unlist(strsplit(as.character(currTool$paper), "\\|"))
       for (e in pub_list) {
-        if (which(e==pub_list) == 1)
-          newXMLNode("publicationsPrimaryID",parent=tnode2,text=e)
-        else 
-          newXMLNode("publicationsOtherID",parent=tnode2,text=e)
+        tnode2 <- newXMLNode("publication",parent=tnode)
+        if (!grepl("/",e)) {
+          newXMLNode("pmid",parent=tnode2,text=e)
+        } else {
+          newXMLNode("doi",parent=tnode2,text=e)
+        }
+      }
+    }
+    
+    
+    tnode2 <- newXMLNode("contact",parent=tnode)
+    ## TBD:
+    newXMLNode("email",parent=tnode2,text="webmaster@ms-utils.org")
+    newXMLNode("url",parent=tnode2,text="ms-utils.org")
+    
+    maintainers <- strsplit(as.character(currTool["email"]),"\\|")
+    for (m in unlist(maintainers)) {
+      if (m != " " & m != "" & !is.na(m) & !is.na(m)) {
+        if(!is.na(m)) {
+          tnode2 <- newXMLNode("credit",parent=tnode)
+          newXMLNode("name",parent=tnode2,"see publication")
+          newXMLNode("email",parent=tnode2,text=m)
+          newXMLNode("typeEntity",parent=tnode2,text="Person")
+          newXMLNode("typeRole",parent=tnode2,text="Maintainer")
+        }
       }
     }
   }
+  
 }
+
 
 saveXML(xml_out,"FullMSUtils.xml")
 
@@ -270,8 +316,4 @@ for (i in 1:length(sublist)) {
 write(textout,"msutils_in.txt")
 
 
-### PROBLEMS SO FAR:
-# too many links in wiki file (especially description), sometimes getting the wrong one.
-# publication link not always ID (DOI or PubMed)
-# ELIXIR: where do I put link to source code?
 
