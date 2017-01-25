@@ -15,6 +15,15 @@ setwd("/home/veit/devel/Proteomics/ELIXIR_EDAM/DataRetrieval")
 system("wget http://edamontology.org/EDAM.owl")
 EDAM <- get_OWL("EDAM.owl")
 
+## Remove obsolete terms
+EDAM$id <- EDAM$id[!EDAM$obsolete]
+EDAM$name <- EDAM$name[!EDAM$obsolete]
+EDAM$parents <- EDAM$parents[!EDAM$obsolete]
+EDAM$children <- EDAM$children[!EDAM$obsolete]
+EDAM$ancestors <- EDAM$ancestors[!EDAM$obsolete]
+EDAM$obsolete <- EDAM$obsolete[!EDAM$obsolete]
+
+
 ############### DATA MSUTILS.ORG -> ELIXIR REGISTRY
 # get data
 system("wget http://www.ms-utils.org/wiki/pmwiki.php/Main/SoftwareList?action=source -O msutils.txt")
@@ -77,8 +86,10 @@ msutils$interface[msutils$interface == "offline"] <- NA
 msutils$description[msutils$description == ""] <- NA
 msutils$email[msutils$email == ""] <- NA
 
-
 ###############################################
+
+## remove duplicates
+FullPcks <- FullPcks[!duplicated(FullPcks$name), ]
 
 FullPcks <- msutils
 xml_out = newXMLNode(name="tools",namespace=list(xmlns="http://bio.tools"),namespaceDefinitions = list("xsi"="http://www.w3.org/2001/XMLSchema-instance"),attrs = list("xsi:schemaLocation"="http://bio.tools biotools-2.0-beta-04.xsd"))
@@ -96,7 +107,7 @@ for (i in 1:nrow(FullPcks)) {
     ###### tool id without special characters and spaces (_ instead), max. 12 characters
     currTool$toolID <- gsub("\\!","",currTool$name)
     currTool$toolID <- gsub(" ","_",currTool$toolID)
-    currTool$toolID <- gsub("+","Plus",currTool$toolID)
+    currTool$toolID <- gsub("\\+","Plus",currTool$toolID)
     currTool$toolID <- gsub("\\.","",currTool$toolID)
     currTool$toolID <- strtrim(currTool$toolID,12)
     newXMLNode("toolID",parent=tnode2,text=sub("\\(.*","",currTool["toolID"]))
