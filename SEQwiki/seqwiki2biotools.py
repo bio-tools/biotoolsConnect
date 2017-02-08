@@ -1,15 +1,21 @@
+#!/usr/bin/env python2
 import csv
 import argparse
 import json
 import re
-import urllib, urllib2
+import urllib
+import urllib2
 from sys import exit
 import os.path
 import time
 import datetime
 import ssl
 import requests
-
+import xml.etree.ElementTree as ET
+from xml.dom import minidom
+import codecs
+import re
+from pprint import pprint
 
 def authentication(username, password):
     """
@@ -34,7 +40,7 @@ def authentication(username, password):
     return token
 
 
-def rest_service(url, data, extra_headers=False):
+def rest_service(url, data, extra_headers=None):
     """
     Performs most of the rest service and returns a urllib2 request to be handled.
     """
@@ -53,7 +59,8 @@ def error_print(error, path):
     """
     Pretty print of error messages.
     """
-    if type(error) == type(list()):
+
+    if isinstance(error, list):
         for sub_error in error:
             error_print(sub_error, path)
 
@@ -113,7 +120,7 @@ def list_syn(label2key, lc, syn_labels):
             else:
                 pass
 
-    return(label2key)
+    return label2key
 
 
 # Take a CSV version of the EDAM ontology and return list of labels that can be mapped back to the concepts by the "concept" dictionary:
@@ -127,18 +134,18 @@ def fill_label2key(edam_file, t_label2key, o_label2key, d_label2key, f_label2key
         for lc, line in enumerate(EDAMcsv):
             # We skip obsolete entries:
             obs = line[4].lower()
-            if str(obs) == 'true':
+            if obs == 'true':
                 continue
 
             # Extract the url and the labels:
             url = line[0]
             pref_label = line[1]
-            syn_labels = line[49].split('|')
+            syn_labels = line[2].split('|')
             syn_labels = [x.lower() for x in syn_labels]
             # Insert the preferred label as the first in the list of synonyms:
             syn_labels.insert(0, pref_label.lower())
 
-            # Now devide into topic/operation/data/format:
+            # Now divide into topic/operation/data/format:
             if 'topic' in url:
                 concept[lc] = [url, 'topic', pref_label, obs]
                 t_label2key = list_syn(t_label2key, lc, syn_labels)
@@ -159,7 +166,7 @@ def fill_label2key(edam_file, t_label2key, o_label2key, d_label2key, f_label2key
                 print(line)
                 print("Line " + str(lc))
 
-    return(t_label2key, o_label2key, d_label2key, f_label2key, concept)
+    return t_label2key, o_label2key, d_label2key, f_label2key, concept
 
 
 # Make simple count stats on some of the information fields in the output JSON:
@@ -200,25 +207,25 @@ def make_stats(all_resources):
         if 'description' not in all_resources[tool] or not all_resources[tool]['description']:
             stat_list[10] += 1
 
-    return(stat_list)
+    return stat_list
 
 
 # Make timestamp for the stat report:
 def timestamp():
     systime = time.time()
     stamp = datetime.datetime.fromtimestamp(systime).strftime('%Y-%m-%d %H:%M:%S')
-    return(stamp)
+    return stamp
 
 
 # Get lists of possible names defined by the biotools schema. Also return a dictionary that maps license names from SeqWIKI to biotools:
 def get_namespace():
     SeqWIKI_url_type = ['Homepage', 'Manual', 'Mailing list', 'Binaries', 'Analysis server', 'Source code', 'HOWTO', 'Publication full text', 'Description', 'Related', 'White Paper']
-    resouce_type = ["Database", "Tool", "Service", "Workflow", "Platform", "Container", "Library", "Other"]
+    resource_type = ['Command-line tool', 'Web application', 'Desktop application', 'Script', 'Suite', 'Workbench', 'Database portal', 'Workflow', 'Plug-in', 'Library', 'Web API', 'Web service', 'SPARQL endpoint']
     possible_interface = ['Command line', 'Web UI', 'Desktop GUI', 'SOAP WS', 'HTTP WS', 'API', 'QL']
     possible_lang = ['ActionScript', 'Ada', 'AppleScript', 'Assembly language', 'Bash', 'C', 'C#', 'C++', 'COBOL', 'ColdFusion', 'D', 'Delphi', 'Dylan', 'Eiffel', 'Forth', 'Fortran', 'Groovy', 'Haskell', 'Icarus', 'Java', 'Javascript', 'LabVIEW', 'Lisp', 'Lua', 'Maple', 'Mathematica', 'MATLAB language', 'MLXTRAN', 'NMTRAN', 'Pascal', 'Perl', 'PHP', 'Prolog', 'Python', 'R', 'Racket', 'REXX', 'Ruby', 'SAS', 'Scala', 'Scheme', 'Shell', 'Smalltalk', 'SQL', 'Turing', 'Verilog', 'VHDL', 'Visual Basic']
-    possible_license = ['Apache License 2.0', 'Artistic License 2.0', 'MIT License', 'GNU General Public License v3', 'GNU Lesser General Public License v2.1', 'GNU General Public License v2', 'GNU Affero General Public License v3', 'BSD 3-Clause License (Revised)', 'BSD 2-Clause License', 'Creative Commons Attribution NonCommerical NoDerivs', 'Microsoft Public License', 'Mozilla Public License 2.0', 'Creative Commons Attribution NoDerivs', 'Eclipse Public License 1.0', 'Microsoft Reciprocal License', 'PHP License 3.0', 'Creative Commons Attribution 3.0 Unported', 'Creative Commons Attribution Share Alike', 'Creative Commons Attribution NonCommercial', 'Creative Commons Attribution NonCommercial ShareAlike', 'Apple Public Source License 2.0', 'ISC License', 'IBM Public License', 'GNU Free Documentation License v1.3', 'Common Public Attribution License Version 1.0', 'European Union Public License 1.1', 'ODC Open Database License', 'Simple Public License 2.0', 'Creative Commons Attribution-NonCommercial 2.0 Generic', 'Creative Commons CC0 1.0 Universal', 'Microsoft Shared Source Community License', 'Mozilla Public License 1.1', 'Educational Community License Version 2.0', 'Creative Commons Attribution 4.0 International', 'Open Software Licence 3.0', 'Common Public License 1.0', 'CeCILL v2', 'Adaptive Public License 1.0', 'Non-Profit Open Software License 3.0', 'Reciprocal Public License 1.5', 'Open Public License v1.0', 'ODC Public Domain Dedication and License 1.0']
-    license_dict = {'CeCILL': 'CeCILL v2', 'EU-GPL': 'European Union Public License 1.1', 'GNU': 'GNU General Public License v3', 'GPLv2': 'GNU General Public License v2', 'GPLv3': 'GNU General Public License v3', 'BSD License': 'BSD 3-Clause License (Revised)', 'Creative Commons - Attribution-NonCommercial-ShareAlike': 'Creative Commons Attribution NonCommerical NoDerivs', 'Artistic-2.0': 'Artistic License 2.0', 'Creative Commons - Attribution; Non-commercial 2.5': 'Creative Commons Attribution NonCommerical NoDerivs', 'MIT': 'MIT License', 'LGPL 2.1': 'GNU Lesser General Public License v2.1', 'GPL-2 + file LICENSE': 'GNU General Public License v2', 'CeCILL-C   license': 'CeCILL v2', 'Biopython License (MIT/BSD style)': 'MIT License', 'Creative Commons license (Attribution-NonCommerical).': 'Creative Commons Attribution NonCommerical NoDerivs', 'BSD': 'BSD 3-Clause License (Revised)', 'GPL': 'GNU General Public License v3', 'AGPL': 'GNU Affero General Public License v3', 'Artistic License': 'Artistic License 2.0', 'GPL  Boost': 'GNU General Public License v3', 'GPL (>= 3)': 'GNU General Public License v3', 'GPL >=2': 'GNU General Public License v3', 'GPL-3': 'GNU General Public License v3', 'LGPL': 'GNU Lesser General Public License v2.1', 'LGPLv3': 'GNU General Public License v3', 'BSD (3-clause)': 'BSD 3-Clause License (Revised)', 'GPL 2.0+': 'GNU General Public License v3', 'Mozilla Public License': 'Mozilla Public License 2.0'}
-    return(SeqWIKI_url_type, resouce_type, possible_interface, possible_lang, possible_license, license_dict)
+    possible_license = ['Apache-2.0', 'Artistic-2.0', 'MIT', 'GPL-3.0', 'LGPL-2.1', 'GPL-2.0', 'AGPL-3.0', 'BSD-3-Clause', 'BSD 2-Clause License', 'CC-BY-NC-SA-4.0', 'Microsoft Public License', 'MPL-2.0', 'Creative Commons Attribution NoDerivs', 'Eclipse Public License 1.0', 'Microsoft Reciprocal License', 'PHP License 3.0', 'Creative Commons Attribution 3.0 Unported', 'Creative Commons Attribution Share Alike', 'CC-BY-NC-4.0', 'Creative Commons Attribution NonCommercial ShareAlike', 'Apple Public Source License 2.0', 'ISC License', 'IBM Public License', 'GNU Free Documentation License v1.3', 'Common Public Attribution License Version 1.0', 'EUPL-1.1', 'ODC Open Database License', 'Simple Public License 2.0', 'Creative Commons Attribution-NonCommercial 2.0 Generic', 'Creative Commons CC0 1.0 Universal', 'Microsoft Shared Source Community License', 'MPL-1.1', 'Educational Community License Version 2.0', 'Creative Commons Attribution 4.0 International', 'Open Software Licence 3.0', 'Common Public License 1.0', 'CECILL-2.0', 'Adaptive Public License 1.0', 'Non-Profit Open Software License 3.0', 'Reciprocal Public License 1.5', 'Open Public License v1.0', 'ODC Public Domain Dedication and License 1.0']
+    license_dict = {'CeCILL': 'CECILL-2.0', 'EU-GPL': 'EUPL-1.1', 'GNU': 'GPL-3.0', 'GPLv2': 'GPL-2.0', 'GPLv3': 'GPL-3.0', 'BSD License': 'BSD-3-Clause', 'Creative Commons - Attribution-NonCommercial-ShareAlike': 'CC-BY-NC-SA-4.0', 'Artistic-2.0': 'Artistic-2.0', 'Creative Commons - Attribution; Non-commercial 2.5': 'CC-BY-NC-4.0', 'MIT': 'MIT', 'LGPL 2.1': 'LGPL-2.1', 'GPL-2 + file LICENSE': 'GPL-2.0', 'CeCILL-C   license': 'CECILL-2.0', 'Biopython License (MIT/BSD style)': 'MIT', 'Creative Commons license (Attribution-NonCommerical).': 'CC-BY-NC-4.0', 'BSD': 'BSD-3-Clause', 'GPL': 'GPL-3.0', 'AGPL': 'AGPL-3.0', 'Artistic License': 'Artistic-2.0', 'GPL  Boost': 'GPL-3.0', 'GPL (>= 3)': 'GPL-3.0', 'GPL >=2': 'GPL-3.0', 'GPL-3': 'GPL-3.0', 'LGPL': 'LGPL-2.1', 'LGPLv3': 'LGPL-3.0', 'BSD (3-clause)': 'BSD-3-Clause', 'GPL 2.0+': 'GPL-3.0', 'Mozilla Public License': 'MPL-2.0'}
+    return SeqWIKI_url_type, resource_type, possible_interface, possible_lang, possible_license, license_dict
 
 
 if __name__ == '__main__':
@@ -237,10 +244,10 @@ if __name__ == '__main__':
     parser.add_argument("-v", help="Verbose; 0/1.")
     args = parser.parse_args()
 
-    # Get the resticted namespace of EDAM:
-    SeqWIKI_url_type, resouce_type, possible_interface, possible_lang, possible_license, license_dict = list(), list(), list(), list(), list(), dict()
-    SeqWIKI_url_type, resouce_type, possible_interface, possible_lang, possible_license, license_dict = get_namespace()
-    resouce_type_low = [x.lower() for x in resouce_type]
+    # Get the restricted namespace of EDAM:
+    SeqWIKI_url_type, resource_type, possible_interface, possible_lang, possible_license, license_dict = list(), list(), list(), list(), list(), dict()
+    SeqWIKI_url_type, resource_type, possible_interface, possible_lang, possible_license, license_dict = get_namespace()
+    resource_type_low = [x.lower() for x in resource_type]
     possible_interface_low = [x.lower() for x in possible_interface]
     possible_lang_low = [x.lower() for x in possible_lang]
     possible_license_low = [x.lower() for x in possible_license]
@@ -308,12 +315,12 @@ if __name__ == '__main__':
             resource['name'] = tool2case[tool]                                                                         # name
 
             # If any resource type specified use it, else it is a "Tool":
-            resource['resourceType'] = list()                                                                          # resource type
-            if row[21] and row[21].lower() in resouce_type_low:
-                idx = resouce_type_low.index(row[21].lower())
-                resource['resourceType'].append({'term': resouce_type[idx]})
-            else:
-                resource['resourceType'].append({'term': 'Tool'})
+            #resource['resourceType'] = list()                                                                          # resource type
+            #if row[21] and row[21].lower() in resource_type_low:
+            #    idx = resource_type_low.index(row[21].lower())
+            #    resource['resourceType'].append({'term': resource_type[idx]})
+            #else:
+            #    resource['resourceType'].append({'term': 'Tool'})
 
             # We can only deduce one function, so this is created:
             resource['function'] = list()                                                                              # function list
@@ -322,8 +329,10 @@ if __name__ == '__main__':
             # Fill in all the EDAM operations/functions:
             resource['function'][0]['functionName'] = list()                                                           # function name list
             resource['function'][0]['functionDescription'] = ''                                                        # no current function description in SeqWIKI
+            resource['unmatched_function'] = list()
             for functionName in row[2].split(','):                                                                     # iterate over function names
                 functionName = functionName.lower()
+
                 # Make hash lookup to validate the operation:
                 if functionName and functionName in all_operations:
                     # Possibly raise a flag here if the concept is obsolete
@@ -344,17 +353,21 @@ if __name__ == '__main__':
                 else:
                     if args.mis:
                         print('Operation not found in EDAM: {:>45}    for tool: {}'.format(functionName, tool))
+                        resource['unmatched_function'].append(functionName)
                     continue
-                resource['function'][0]['functionName'].append({'term': pref_label, 'uri': uri})                       # add function name and uri
+
+                new_function = {'term': pref_label, 'uri': uri}
+                if new_function not in resource['function'][0]['functionName']:
+                    resource['function'][0]['functionName'].append(new_function)
 
             # Determine the maturity from the tool:
-            if row[13].lower() == 'yes':                                                                               # maturity
-                resource['maturity'] = 'Stable'
-            elif row[13].lower() == 'no':                                                                              # maturity
-                resource['maturity'] = 'Deprecated'
+            if row[13].lower() == 'yes':
+                resource['maturity'] = 'Mature'
+            elif row[13].lower() == 'no':
+                resource['maturity'] = 'Legacy'
 
             # Fill in all the EDAM input formats:
-            resource['function'][0]['input'] = list()                                                                  # input list
+            resource['function'][0]['input'] = list()
             for input1 in row[7].split(','):                                                                           # iterate over inputs
                 input1 = input1.lower()
                 dataFormat = list()                                                                                    # create list for data format
@@ -367,7 +380,7 @@ if __name__ == '__main__':
                 # If the format is actually a data concept, filtered for concept names common for both format and data:
                 elif input1 and input1 in all_data and input1 not in format_data_overlap:
                     if args.mix:
-                        print('Data comcept in input format for tool: {:>40}    {:<25}{}'.format(tool, 'with wrong format:', input1))
+                        print('Data concept in input format for tool: {:>40}    {:<25}{}'.format(tool, 'with wrong format:', input1))
                     # concept_key = d_label2key[input1]
                     # uri = concept[concept_key][0]
                     # pref_label = concept[concept_key][2]
@@ -376,8 +389,8 @@ if __name__ == '__main__':
                     # If empty then just continue:
                     continue
                 else:
-                    if args.mis:
-                        print('Format not found in EDAM: {:>45}    for tool: {}'.format(input1, tool))
+                    #if args.mis:
+                    #    print('Format not found in EDAM: {:>45}    for tool: {}'.format(input1, tool))
                     continue
                 dataFormat.append({'term': pref_label, 'uri': uri})                                                    # input EDAM term and uri to data format list
                 resource['function'][0]['input'].append({'dataFormat': dataFormat})                                    # add data format list to input list
@@ -405,8 +418,8 @@ if __name__ == '__main__':
                     # If empty then just continue:
                     continue
                 else:
-                    if args.mis:
-                        print('Format not found in EDAM: {:>45}    for tool: {}'.format(output1, tool))
+                    #if args.mis:
+                    #    print('Format not found in EDAM: {:>45}    for tool: {}'.format(output1, tool))
                     continue
                 dataFormat.append({'term': pref_label, 'uri': uri})                                                    # add output EDAM term and uri to data format list
                 resource['function'][0]['output'].append({'dataFormat': dataFormat})                                   # add data format list to input list
@@ -422,15 +435,17 @@ if __name__ == '__main__':
                     if re.match('mac', platform, re.IGNORECASE):
                         resource['platform'].append('Mac')
                     if re.match('unix', platform, re.IGNORECASE):
-                        resource['platform'].append('Unix')
+                        resource['platform'].append('Linux')
                     # Some SeqWIKI specific platforms manually found and mapped to the appropriate platform label:
                     if re.match('any|independent|cross|browser', platform, re.IGNORECASE):
-                        resource['platform'].extend(['Windows', 'Linux', 'Mac', 'Unix'])
+                        resource['platform'].extend(['Windows', 'Linux', 'Mac'])
                 else:
                     pass
 
             # Fill in all the EDAM topics:
-            resource['topic'] = list()                                                                                 # topic list
+            resource['topic'] = list()
+            resource['unmatched_topic'] = list()
+
             for topic in row[3].split(','):                                                                            # iterate over topics
                 topic = topic.lower()
                 # Make hash lookup to validate the operation:
@@ -439,6 +454,7 @@ if __name__ == '__main__':
                     concept_key = t_label2key[topic]
                     uri = concept[concept_key][0]
                     pref_label = concept[concept_key][2]
+                    resource['topic'].append({'term': pref_label, 'uri': uri})
                 # If the topic is actually an operation, filtered for concept names common for both topics and operations:
                 elif topic and topic in all_operations and topic not in topic_operation_overlap:
                     if args.mix:
@@ -446,14 +462,14 @@ if __name__ == '__main__':
                     # concept_key = o_label2key[topic]
                     # uri = concept[concept_key][0]
                     # pref_label = concept[concept_key][2]
-                    continue
                 elif not topic:
-                    continue  # If empty then just continue
+                    # continue  # If empty then just continue
+                    pref_label = 'Topic'
+                    uri = 'http://edamontology.org/topic_0003'
                 else:
                     if args.mis:
                         print('Topic not found in EDAM: {:>45}    for tool: {}'.format(topic, tool))
-                    continue
-                resource['topic'].append({'term': pref_label, 'uri': uri})                                             # add topics label and uri
+                        resource['unmatched_topic'].append(topic)
 
             # Match the programming language specified under SeqWIKI
             # with the ones allowed by the biotools schema:
@@ -648,6 +664,147 @@ if __name__ == '__main__':
                     # These tools will be found and flagged by the "in_url_not_in_tools" list
                     pass
 
+
+    with open('annotations.csv', 'r') as annotations_file:
+        annotations = csv.DictReader(annotations_file, delimiter=',', quotechar='"')
+        for tool in annotations:
+            toolname = tool['Name'].lower()
+            if toolname not in all_resources:
+                print('Tool from annotations.csv:' + toolname + 'not found in SEQwiki data')
+                continue
+
+            all_resources[toolname]['resourceType'] = tool['Resource type']
+            all_resources[toolname]['homepage'] = tool['Homepage']
+            all_resources[toolname]['dead'] = int(tool['Dead project'])
+
+            # Topic handling
+            for topic in tool['Correct domain'].split(','):
+                if not topic:
+                    continue
+                topic = topic.strip()
+                topic_lower = topic.lower()
+                if topic_lower in all_topics:
+                    concept_key = t_label2key[topic_lower]
+                    uri = concept[concept_key][0]
+                    pref_label = concept[concept_key][2]
+                    all_resources[toolname]['topic'].append({'term': pref_label, 'uri': uri})
+                else:
+                    all_resources[toolname]['topic'].append({'term': topic})
+                    print('Topic not in EDAM: ' + topic)
+
+            # Operation handling
+            for operation in tool['Correct method'].split(','):
+                if not operation:
+                    continue
+
+                operation = operation.strip()
+                operation_lower = operation.lower()
+                if operation_lower in all_operations:
+                    # Possibly raise a flag here if the concept is obsolete
+                    concept_key = o_label2key[operation_lower]
+                    uri = concept[concept_key][0]
+                    pref_label = concept[concept_key][2]
+                    all_resources[toolname]['function'][0]['functionName'].append({'term': pref_label, 'uri': uri})
+                else:
+                    all_resources[toolname]['function'][0]['functionName'].append({'term': operation})
+                    print('Operation not in EDAM: ' + operation + ' for tool: ' + toolname)
+
+    for name, data in all_resources.items():
+        if not data['topic']:
+            pref_label = 'Topic'
+            uri = 'http://edamontology.org/topic_0003'
+            data['topic'].append({'term': pref_label, 'uri': uri})
+        if not data['function'][0]['functionName']:
+            pref_label = 'Operation'
+            uri = 'http://edamontology.org/operation_0004'
+            data['function'][0]['functionName'].append({'term': pref_label, 'uri': uri})
+
+
+    resources = ET.Element("tools", attrib={"xmlns": "http://bio.tools",
+                                                "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+                                                "xsi:schemaLocation": "http://bio.tools biotools-2.0.0.xsd"})
+
+    required_attributes = ['name', 'description', 'homepage', 'topic', 'resourceType', 'function']
+    for name, data in sorted(all_resources.items()):
+        if 'dead' not in data or data['dead'] == 1:
+            continue
+
+        missing_info = []
+        for attr in required_attributes:
+            if attr not in data or not data[attr]:
+                missing_info.append(attr)
+
+        if missing_info:
+            print('XMLout: Not including: {name}. Missing attributes: {attributes}'.format(name=data['name'],
+                                                                                           attributes=missing_info))
+            continue
+
+        el_resource = ET.SubElement(resources, 'tool')
+
+        el_summary = ET.SubElement(el_resource, 'summary')
+        el_name = ET.SubElement(el_summary, 'name')
+        el_name.text = data['name']
+        el_id = ET.SubElement(el_summary, 'toolID')
+        name = ''.join(char if char.isalnum() or char in '-.,~' else '_' for char in data['name'])
+
+        if len(name) > 12:
+            if len(re.split('[_-]+', name)) > 1:
+                name = ''.join(word[0].upper() for word in re.split('[_-]+', name) if len(word) > 0)
+            else:
+                name = name[:12]
+
+        el_id.text = name
+        el_description = ET.SubElement(el_summary, 'description')
+        el_description.text = data['description'].decode('utf-8')
+        el_homepage = ET.SubElement(el_summary, 'homepage')
+        el_homepage.text = data['homepage']
+
+        for function in data['function']:
+            el_function = ET.SubElement(el_resource, 'function')
+            for function_name in function['functionName']:
+                el_operation = ET.SubElement(el_function, 'operation')
+                if 'uri' in function_name:
+					el_uri = ET.SubElement(el_operation, 'uri')
+					el_uri.text = function_name['uri']
+
+                el_term = ET.SubElement(el_operation, 'term')
+                el_term.text = function_name['term']
+
+        el_labels = ET.SubElement(el_resource, 'labels')
+        el_resource_type = ET.SubElement(el_labels, 'toolType')
+        el_resource_type.text = data['resourceType']
+
+        for topic in data['topic']:
+            el_topic = ET.SubElement(el_labels, 'topic')
+            if 'uri' in topic:
+                el_uri = ET.SubElement(el_topic, 'uri')
+                el_uri.text = topic['uri']
+
+            el_term = ET.SubElement(el_topic, 'term')
+            el_term.text = topic['term']
+        for system in data['platform']:
+            el_platform = ET.SubElement(el_labels, 'operatingSystem')
+            el_platform.text = system
+        for language in data['language']:
+            el_language = ET.SubElement(el_labels, 'language')
+            el_language.text = language
+        if 'license' in data:
+            el_license = ET.SubElement(el_labels, 'license')
+            el_license.text = data['license']
+        if 'maturity' in data:
+            el_maturity = ET.SubElement(el_labels, 'maturity')
+            el_maturity.text = data['maturity']
+
+        if 'publications' in data and 'publicationsPrimaryID' in data['publications']:
+            el_publication = ET.SubElement(el_resource, 'publication')
+            el_pmid = ET.SubElement(el_publication, 'pmid')
+            el_pmid.text = data['publications']['publicationsPrimaryID']
+
+    xmlstr = minidom.parseString(ET.tostring(resources)).toprettyxml(indent="   ")
+
+    with codecs.open('output.xml', 'w', 'utf-8') as xml_out:
+        xml_out.write(xmlstr)
+
     # Find the tools not seen in the urls.csv file (this can be valid e.g. if a tool does not yet have an url):
     in_tools_not_in_url = list()
     for tool in all_tools:
@@ -667,7 +824,7 @@ if __name__ == '__main__':
         # If the specified filename does not exist create it along with a header:
         if not os.path.isfile(args.stats):
             with open(args.stats, 'w') as statfile:
-                header = ['Timestamp', 'Total tools', 'No ref.', 'No url', 'No license', 'No operation', 'No topic', 'No email', 'No lang.', 'No interface', 'No description']
+                header = ['Timestamp', 'Total tools', 'No ref.', 'No url', 'No platform', 'No license', 'No operation', 'No topic', 'No email', 'No lang.', 'No interface', 'No description']
                 statfile.write('{}\n'.format('\t'.join(header)))
         # Now print the stats and a timestamp:
         with open(args.stats, 'a') as statfile:
@@ -684,20 +841,20 @@ if __name__ == '__main__':
 
     # Print to outfile:
     if args.out:
+        #with open(args.out, 'w') as outfile:
+        #    outfile.write('{0}'.format(json.dumps(all_resources)))
         with open(args.out, 'w') as outfile:
-            outfile.write('{0}'.format(json.dumps(all_resources)))
-        with open(args.out + '_pretty', 'w') as outfile:
             outfile.write('{0}'.format(json.dumps(all_resources, sort_keys=True, indent=4, separators=(',', ': '))))
             # print(json.dumps(all_resources, sort_keys=True, indent=4, separators=(',', ': ')))
 
     if args.push:
         #######################################
-        ## Enter username and password here: ##
+        # Enter username and password here: ##
         username = 'SeqWIKI'
         password = args.push
         #######################################
 
-        #### Old import:
+        # Old import:
         # # request access token
         # token = authentication(username, password)
 
@@ -706,7 +863,7 @@ if __name__ == '__main__':
         for count, resource in enumerate(all_resources):
             resource_json = json.JSONEncoder().encode(all_resources[resource])
             print('Pushed {} out of {} tools'.format(count + 1, total_tools))
-            #### Old import:
+            # Old import:
             # import_resource(token, resource_json, (count + 1))
 
             # Validate tool with requests on the new server:
