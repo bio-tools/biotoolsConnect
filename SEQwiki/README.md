@@ -11,4 +11,4 @@ It is easy to test the script by following the below guide:
 
 The bash script will download the latest EDAM version and the required files from SeqWIKI. Then the Python script is started and this will output lists of problematic tools, a simple count stats report and the tools in JSON format.
 
-
+NOTE: There are some errors in SEQwiki csv's that need to be fixed manually in order to get valid Biotools Schema XML. See the output of the seqwiki2biotools.py or xmllint.
