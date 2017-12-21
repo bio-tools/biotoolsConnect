@@ -5,17 +5,23 @@
 
 
 library(biocViews)
-library(graph)
+library(igraph)
 library(XML)
+library(stringr)
 library(ontologyIndex)
+# get_OWL got depreciated, therefore load function from version 2.2
+# library(ontoCAT)
 
 setwd("/home/veit/devel/Proteomics/ELIXIR_EDAM/DataRetrieval")
+source("ontologyIndex_get_OWL.R")
 
 ############### get recent EDAM ontology for mapping of terms
+system("rm EDAM.owl")
 system("wget http://edamontology.org/EDAM.owl")
 EDAM <- get_OWL("EDAM.owl")
 
 ## Remove obsolete terms
+FullEDAM <- EDAM
 EDAM$id <- EDAM$id[!EDAM$obsolete]
 EDAM$name <- EDAM$name[!EDAM$obsolete]
 EDAM$parents <- EDAM$parents[!EDAM$obsolete]
@@ -86,7 +92,113 @@ msutils$interface[msutils$interface == "offline"] <- NA
 msutils$description[msutils$description == ""] <- NA
 msutils$email[msutils$email == ""] <- NA
 
-###############################################
+############# Visualize EDAM terms
+topics <- strsplit(msutils$EDAM.topic.1,"\\|")
+topics <-  lapply(topics,function(x) {sub(" ","",x); x})
+operations <- strsplit(msutils$EDAM.operation.1,"\\|")
+operations <-  lapply(operations,function(x) {sub(" ","",x); FullEDAM$name[paste("http://edamontology.org/",x,sep="")]})
+data_in <- strsplit(msutils$EDAM.data.in,"\\|")
+data_in <-  lapply(data_in,function(x) {sub(" ","",x); FullEDAM$name[paste("http://edamontology.org/",x,sep="")]})
+formats_in <- strsplit(msutils$EDAM.input.format,"\\|")
+formats_in <-  lapply(formats_in,function(x) {sub(" ","",x); FullEDAM$name[paste("http://edamontology.org/",x,sep="")]})
+data_out <- strsplit(msutils$EDAM.data.out,"\\|")
+data_out <-  lapply(data_out,function(x) {sub(" ","",x); FullEDAM$name[paste("http://edamontology.org/",x,sep="")]})
+formats_out <- strsplit(msutils$EDAM.data.format.out,"\\|")
+formats_out <-  lapply(formats_out,function(x) {sub(" ","",x); FullEDAM$name[paste("http://edamontology.org/",x,sep="")]})
+op_formats <- lapply(msutils$EDAM.data.in.input.format.data.in.input.format..operation..data.out.output.format.data.out.output.format, 
+                     function(x) strsplit(x,"\n"))
+
+
+# data.frame with edgs and vertices
+pdf("msutils_EDAM_diagrams.pdf",width=12,height=18)
+for (i in 1:nrow(msutils)) {
+  edgelist <- vertices <- NULL
+  tops <- topics[[i]]
+  if (length(tops)> 0) {
+  if (!is.na(tops)) {
+    full <- unlist(op_formats[[i]])
+    for (t in 1:length(topics[[i]])) {
+      edgelist <- rbind(edgelist,c(tops[t],tops[min(t+1,length(tops))],0))
+      vertices <- rbind(vertices,c(tops[t],names(tops)[t],"#333333"))
+    }
+    if (length(full)>0) {
+      for (t in 1:length(full)) {
+        ## ERROR as combos of data+format
+        triples <- unlist(strsplit(full[t],"->"))
+        ops <- unlist(strsplit(triples[2],"\\|"))
+        infuncs <- unlist(strsplit(triples[1],";"))
+        outfuncs <- unlist(strsplit(triples[3],";"))
+        allindats <- unlist(str_extract_all(triples[1],"data_[0-9]*"))
+        alloutdats <- unlist(str_extract_all(triples[3],"data_[0-9]*"))
+        
+        for (f in 1:length(infuncs)) {
+          indats <- unlist(strsplit(infuncs[[f]],"\\+"))
+          inds <- unlist(strsplit(indats[1],"\\|"))
+          infs <- unlist(strsplit(indats[2],"\\|"))
+          for (l1 in 1:length(infs)) {
+            vertices <- rbind(vertices,c(infs[l1],names(infs)[l1],"#339933"))
+            for (l2 in 1:length(inds)) {
+              edgelist <- rbind(edgelist,c(infs[l1],inds[l2],1))
+            }
+          }
+        }
+        for (f in 1:length(outfuncs)) {
+          outdats <- unlist(strsplit(outfuncs[[f]],"\\+"))
+          outds <- unlist(strsplit(outdats[1],"\\|"))
+          outfs <- unlist(strsplit(outdats[2],"\\|"))
+          for (l1 in 1:length(outfs)) {
+            vertices <- rbind(vertices,c(outfs[l1],names(outfs)[l1],"#339933"))
+            for (l2 in 1:length(outds)) {
+              edgelist <- rbind(edgelist,c(outds[l2],outfs[l1],1))
+            }
+          }
+        }
+        
+        for (o in 1:length(ops))
+          vertices <- rbind(vertices,c(ops[o],names(ops)[o],"#993399"))
+        
+        for (l2 in 1:length(allindats)){
+          vertices <- rbind(vertices,c(allindats[l2],names(allindats)[l2],"#339999"))
+          for (o in 1:length(ops))
+            edgelist <- rbind(edgelist,c(allindats[l2],ops[o],2))
+        }
+        for (l2 in 1:length(alloutdats)) {
+          vertices <- rbind(vertices,c(alloutdats[l2],names(alloutdats)[l2],"#339999"))
+          for (o in 1:length(ops))
+            edgelist <- rbind(edgelist,c(ops[o],alloutdats[l2],2))
+        }
+        
+      }
+    }
+    vertices <- cbind(vertices, label=paste(vertices[,1],
+                                            FullEDAM$name[paste("http://edamontology.org/",vertices[,1],sep="")],sep="\n"))
+    colnames(vertices) <- c("name","color","label")
+    colnames(edgelist) <- c("e1","e2","color")
+    edgelist <- data.frame(edgelist,stringsAsFactors = F)
+    edgelist[,3] <- as.numeric(edgelist[,3])
+    vertices <- vertices[!duplicated(vertices[,1]),]
+    #layout on grid with types separated on x-axis
+    grid <- matrix(0,nrow=nrow(vertices), ncol=2)
+    tt <- grid[vertices[,"color"]=="#333333",  ,drop=F]
+    grid[vertices[,"color"]=="#333333", ] <- cbind(seq(0,1,len=nrow(tt)),0)
+    tt <- grid[vertices[,"color"]=="#339933",  ,drop=F]
+    grid[vertices[,"color"]=="#339933", ] <- cbind(seq(0,1,len=nrow(tt)),1)
+    tt <- grid[vertices[,"color"]=="#339999", ,drop=F]
+    grid[vertices[,"color"]=="#339999",] <- cbind(seq(0,1,len=nrow(tt)),2)
+    tt <- grid[vertices[,"color"]=="#993399",  ,drop=F]
+    grid[vertices[,"color"]=="#993399", ] <- cbind(seq(0,1,len=nrow(tt)),3)
+    
+    tgraph <- graph_from_data_frame(edgelist,vertices = vertices)
+    layout <- layout.norm(grid)
+    
+    V(tgraph)$name <- paste(V(tgraph)$name,unlist(sub("http://edamontology.org/","",V(tgraph)$id)),sep="\n")
+    plot(tgraph,color=tgraph$V, layout=layout, main=msutils$name[i], vertex.label.dist=2, vertex.label.degree=pi/2,
+         sub=paste(strwrap(msutils$description[i]),collapse="\n"))
+  }
+  }
+}
+dev.off()
+############# Create XML file for upload to bio.tools
 
 ## remove duplicates
 FullPcks <- FullPcks[!duplicated(FullPcks$name), ]
