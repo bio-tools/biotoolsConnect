@@ -115,86 +115,94 @@ for (i in 1:nrow(msutils)) {
   edgelist <- vertices <- NULL
   tops <- topics[[i]]
   if (length(tops)> 0) {
-  if (!is.na(tops)) {
-    full <- unlist(op_formats[[i]])
-    for (t in 1:length(topics[[i]])) {
-      edgelist <- rbind(edgelist,c(tops[t],tops[min(t+1,length(tops))],0))
-      vertices <- rbind(vertices,c(tops[t],names(tops)[t],"#333333"))
-    }
-    if (length(full)>0) {
-      for (t in 1:length(full)) {
-        ## ERROR as combos of data+format
-        triples <- unlist(strsplit(full[t],"->"))
-        ops <- unlist(strsplit(triples[2],"\\|"))
-        infuncs <- unlist(strsplit(triples[1],";"))
-        outfuncs <- unlist(strsplit(triples[3],";"))
-        allindats <- unlist(str_extract_all(triples[1],"data_[0-9]*"))
-        alloutdats <- unlist(str_extract_all(triples[3],"data_[0-9]*"))
-        
-        for (f in 1:length(infuncs)) {
-          indats <- unlist(strsplit(infuncs[[f]],"\\+"))
-          inds <- unlist(strsplit(indats[1],"\\|"))
-          infs <- unlist(strsplit(indats[2],"\\|"))
-          for (l1 in 1:length(infs)) {
-            vertices <- rbind(vertices,c(infs[l1],names(infs)[l1],"#339933"))
-            for (l2 in 1:length(inds)) {
-              edgelist <- rbind(edgelist,c(infs[l1],inds[l2],1))
-            }
-          }
-        }
-        for (f in 1:length(outfuncs)) {
-          outdats <- unlist(strsplit(outfuncs[[f]],"\\+"))
-          outds <- unlist(strsplit(outdats[1],"\\|"))
-          outfs <- unlist(strsplit(outdats[2],"\\|"))
-          for (l1 in 1:length(outfs)) {
-            vertices <- rbind(vertices,c(outfs[l1],names(outfs)[l1],"#339933"))
-            for (l2 in 1:length(outds)) {
-              edgelist <- rbind(edgelist,c(outds[l2],outfs[l1],1))
-            }
-          }
-        }
-        
-        for (o in 1:length(ops))
-          vertices <- rbind(vertices,c(ops[o],names(ops)[o],"#993399"))
-        
-        for (l2 in 1:length(allindats)){
-          vertices <- rbind(vertices,c(allindats[l2],names(allindats)[l2],"#339999"))
-          for (o in 1:length(ops))
-            edgelist <- rbind(edgelist,c(allindats[l2],ops[o],2))
-        }
-        for (l2 in 1:length(alloutdats)) {
-          vertices <- rbind(vertices,c(alloutdats[l2],names(alloutdats)[l2],"#339999"))
-          for (o in 1:length(ops))
-            edgelist <- rbind(edgelist,c(ops[o],alloutdats[l2],2))
-        }
-        
+    if (!is.na(tops)) {
+      full <- unlist(op_formats[[i]])
+      for (t in 1:length(topics[[i]])) {
+        edgelist <- rbind(edgelist,c(tops[t],tops[min(t+1,length(tops))],0))
+        vertices <- rbind(vertices,c(tops[t],names(tops)[t],tops[t],"#333333"))
       }
+      if (length(full)>0) {
+        for (t in 1:length(full)) {
+          tvertices <- tedgelist <- NULL
+          ## ERROR as combos of data+format
+          triples <- unlist(strsplit(full[t],"->"))
+          ops <- unlist(strsplit(triples[2],"\\|"))
+          infuncs <- unlist(strsplit(triples[1],";"))
+          outfuncs <- unlist(strsplit(triples[3],";"))
+          allindats <- unlist(str_extract_all(triples[1],"data_[0-9]*"))
+          alloutdats <- unlist(str_extract_all(triples[3],"data_[0-9]*"))
+          
+          for (f in 1:length(infuncs)) {
+            indats <- unlist(strsplit(infuncs[[f]],"\\+"))
+            inds <- unlist(strsplit(indats[1],"\\|"))
+            infs <- unlist(strsplit(indats[2],"\\|"))
+            for (l1 in 1:length(infs)) {
+              tvertices <- rbind(tvertices,c(infs[l1],names(infs)[l1],"#339933"))
+              for (l2 in 1:length(inds)) {
+                tedgelist <- rbind(tedgelist,c(infs[l1],inds[l2],1))
+              }
+            }
+          }
+          for (f in 1:length(outfuncs)) {
+            outdats <- unlist(strsplit(outfuncs[[f]],"\\+"))
+            outds <- unlist(strsplit(outdats[1],"\\|"))
+            outfs <- unlist(strsplit(outdats[2],"\\|"))
+            for (l1 in 1:length(outfs)) {
+              tvertices <- rbind(tvertices,c(outfs[l1],names(outfs)[l1],"#339933"))
+              for (l2 in 1:length(outds)) {
+                tedgelist <- rbind(tedgelist,c(outds[l2],outfs[l1],1))
+              }
+            }
+          }
+          
+          for (o in 1:length(ops))
+            tvertices <- rbind(tvertices,c(ops[o],names(ops)[o],"#993399"))
+          
+          for (l2 in 1:length(allindats)){
+            tvertices <- rbind(tvertices,c(allindats[l2],names(allindats)[l2],"#339999"))
+            for (o in 1:length(ops))
+              tedgelist <- rbind(tedgelist,c(allindats[l2],ops[o],2))
+          }
+          for (l2 in 1:length(alloutdats)) {
+            tvertices <- rbind(tvertices,c(alloutdats[l2],names(alloutdats)[l2],"#339999"))
+            for (o in 1:length(ops))
+              tedgelist <- rbind(tedgelist,c(ops[o],alloutdats[l2],2))
+          }
+          add_pipe <- ""
+          if (length(full)>1) {
+            add_pipe <- paste("pipeline ",t,"\n")
+          }
+          vertices <- rbind(vertices,cbind(paste(add_pipe,tvertices[,1],sep=""),tvertices))
+          tedgelist[,1] <- paste(add_pipe,tedgelist[,1],sep="")
+          tedgelist[,2] <- paste(add_pipe,tedgelist[,2],sep="")
+          edgelist <- rbind(edgelist,tedgelist)
+        }
+      }
+      vertices <- cbind(vertices, label=paste(vertices[,1],
+                                              FullEDAM$name[paste("http://edamontology.org/",vertices[,2],sep="")],sep="\n"))
+      colnames(vertices) <- c("name","id","color","label")
+      colnames(edgelist) <- c("e1","e2","color")
+      edgelist <- data.frame(edgelist,stringsAsFactors = F)
+      edgelist[,3] <- as.numeric(edgelist[,3])
+      vertices <- vertices[!duplicated(vertices[,1]),]
+      #layout on grid with types separated on x-axis
+      grid <- matrix(0,nrow=nrow(vertices), ncol=2)
+      tt <- grid[vertices[,"color"]=="#333333",  ,drop=F]
+      grid[vertices[,"color"]=="#333333", ] <- cbind(seq(0,1,len=nrow(tt)),0)
+      tt <- grid[vertices[,"color"]=="#339933",  ,drop=F]
+      grid[vertices[,"color"]=="#339933", ] <- cbind(seq(0,1,len=nrow(tt)),1)
+      tt <- grid[vertices[,"color"]=="#339999", ,drop=F]
+      grid[vertices[,"color"]=="#339999",] <- cbind(seq(0,1,len=nrow(tt)),2)
+      tt <- grid[vertices[,"color"]=="#993399",  ,drop=F]
+      grid[vertices[,"color"]=="#993399", ] <- cbind(seq(0,1,len=nrow(tt)),3)
+      
+      tgraph <- graph_from_data_frame(edgelist,vertices = vertices)
+      layout <- layout.norm(grid)
+      
+      V(tgraph)$name <- paste(V(tgraph)$name,unlist(sub("http://edamontology.org/","",V(tgraph)$id)),sep="\n")
+      plot(tgraph,color=tgraph$V, layout=layout, main=msutils$name[i], vertex.label.dist=2, vertex.label.degree=pi/2,
+           sub=paste(strwrap(msutils$description[i]),collapse="\n"))
     }
-    vertices <- cbind(vertices, label=paste(vertices[,1],
-                                            FullEDAM$name[paste("http://edamontology.org/",vertices[,1],sep="")],sep="\n"))
-    colnames(vertices) <- c("name","color","label")
-    colnames(edgelist) <- c("e1","e2","color")
-    edgelist <- data.frame(edgelist,stringsAsFactors = F)
-    edgelist[,3] <- as.numeric(edgelist[,3])
-    vertices <- vertices[!duplicated(vertices[,1]),]
-    #layout on grid with types separated on x-axis
-    grid <- matrix(0,nrow=nrow(vertices), ncol=2)
-    tt <- grid[vertices[,"color"]=="#333333",  ,drop=F]
-    grid[vertices[,"color"]=="#333333", ] <- cbind(seq(0,1,len=nrow(tt)),0)
-    tt <- grid[vertices[,"color"]=="#339933",  ,drop=F]
-    grid[vertices[,"color"]=="#339933", ] <- cbind(seq(0,1,len=nrow(tt)),1)
-    tt <- grid[vertices[,"color"]=="#339999", ,drop=F]
-    grid[vertices[,"color"]=="#339999",] <- cbind(seq(0,1,len=nrow(tt)),2)
-    tt <- grid[vertices[,"color"]=="#993399",  ,drop=F]
-    grid[vertices[,"color"]=="#993399", ] <- cbind(seq(0,1,len=nrow(tt)),3)
-    
-    tgraph <- graph_from_data_frame(edgelist,vertices = vertices)
-    layout <- layout.norm(grid)
-    
-    V(tgraph)$name <- paste(V(tgraph)$name,unlist(sub("http://edamontology.org/","",V(tgraph)$id)),sep="\n")
-    plot(tgraph,color=tgraph$V, layout=layout, main=msutils$name[i], vertex.label.dist=2, vertex.label.degree=pi/2,
-         sub=paste(strwrap(msutils$description[i]),collapse="\n"))
-  }
   }
 }
 dev.off()
