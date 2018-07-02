@@ -17,6 +17,11 @@ Description:
 EOT
 }
 
+if ! which psql >/dev/null ; then
+   echo "E: postgresql client 'psql' not available"
+   exit
+fi
+
 PORT="-p 5452"
 
 SERVICE="service=udd"
@@ -27,7 +32,7 @@ fi
 
 # Check UDD connection
 if ! psql $PORT $SERVICE -c "" 2>/dev/null ; then
-    echo "No local UDD found, use publich mirror."
+    echo "I: No local UDD found, use public mirror."
     PORT="--port=5432"
     export PGPASSWORD="public-udd-mirror"
     SERVICE="--host=public-udd-mirror.xvm.mit.edu --username=public-udd-mirror udd"
@@ -75,7 +80,12 @@ $JSONBEGIN
           pop.vote || ' / ' || pop.recent || ' / ' || pop.insts as popcon,
           bibdoi.value as doi,
           edam.topics  as topics,
-          edam.scopes  as edam_scopes
+          edam.scopes  as edam_scopes,
+          biotools.entry  as "bio.tools",
+          omictools.entry as "OMICtools",
+          seqwiki         as "SEQwiki",
+          scicrunch       as "SciCrunch",
+          rrid            as "RRID"
     FROM (
       SELECT * FROM (
         SELECT DISTINCT
@@ -90,7 +100,7 @@ $JSONBEGIN
              source, homepage, description, description_md5
         FROM blends_prospectivepackages
         WHERE package IN
-                      (SELECT DISTINCT package FROM blends_dependencies WHERE blend = 'debian-med' AND task IN ('bio', 'bio-dev'))
+                      (SELECT DISTINCT package FROM blends_dependencies WHERE blend = 'debian-med') -- AND task IN ('bio', 'bio-dev', 'imaging', 'imaging-dev'))
        ) tmp
     ) p
     LEFT OUTER JOIN (
@@ -168,6 +178,11 @@ $JSONBEGIN
     LEFT OUTER JOIN bibref bibdoi     ON p.source = bibdoi.source     AND bibdoi.rank = 0     AND bibdoi.key     = 'doi'     AND bibdoi.package = ''
     LEFT OUTER JOIN popcon pop        ON p.package = pop.package
     LEFT OUTER JOIN edam   edam       ON p.source = edam.source       AND p.package = edam.package
+    LEFT OUTER JOIN registry biotools  ON p.source = biotools.source   AND biotools.name  = 'bio.tools'
+    LEFT OUTER JOIN registry omictools ON p.source = omictools.source  AND omictools.name = 'OMICtools'
+    LEFT OUTER JOIN registry seqwiki   ON p.source = seqwiki.source    AND seqwiki.name   = 'SEQwiki'
+    LEFT OUTER JOIN registry scicrunch ON p.source = scicrunch.source  AND scicrunch.name = 'SciCrunch'
+    LEFT OUTER JOIN registry rrid      ON p.source = rrid.source       AND rrid.name      = 'RRID'
    ORDER BY source, package
 -- If you want to make the output at source level uncomment this
 -- ) tmp
