@@ -1,77 +1,199 @@
-https://bio.tools/tool/DRCAT/GenBank nucleotide sequence database/
-   ncbi-epcr,fastlink,fastlink-doc,ncbi-blast+,ncbi-blast+-legacy,libncbi6,libncbi6-dbg,libncbi6-dev,libvibrant6-dev,libvibrant6b,libvibrant6b-dbg,ncbi-data,ncbi-rrna-data,ncbi-tools-bin,ncbi-tools-x11
 https://bio.tools/tool/GenOuest/Minia/
+   homepage: http://minia.genouest.org/
    minia
+https://bio.tools/tool/GenOuest/BioMAJ/
+   homepage: http://biomaj.genouest.org/
+   biomaj,biomaj-properties,biomaj-watcher
 https://bio.tools/tool/GenOuest/Logol/
+   homepage: http://logol.genouest.org
    logol,logol-bin
+https://bio.tools/tool/DebianMed/bowtie/
+   homepage: https://tracker.debian.org/pkg/bowtie
+   bowtie
 https://bio.tools/tool/IFB ELIXIR-FR/SeaView/
+   homepage: http://doua.prabi.fr/software/seaview
    seaview
 https://bio.tools/tool/IFB ELIXIR-FR/BWA cloud IFB/
+   homepage: http://bio-bwa.sourceforge.net/
    bwa,libbwa-dev
 https://bio.tools/tool/IFB ELIXIR-FR/hmmer - cloud IFB/
+   homepage: http://hmmer.janelia.org/
    hmmer,hmmer-doc,hmmer2,hmmer2-doc,hmmer2-pvm
 https://bio.tools/tool/IFB ELIXIR-FR/fastqc - cloud IFB/
+   homepage: http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
    fastqc
 https://bio.tools/tool/IFB ELIXIR-FR/eXpress - cloud IFB/
+   homepage: http://bio.math.berkeley.edu/eXpress/index.html
    berkeley-express,berkeley-express-doc
 https://bio.tools/tool/IFB ELIXIR-FR/R - cloud IFB/
+   homepage: http://www.r-project.org/
    r-base,r-base-core,r-base-core-dbg,r-base-dev,r-base-html,r-doc-html,r-doc-info,r-doc-pdf,r-mathlib,r-recommended
 https://bio.tools/tool/Instruct/CCP4/
+   homepage: http://www.ccp4.ac.uk
    libccp4-data,libccp4-dev,libccp4c0,libccp4c0-dbg,libccp4f0,libccp4f0-dbg,libmmdb-dev,libmmdb0,libmmdb0-dbg,libssm-dev,libssm1,libssm1-dbg
 https://bio.tools/tool/Instruct/Gromacs/
+   homepage: http://www.gromacs.org/
    gromacs,gromacs-data,gromacs-dev,gromacs-mpich,gromacs-openmpi,libgromacs-dev,libgromacs1
 https://bio.tools/tool/BioCatalogue/GLprobsWS/
+   homepage: http://www.compbio.dundee.ac.uk/jabaws/
    libjaba-client-java
 https://bio.tools/tool/BioCatalogue/JronnWS/
+   homepage: http://www.compbio.dundee.ac.uk/jabaws/
    libjaba-client-java
 https://bio.tools/tool/BioCatalogue/DisemblWS/
+   homepage: http://www.compbio.dundee.ac.uk/jabaws/
    libjaba-client-java
 https://bio.tools/tool/BioCatalogue/GlobPlotWS/
+   homepage: http://www.compbio.dundee.ac.uk/jabaws/
    libjaba-client-java
 https://bio.tools/tool/BioCatalogue/IUPredWS/
+   homepage: http://www.compbio.dundee.ac.uk/jabaws/
    libjaba-client-java
 https://bio.tools/tool/BioCatalogue/JpredWS/
+   homepage: http://www.compbio.dundee.ac.uk/jabaws/
    libjaba-client-java
+https://bio.tools/tool/BioCatalogue/MafftWS/
+   homepage: http://mafft.cbrc.jp/alignment/software/index.html
+   mafft
 https://bio.tools/tool/BioCatalogue/ProbconsWS/
+   homepage: http://www.compbio.dundee.ac.uk/jabaws/
    libjaba-client-java
 https://bio.tools/tool/BioCatalogue/ClustalWS/
+   homepage: http://www.compbio.dundee.ac.uk/jabaws/
    libjaba-client-java
+https://bio.tools/tool/BioCatalogue/logol/
+   homepage: http://training.genouest.org/claroline/claroline/course/index.php?cid=LOGOL
+   logol
 https://bio.tools/tool/BioCatalogue/AnalysisServiceService/
+   homepage: http://mafft.cbrc.jp/alignment/software/
    mafft
 https://bio.tools/tool/sanger.ac.uk/bcftools/
+   homepage: http://www.htslib.org/
    samtools,samtools-test
 https://bio.tools/tool/RostLab/PROFsec/
+   homepage: http://www.predictprotein.org
    predictprotein,profnet-bval,profnet-chop,profnet-con,profnet-dbg,profnet-isis,profnet-md,profnet-norsnet,profnet-prof,profnet-snapfun,profphd-net
 https://bio.tools/tool/RostLab/PROFisis/
+   homepage: https://rostlab.org/owiki/index.php/PROFisis
    profisis
 https://bio.tools/tool/RostLab/ncoils/
+   homepage: http://www.predictprotein.org
    predictprotein,profnet-bval,profnet-chop,profnet-con,profnet-dbg,profnet-isis,profnet-md,profnet-norsnet,profnet-prof,profnet-snapfun,profphd-net
 https://bio.tools/tool/BioConductor/Biostrings/
+   homepage: http://bioconductor.org/packages/release/bioc/html/Biostrings.html
    r-bioc-biostrings
 https://bio.tools/tool/BioConductor/GenomicAlignments/
+   homepage: http://bioconductor.org/packages/release/bioc/html/GenomicAlignments.html
    r-bioc-genomicalignments
+https://bio.tools/tool/BioConductor/muscle/
+   homepage: http://bioconductor.org/packages/release/bioc/html/muscle.html
+   muscle
 https://bio.tools/tool/BioConductor/altcdfenvs/
+   homepage: http://bioconductor.org/packages/release/bioc/html/altcdfenvs.html
    r-bioc-altcdfenvs
 https://bio.tools/tool/BioConductor/annotate/
+   homepage: http://bioconductor.org/packages/release/bioc/html/annotate.html
    r-bioc-annotate
 https://bio.tools/tool/BioConductor/BSgenome/
+   homepage: http://bioconductor.org/packages/release/bioc/html/BSgenome.html
    r-bioc-bsgenome
 https://bio.tools/tool/BioConductor/GenomeInfoDb/
+   homepage: http://bioconductor.org/packages/release/bioc/html/GenomeInfoDb.html
    r-bioc-genomeinfodb
 https://bio.tools/tool/BioConductor/GenomicRanges/
+   homepage: http://bioconductor.org/packages/release/bioc/html/GenomicRanges.html
    r-bioc-genomicranges
 https://bio.tools/tool/BioConductor/rtracklayer/
+   homepage: http://bioconductor.org/packages/release/bioc/html/rtracklayer.html
    r-bioc-rtracklayer
 https://bio.tools/tool/BioConductor/VariantAnnotation/
+   homepage: http://bioconductor.org/packages/release/bioc/html/VariantAnnotation.html
    r-bioc-variantannotation
+https://bio.tools/tool/EMBOSS/pscan/
+   homepage: http://emboss.open-bio.org/rel/rel6/apps/pscan.html
+   pscan
+https://bio.tools/tool/EMBOSS/tcode/
+   homepage: http://emboss.open-bio.org/rel/rel6/apps/tcode.html
+   tcode
+https://bio.tools/tool/EMBOSS/yank/
+   homepage: http://emboss.open-bio.org/rel/rel6/apps/yank.html
+   yank
+https://bio.tools/tool/EMBOSS/cons/
+   homepage: http://emboss.open-bio.org/rel/rel6/apps/cons.html
+   cons
+https://bio.tools/tool/EMBOSS/emma/
+   homepage: http://emboss.open-bio.org/rel/rel6/apps/emma.html
+   emma
+https://bio.tools/tool/EMBOSS/iep/
+   homepage: http://emboss.open-bio.org/rel/rel6/apps/iep.html
+   iep
+https://bio.tools/tool/EMBOSS/sixpack/
+   homepage: http://emboss.open-bio.org/rel/rel6/apps/sixpack.html
+   sixpack
+https://bio.tools/tool/tum.de/reprof/
+   homepage: https://github.com/Rostlab/reprof
+   reprof
+https://bio.tools/tool/Institut Pasteur/iep/
+   homepage: http://mobyle.pasteur.fr/#forms::iep
+   iep
+https://bio.tools/tool/Institut Pasteur/melting/
+   homepage: http://mobyle.pasteur.fr/#forms::melting
+   melting
+https://bio.tools/tool/Institut Pasteur/pscan/
+   homepage: http://mobyle.pasteur.fr/#forms::pscan
+   pscan
+https://bio.tools/tool/Institut Pasteur/dialign/
+   homepage: http://mobyle.pasteur.fr/#forms::dialign
+   dialign
+https://bio.tools/tool/Institut Pasteur/blast2/
+   homepage: http://mobyle.pasteur.fr/#forms::blast2
+   blast2
+https://bio.tools/tool/Institut Pasteur/sixpack/
+   homepage: http://mobyle.pasteur.fr/#forms::sixpack
+   sixpack
+https://bio.tools/tool/Institut Pasteur/seq-gen/
+   homepage: http://mobyle.pasteur.fr/#forms::seq-gen
+   seq-gen
+https://bio.tools/tool/Institut Pasteur/toppred/
+   homepage: http://mobyle.pasteur.fr/#forms::toppred
+   toppred
+https://bio.tools/tool/Institut Pasteur/cons/
+   homepage: http://mobyle.pasteur.fr/#forms::cons
+   cons
+https://bio.tools/tool/Institut Pasteur/phyml/
+   homepage: http://mobyle.pasteur.fr/#forms::phyml
+   phyml
+https://bio.tools/tool/Institut Pasteur/boxshade/
+   homepage: http://mobyle.pasteur.fr/#forms::boxshade
+   boxshade
+https://bio.tools/tool/Institut Pasteur/tcode/
+   homepage: http://mobyle.pasteur.fr/#forms::tcode
+   tcode
+https://bio.tools/tool/Institut Pasteur/mafft/
+   homepage: http://mobyle.pasteur.fr/#forms::mafft
+   mafft
+https://bio.tools/tool/Institut Pasteur/muscle/
+   homepage: http://mobyle.pasteur.fr/#forms::muscle
+   muscle
+https://bio.tools/tool/Institut Pasteur/yank/
+   homepage: http://mobyle.pasteur.fr/#forms::yank
+   yank
+https://bio.tools/tool/ucdavis.edu/khmer/
+   homepage: http://khmer.readthedocs.org/en/v2.0/
+   khmer
 https://bio.tools/tool/cibi/SeqAn/
+   homepage: http://www.seqan.de
    seqan-apps,seqan-dev
 https://bio.tools/tool/UiO/VSEARCH/
+   homepage: https://github.com/torognes/vsearch
    vsearch
 https://bio.tools/tool/UiO/Swarm/
+   homepage: https://github.com/torognes/swarm
    swarm
 https://bio.tools/tool/evolbio.mpg.de/andi/
+   homepage: https://github.com/EvolBioInf/andi
    andi
 https://bio.tools/tool/NTNU/Ray/
+   homepage: http://denovoassembler.sourceforge.net
    ray,ray-doc,ray-extra
-38 2298
+66 of 2300 entries in elixir have candidates in Debian.

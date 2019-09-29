@@ -5,37 +5,67 @@ import json
 import subprocess
 import re
 
-def pkgswithhomepage(homepage):
-    cmd = ['grep-aptavail', '-r', 'Homepage: %s' % homepage]
+def load_apt_dump():
+    cmd = ['apt-cache', 'dumpavail']
     proc = subprocess.Popen(
         cmd,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         shell=False)
-
     output, error = proc.communicate(input=input)
-    output, error = output.decode(), error.decode()
+    output, error = output.decode('UTF-8'), error.decode('UTF-8')
     if proc.returncode != 0:
-#        print('info: no match for %s' % homepage)
-        return None
+        raise Error("Failure to get apt cache dump")
     else:
-#        print output
-        packages = []
+        pinfo = {}
         for line in output.split("\n"):
-#            print "  ", line
-            m = re.search('Package: (.*)$', line)
+            m = re.search('^Package: (.*)$', line)
             if m:
-                packages.append(m.group(1))
-        return packages
+                pkg = m.group(1)
+                src = None
+                homepage = None
+            m = re.search('^Source: (.*)$', line)
+            if m:
+                src = m.group(1)
+            m = re.search('^Homepage: (.*)$', line)
+            if m:
+                homepage = m.group(1)
+            if re.search('^$', line):
+                pinfo[pkg] = {'src':src, 'homepage':homepage}
+        return pinfo
+
+def clean_url(url):
+    url = url.replace('/index.html', '/')
+    m = re.search('^(https?://[^/]+)/$', url)
+    if m:
+        url = m.group(1)
+    return url
+
+def equivalent_urls(url1, url2):
+    return url1 == url2 or \
+        url1 + '/' == url2 or \
+        url2 == url2 + '/'
+
+def pkgswithhomepage(pinfo, homepage):
+    homepage = clean_url(homepage)
+    pkgs = []
+    for p in pinfo.keys():
+        if 'homepage' in pinfo[p] and pinfo[p]['homepage']:
+            phomepage = clean_url(pinfo[p]['homepage'])
+            if equivalent_urls(homepage, phomepage):
+                pkgs.append(p)
+    return pkgs
 
 # Url to get all entries in bio.tools directory as json
 url = 'https://bio.tools/api/tool/'
+
+pinfo = load_apt_dump()
 
 # Enable to test search function
 if False:
     homepage = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/"
     homepage = "http://www.predictprotein.org"
-    packages = pkgswithhomepage(homepage)
+    packages = pkgswithhomepage(pinfo, homepage)
     print packages
     os.exit(0)
 
@@ -57,11 +87,13 @@ if 200 == r.status_code:
         id = 'https://bio.tools/tool/%s/%s/' % (affiliation, name)
 
 #        print homepage
-        url = "http://www.ncbi.nlm.nih.gov/IEB/ToolBox/"
-        packages = pkgswithhomepage(homepage)
+        packages = pkgswithhomepage(pinfo, homepage)
+        if not packages and name in pinfo:
+            packages = [name]
         if packages:
             print id
-            print "  ",','.join(packages)
+            print "   homepage:", homepage
+            print "  ",','.join(sorted(packages))
             matchcount = matchcount + 1
 
-print matchcount, count
+print matchcount, 'of', count, 'entries in elixir have candidates in Debian.'
