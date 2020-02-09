@@ -15,6 +15,13 @@ Usage: $0 [option]
 
 Description:
  Query local or public UDD for information that could be useful for EDAM.
+
+Source:
+ This script lives on
+  https://salsa.debian.org/blends-team/website/commits/master/misc/sql/edam.sh
+ and a redundant copy is held on
+  https://github.com/bio-tools/biotoolsConnect.git/DebianMed/edam.sh
+  
 EOT
 }
 
