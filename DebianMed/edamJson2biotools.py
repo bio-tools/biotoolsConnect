@@ -65,7 +65,7 @@ def process_data(input_json, output_dir):
                 tool_info["description"] = ' '.join(package.get("long_description").split())
                 tool_info["version"] = package.get("version")
                 tool_info["edam"] = {}
-                tool_info["edam"]["version"] = ""
+                tool_info["edam"]["version"] = "unknown"
                 if "topics" in package:
                     tool_info["edam"]["topics"] = package["topics"]
                 if package.get("edam_scopes") is not None:
@@ -74,9 +74,11 @@ def process_data(input_json, output_dir):
                         tool_function = {
                                          "name": scope["name"],
                                          "function": scope.get("function", scope.get("functions")),
-                                         "input": scope.get("input"),
-                                         "output": scope.get("output")
                                         }
+                        if scope.get("input") is not None:
+                            tool_function["input"] = scope.get("input")
+                        if scope.get("output") is not None:
+                            tool_function["output"] = scope.get("output")
                         tool_info["edam"]["scopes"].append(tool_function)
                 edam_scopes = package["edam_scopes"]
                 yaml.dump(tool_info, out)
