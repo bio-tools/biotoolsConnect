@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 import json
+import logging
 from pathlib import Path
-
+import yaml
 
 indent="  "
-destdir="/home/moeller/git/content/data"
+destdir="/tmp"
 jsonfile="edam.json"
 verbose=False
 
@@ -20,109 +21,66 @@ for package in j:
    source = package["source"]
    binary = package["package"]
    biotools = package["bio.tools"]
+   tool_info = {}
    #url = package["url"]
    if source == binary:
       if biotools is None:
          pstr=destdir+"/"+source
          p = Path(pstr)
          if p.is_dir():
-            print("I: package '"+source+"' has no bio.tools ref but bio.tools has a cognate one.")
+            logging.warning(f"package '{source}' has no bio.tools ref but bio.tools has a cognate one.")
          else:
-            print("I: package '"+source+"' has no bio.tools ref.")
+            logging.warning(f"package '{source}' has no bio.tools ref.")
       else:
          pstr=destdir+"/"+biotools.lower()
+         pstr=destdir
          p = Path(pstr)
          if not p.is_dir():
-            print("I: package '"+source+"' has biotools ref ('"+biotools+"')but no folder exists.")
+            logging.warning(f"package '{source}' has a biotools ref ('{biotools}') but no folder exists.")
          else:
             doi = package["doi"]
             if verbose:
                print(no,source,biotools)
             out=open(pstr+"/"+biotools.lower()+".debian.yaml","w")
-            out.write("identifiers:\n")
-            out.write(indent+"- biotools: "+biotools.lower()+"\n")
+            identifiers = {}
+            if biotools is not None:
+                identifiers["biotools"] = biotools.lower()
             if doi is not None:
-               out.write(indent+"- doi: "+doi+"\n")
-            out.write(indent+"- debian: "+source+"\n")
+                identifiers["doi"] = doi
+            if source is not None:
+                identifiers["debian"] = source
             bioconda = package["bioconda"]
             if bioconda is not None:
-               out.write(indent+"- bioconda: "+bioconda+"\n")
+                identifiers["bioconda"] = bioconda
             scicrunch = package["SciCrunch"]
             if scicrunch is not None:
-               out.write(indent+"- scicrunch: "+scicrunch+"\n")
+                identifiers["scicrunch"] = scicrunch
             omictools = package["OMICtools"]
             if omictools is not None:
-               out.write(indent+"- omictools: "+omictools+"\n")
+                identifiers["omictools"] = omictools
             if package.get("biii") is not None:
-               biii = package["biii"]
-               if biii is not None:
-                  out.write(indent+"- biii: "+biii+"\n")
-
-            homepage = package["homepage"]
-            if homepage is not None:
-               out.write("homepage: "+homepage+"\n")
-            if package.get("license") is not None:
-               license = package["license"]
-               if license is not None and "unknown" != license and "<license>" != license:
-                  out.write("License: "+license+"\n")
-            summary=package["description"]
-            description=package["long_description"]
-            out.write("summary: "+summary+"\n")
-            out.write("description: >\n"+indent+description.rstrip().lstrip().replace("\n ","\n").replace("\n","\n"+indent)+"\n")
-            version=package["version"]
-            out.write("version: "+version+"\n")
-            topics=package["topics"]
-            edam=package["edam_scopes"]
-            if topics is not None or edam is not None:
-               out.write("edam:\n")
-               out.write(indent+"version: unknown\n") # Andreas said he would add this to the UDD
-               if topics is not None:
-                  out.write(indent+"topics:\n")
-                  for t in topics:
-                     out.write(indent+indent+"- "+t+"\n")
-               if edam is not None:
-                  out.write(indent+"scopes:\n")
-                  for scope in edam:
-                     n = scope["name"]
-                     if n is None:
-                        break
-                     out.write(indent+indent+"- name: "+n+"\n")
-                     f = None
-                     if scope.get("function"):
-                        f = scope["function"]
-                     elif scope.get("functions"):
-                        f = scope["functions"]
-                     if f is not None:
-                        out.write(indent+indent+"  "+"function:\n")
-                        for ee in f:
-                           out.write(indent+indent+"  "+indent+"- "+ee+"\n")
-                     if scope.get("input"):
-                        i = scope["input"]
-                        if i is not None:
-                           out.write(indent+indent+"  "+"input:\n")
-                           for ii in i:
-                              out.write(indent+indent+"  "+indent+"- data: "+ii["data"]+"\n")
-                              iii = None
-                              if ii.get("formats"):
-                                 iii = ii["formats"]
-                              elif ii.get("format"):
-                                 iii = ii["format"]
-                              if iii is not None:
-                                 out.write(indent+indent+"  "+indent+"  formats:\n")
-                                 for iiii in iii:
-                                    out.write(indent+indent+"  "+indent+"  "+indent+"- "+iiii+"\n")
-                     if scope.get("output") is not None:
-                        o = scope["output"]
-                        if o is not None:
-                           out.write(indent+indent+"  "+"output:\n")
-                           for oo in o:
-                              out.write(indent+indent+"  "+indent+"- data: "+oo["data"]+"\n")
-                              ooo = None
-                              if oo.get("formats"):
-                                 ooo = oo["formats"]
-                              elif oo.get("format"):
-                                 ooo = oo["format"]
-                              if ooo is not None:
-                                 out.write(indent+indent+"  "+indent+"  formats:\n")
-                                 for oooo in ooo:
-                                    out.write(indent+indent+"  "+indent+"  "+indent+"- "+oooo+"\n")
+                identifiers["biii"] = package.get("biii")
+            if bool(identifiers):
+                tool_info["identifiers"] = identifiers
+            tool_info["homepage"] = package["homepage"]
+            if package.get("license") not in [None, "unknown", "<license>"]:
+                tool_info["license"] = package.get("license")
+            tool_info["summary"] = package.get("description")
+            tool_info["description"] = ' '.join(package.get("long_description").split())
+            tool_info["version"] = package.get("version")
+            tool_info["edam"] = {}
+            tool_info["edam"]["version"] = ""
+            if "topics" in package:
+                tool_info["edam"]["topics"] = package["topics"]
+            if package.get("edam_scopes") is not None:
+                tool_info["edam"]["scopes"] = []
+                for scope in package.get("edam_scopes"):
+                    tool_function = {
+                                     "name": scope["name"],
+                                     "function": scope.get("function", scope.get("functions")),
+                                     "input": scope.get("input"),
+                                     "output": scope.get("output")
+                                    }
+                    tool_info["edam"]["scopes"].append(tool_function)
+            edam_scopes = package["edam_scopes"]
+            yaml.dump(tool_info, out)
