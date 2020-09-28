@@ -27,6 +27,9 @@ EOT
 
 if ! which psql >/dev/null ; then
    echo "E: postgresql client 'psql' not available"
+   if [ -r /etc/debian_version ]; then
+     echo "   Try 'sudo apt install postgresql-client-13'."
+   fi
    exit
 fi
 
