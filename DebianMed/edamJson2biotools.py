@@ -49,7 +49,7 @@ def process_data(input_json, output_dir):
                     if biotools is not None:
                         identifiers["biotools"] = biotools.lower()
                     if doi is not None:
-                        identifiers["doi"] = doi
+                        identifiers["doi"] = [doi]
                     if source is not None:
                         identifiers["debian"] = source
                     bioconda = package["bioconda"]
