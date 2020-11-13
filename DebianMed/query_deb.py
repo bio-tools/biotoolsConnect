@@ -9,9 +9,18 @@ import psycopg2
 from boltons.iterutils import remap
 from ruamel.yaml import YAML
 
-yaml=YAML()
+yaml = YAML()
 
 def process_data(output_dir):
+    rootLogger = logging.getLogger()
+    rootLogger.setLevel(logging.INFO)
+    fileHandler = logging.FileHandler('debian_import.log')
+    rootLogger.addHandler(fileHandler)
+    consoleHandler = logging.StreamHandler()
+    rootLogger.addHandler(consoleHandler)
+    rootLogger.info(
+        "starting debian med metadata import from UDD..."
+    )
     connection = psycopg2.connect(
         user="public-udd-mirror",
         password="public-udd-mirror",
@@ -100,32 +109,49 @@ def process_data(output_dir):
         package = item["package"]
         release = item["release"]
         description_md5 = item["description_md5"]
+        rootLogger.info(
+            f"processing package {package}"
+        )
         query_registries = f"select array_to_json(array_agg(t)) from (select entry, name from registry where source = '{package_source}') t"
         cursor_loop.execute(query_registries)
         registries_data = cursor_loop.fetchone()[0]
         item["registries"] = registries_data
-        biotools = next(iter([ref.get("entry") for ref in item.get("registries", []) or [] if ref.get("name")=="bio.tools"]), None)
+        biotools = next(
+            iter(
+                [
+                    ref.get("entry")
+                    for ref in item.get("registries", []) or []
+                    if ref.get("name") == "bio.tools"
+                ]
+            ),
+            None,
+        )
         if package == package_source:
             if biotools is None:
                 pstr = os.path.join(output_dir, package_source.lower())
                 p = Path(pstr)
                 if p.is_dir():
-                    logging.warning(
-                        f"package '{package_source}' has no bio.tools ref but bio.tools has a cognate one."
+                    rootLogger.warning(
+                        f"package '{package_source}' has no bio.tools ref but bio.tools has a cognate one, skipping."
                     )
                     continue
                 else:
-                    logging.warning(f"package '{package_source}' has no bio.tools ref.")
+                    rootLogger.warning(f"package '{package_source}' has no bio.tools ref, skipping.")
                     continue
             else:
                 pstr = os.path.join(output_dir, biotools.lower())
                 p = Path(pstr)
                 if not p.is_dir():
-                    logging.warning(
-                        f"package '{package_source}' has a biotools ref ('{biotools}') but no folder exists."
+                    rootLogger.warning(
+                        f"package '{package_source}' has a biotools ref ('{biotools}') but no folder exists, skipping."
                     )
                     continue
-        logging.info(
+        else:
+            rootLogger.warning(
+                f"package name '{package}' is different from package source name '{package_source}', skipping."
+            )
+            continue
+        rootLogger.info(
             f"processing package '{package_source}' with biotools ref ('{biotools}')."
         )
         query_bib = f"select array_to_json(array_agg(t)) from (select key, package, rank, value from bibref where key = 'doi' AND source = '{package_source}') t"
@@ -145,8 +171,8 @@ def process_data(output_dir):
                       WHERE package IN
                       (SELECT DISTINCT package FROM blends_dependencies WHERE blend = 'debian-med') and package='{package}' and release='{release}' and (description_md5='{description_md5}' or description_md5 is null)
                       """
-        if item["release"]=="vcs":
-           query_descr += f"""
+        if item["release"] == "vcs":
+            query_descr += f"""
                       UNION
                       SELECT package, description, long_description, 'vcs' AS release, description_md5, license, blend FROM blends_prospectivepackages
                        where package='{package}' and (description_md5='{description_md5}' or description_md5 is null)"""
@@ -157,10 +183,14 @@ def process_data(output_dir):
         drop_false = lambda path, key, value: bool(value)
         item = remap(item, visit=drop_false)
         file_path = os.path.join(pstr, f"{item['package']}.debian.yaml")
-        with open(file_path, 'w') as fh:
+        with open(file_path, "w") as fh:
             yaml.dump(item, fh)
     cursor_loop.close()
     connection.close()
+    rootLogger.info(
+        "finished debian med metadata import from UDD."
+    )
+
 
 def get_parser():
     parser = argparse.ArgumentParser()
@@ -172,6 +202,7 @@ def main():
     parser = get_parser()
     args = parser.parse_args()
     process_data(args.output_dir)
+
 
 if __name__ == "__main__":
     main()
