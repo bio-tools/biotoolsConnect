@@ -156,7 +156,7 @@ def process_data(output_dir):
         item["descr"] = descr_data
         drop_false = lambda path, key, value: bool(value)
         item = remap(item, visit=drop_false)
-        file_path = os.path.join(output_dir, f"{item['package']}.debian.yaml")
+        file_path = os.path.join(pstr, f"{item['package']}.debian.yaml")
         with open(file_path, 'w') as fh:
             yaml.dump(item, fh)
     cursor_loop.close()
