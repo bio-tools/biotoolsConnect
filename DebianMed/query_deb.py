@@ -124,7 +124,7 @@ def process_data(output_dir):
                     logging.warning(
                         f"package '{package_source}' has a biotools ref ('{biotools}') but no folder exists."
                     )
-                continue
+                    continue
         logging.info(
             f"processing package '{package_source}' with biotools ref ('{biotools}')."
         )
