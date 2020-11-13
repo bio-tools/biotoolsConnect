@@ -1,6 +1,8 @@
 # coding: utf-8
 import argparse
 import json
+import logging
+from pathlib import Path
 import os
 import psycopg2
 
@@ -98,14 +100,38 @@ def process_data(output_dir):
         package = item["package"]
         release = item["release"]
         description_md5 = item["description_md5"]
-        query_bib = f"select array_to_json(array_agg(t)) from (select key, package, rank, value from bibref where key = 'doi' AND source = '{package_source}') t"
-        cursor_loop.execute(query_bib)
-        bibref_data = cursor_loop.fetchone()[0]
-        item["bib"] = bibref_data
         query_registries = f"select array_to_json(array_agg(t)) from (select entry, name from registry where source = '{package_source}') t"
         cursor_loop.execute(query_registries)
         registries_data = cursor_loop.fetchone()[0]
         item["registries"] = registries_data
+        biotools = next(iter([ref.get("entry") for ref in item.get("registries", []) or [] if ref.get("name")=="bio.tools"]), None)
+        if package == package_source:
+            if biotools is None:
+                pstr = os.path.join(output_dir, package_source.lower())
+                p = Path(pstr)
+                if p.is_dir():
+                    logging.warning(
+                        f"package '{package_source}' has no bio.tools ref but bio.tools has a cognate one."
+                    )
+                    continue
+                else:
+                    logging.warning(f"package '{package_source}' has no bio.tools ref.")
+                    continue
+            else:
+                pstr = os.path.join(output_dir, biotools.lower())
+                p = Path(pstr)
+                if not p.is_dir():
+                    logging.warning(
+                        f"package '{package_source}' has a biotools ref ('{biotools}') but no folder exists."
+                    )
+                continue
+        logging.info(
+            f"processing package '{package_source}' with biotools ref ('{biotools}')."
+        )
+        query_bib = f"select array_to_json(array_agg(t)) from (select key, package, rank, value from bibref where key = 'doi' AND source = '{package_source}') t"
+        cursor_loop.execute(query_bib)
+        bibref_data = cursor_loop.fetchone()[0]
+        item["bib"] = bibref_data
         query_tags = f"select array_to_json(array_agg(t)) from (select tag from debtags where package='{package}') t"
         cursor_loop.execute(query_tags)
         tags_data = cursor_loop.fetchone()[0]
