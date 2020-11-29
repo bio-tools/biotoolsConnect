@@ -45,8 +45,8 @@ fi
 if ! psql $PORT $SERVICE -c "" 2>/dev/null ; then
     echo "I: No local UDD found, use public mirror."
     PORT="--port=5432"
-    export PGPASSWORD="public-udd-mirror"
-    SERVICE="--host=public-udd-mirror.xvm.mit.edu --username=public-udd-mirror udd"
+    export PGPASSWORD="udd-mirror"
+    SERVICE="--host=udd-mirror.debian.net --username=udd-mirror udd"
 fi
 
 EXT=txt
@@ -64,8 +64,8 @@ while getopts "hjm" o; do
            ;;
         m)
            PORT="--port=5432"
-           export PGPASSWORD="public-udd-mirror"
-           SERVICE="--host=public-udd-mirror.xvm.mit.edu --username=public-udd-mirror udd"
+           export PGPASSWORD="udd-mirror"
+           SERVICE="--host=udd-mirror.debian.net --username=udd-mirror udd"
            ;;
         *)
             usage
