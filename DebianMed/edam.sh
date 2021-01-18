@@ -36,17 +36,17 @@ fi
 PORT="-p 5452"
 
 SERVICE="service=udd"
+
 #if there is a local UDD clone just use this
 if psql $PORT -l 2>/dev/null | grep -qw udd ; then
-    SERVICE=udd
+    SERVICE="$PORT udd"
 fi
 
 # Check UDD connection
-if ! psql $PORT $SERVICE -c "" 2>/dev/null ; then
+if ! psql $SERVICE -c "" 2>/dev/null ; then
     echo "I: No local UDD found, use public mirror."
-    PORT="--port=5432"
     export PGPASSWORD="udd-mirror"
-    SERVICE="--host=udd-mirror.debian.net --username=udd-mirror udd"
+    SERVICE="--host=udd-mirror.debian.net --port=5432 --username=udd-mirror udd"
 fi
 
 EXT=txt
@@ -63,9 +63,8 @@ while getopts "hjm" o; do
            OUTPUTFORMAT=--tuples-only
            ;;
         m)
-           PORT="--port=5432"
            export PGPASSWORD="udd-mirror"
-           SERVICE="--host=udd-mirror.debian.net --username=udd-mirror udd"
+           SERVICE="--host=udd-mirror.debian.net --port=5432 --username=udd-mirror udd"
            ;;
         *)
             usage
@@ -77,7 +76,7 @@ shift $((OPTIND-1))
 
 team="'debian-med-packaging@lists.alioth.debian.org'"
 
-psql $PORT $OUTPUTFORMAT $SERVICE >edam.$EXT <<EOT
+psql $OUTPUTFORMAT $SERVICE >edam.$EXT <<EOT
 $JSONBEGIN
 -- If you want to make the output at source level uncomment this
 -- SELECT source, array_agg(package) as packages, distribution, release, component, version, homepage FROM
