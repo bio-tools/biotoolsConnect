@@ -6,6 +6,8 @@
 #        * Proper license information in packages - needs to be imported to UDD
 #        * Version of EDAM ontology that is referenced
 
+set -e
+
 usage() {
 cat >/dev/stderr <<EOT
 Usage: $0 [option]
