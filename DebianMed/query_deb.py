@@ -22,9 +22,9 @@ def process_data(output_dir):
         "starting debian med metadata import from UDD..."
     )
     connection = psycopg2.connect(
-        user="public-udd-mirror",
-        password="public-udd-mirror",
-        host="public-udd-mirror.xvm.mit.edu",
+        user="udd-mirror",
+        password="udd-mirror",
+        host="udd-mirror.debian.net",
         port="5432",
         database="udd",
     )
